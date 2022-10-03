@@ -1,12 +1,15 @@
+import Impresion from "pages/Impresion";
 
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: '/impresion', component: Impresion},
     ]
   },
+
 
   // Always leave this as last one,
   // but you can also remove it

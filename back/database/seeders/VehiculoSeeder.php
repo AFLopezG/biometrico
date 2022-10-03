@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class VehiculoSeeder extends Seeder
 {
@@ -14,6 +15,23 @@ class VehiculoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('vehiculos')->insert([
+            [
+                'placa' => 'ABC-111',
+                'marca' => 'Toyota',
+                'modelo' => 'Corolla',
+                'color' => 'Blanco',
+                'afiliado_id' => 1,
+                'grupo_id' => 1,
+            ],
+            [
+                'placa' => 'ABC-222',
+                'marca' => 'Toyota',
+                'modelo' => 'Corolla',
+                'color' => 'Blanco',
+                'afiliado_id' => 2,
+                'grupo_id' => 2,
+            ],
+        ]);
     }
 }

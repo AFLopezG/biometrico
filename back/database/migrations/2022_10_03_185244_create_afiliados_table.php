@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('expedido');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->text('dedo1');
+            $table->text('dedo2');
+            $table->text('dedo3');
             $table->date('fechaing');
             $table->timestamps();
         });

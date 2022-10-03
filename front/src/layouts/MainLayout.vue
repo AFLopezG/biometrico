@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Pago biometrico
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -25,17 +25,61 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
+        <q-item-label class="q-pa-xs">
+          <div class="row">
+            <div class="col-3 flex flex-center">
+              <!--              <q-avatar size="48px">-->
+              <q-icon color="primary" size="40px" name="o_restaurant" />
+              <!--              </q-avatar>-->
+            </div>
+            <div class="col-9">
+              <div class="text-h6 text-bold " >COBRO BIO</div>
+              <div class="text-caption">v 1.0</div>
+            </div>
+          </div>
         </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-separator />
+        <q-toolbar class="bg-primary text-white shadow-2">
+          <q-toolbar-title>Opciones</q-toolbar-title>
+        </q-toolbar>
+        <q-list bordered>
+          <q-item clickable v-ripple active-class="my-menu-link" to="misDatos">
+            <q-item-section avatar>
+              <q-icon name="o_save" />
+            </q-item-section>
+            <q-item-section>USUARIOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple active-class="my-menu-link" to="antiguo">
+            <q-item-section avatar>
+              <q-icon name="o_fact_check" />
+            </q-item-section>
+            <q-item-section>AFILIADOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple activºe-class="my-menu-link" to="nuevo">
+            <q-item-section avatar>
+              <q-icon name="o_dns" />
+            </q-item-section>
+            <q-item-section>GRUPOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple active-class="my-menu-link" to="repostulante">
+            <q-item-section avatar>
+              <q-icon name="o_ballot" />
+            </q-item-section>
+            <q-item-section>VEHICULOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple active-class="my-menu-link" to="critico">
+            <q-item-section avatar>
+              <q-icon name="o_speaker_notes" />
+            </q-item-section>
+            <q-item-section>PAGOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple active-class="my-menu-link" to="impresion">
+            <q-item-section avatar>
+              <q-icon name="o_list_alt" />
+            </q-item-section>
+            <q-item-section>IMPRESION</q-item-section>
+          </q-item>
+        </q-list>
       </q-list>
     </q-drawer>
 
@@ -44,73 +88,17 @@
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
+export default {
+  data () {
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      leftDrawerOpen: false
+    }
+  },
+  methods: {
+    toggleLeftDrawer () {
+      this.leftDrawerOpen = !this.leftDrawerOpen
     }
   }
-})
+}
 </script>

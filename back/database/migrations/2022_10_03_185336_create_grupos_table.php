@@ -20,6 +20,10 @@ return new class extends Migration
             $table->double('monto');
             $table->double('multa');
             $table->string('rango');
+            $table->double('sindical',11,2);
+            $table->double('seguro',11,2);
+            $table->double('deportico',11,2);
+            $table->double('decano',11,2);
             $table->timestamps();
         });
     }

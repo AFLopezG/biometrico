@@ -13,18 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vehiculos', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('placa')->unique();
-            $table->string('tipo')->nullable('SURUBI');
-            $table->string('modelo');
-            $table->string('marca');
-            $table->string('color');
-            $table->string('capacidad')->default('20');
             $table->unsignedBigInteger('afiliado_id');
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->unsignedBigInteger('grupo_id');
             $table->foreign('grupo_id')->references('id')->on('grupos');
+            $table->unsignedBigInteger('vehiculo_id');
+            $table->foreign('vehiculo_id')->references('id')->on('vehiculos');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->double('monto',11,2);
+            $table->boolean('multa')->default(false);
+            $table->date('fecha');
+            $table->time('hora');
+            $table->boolean('impreso')->default(false);
+            $table->string('anulado')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehiculos');
+        Schema::dropIfExists('pagos');
     }
 };
