@@ -16,6 +16,7 @@ class AfiliadoController extends Controller
     public function index()
     {
         //
+        return Afiliado::all();
     }
 
     /**
@@ -37,6 +38,16 @@ class AfiliadoController extends Controller
     public function store(StoreAfiliadoRequest $request)
     {
         //
+        $afiliado= new Afiliado();
+        $afiliado->ci=strtoupper($request->ci);
+        $afiliado->expedido=$request->expedido;
+        $afiliado->nombres=strtoupper($request->nombres);
+        $afiliado->apellidos=strtoupper($request->apellidos);
+        $afiliado->fechaing=$request->fechaing;
+        $afiliado->dedo1='';
+        $afiliado->dedo2='';
+        $afiliado->dedo3='';
+        $afiliado->save();
     }
 
     /**
@@ -71,6 +82,12 @@ class AfiliadoController extends Controller
     public function update(UpdateAfiliadoRequest $request, Afiliado $afiliado)
     {
         //
+        $afiliado= Afiliado::find($request->id);
+        $afiliado->expedido=$request->expedido;
+        $afiliado->nombres=strtoupper($request->nombres);
+        $afiliado->apellidos=strtoupper($request->apellidos);
+        $afiliado->fechaing=$request->fechaing;
+        $afiliado->save();
     }
 
     /**
@@ -82,5 +99,6 @@ class AfiliadoController extends Controller
     public function destroy(Afiliado $afiliado)
     {
         //
+        $afiliado->delete();
     }
 }

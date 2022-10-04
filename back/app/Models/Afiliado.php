@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Afiliado extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'ci',
+        'expedido',
+        'nombres',
+        'apellidos',
+        'dedo1',
+        'dedo2',
+        'dedo3',
+        'fechaing',
+    ];
 }

@@ -1,4 +1,5 @@
 import Impresion from "pages/Impresion";
+import Afiliados from "pages/Afiliados";
 
 const routes = [
   {
@@ -7,6 +8,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/impresion', component: Impresion},
+      { path: '/afiliados', component: Afiliados},
     ]
   },
 

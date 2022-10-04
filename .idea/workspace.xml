@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1203e595-dc3e-4343-9830-cda089a492f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/pages/Impresion.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/biometrico.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/AfiliadoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/AfiliadoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StoreAfiliadoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StoreAfiliadoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StoreGrupoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StoreGrupoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StorevehiculoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StorevehiculoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdateAfiliadoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdateAfiliadoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdateGrupoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdateGrupoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdatevehiculoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdatevehiculoRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Models/Afiliado.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Models/Afiliado.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185244_create_afiliados_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185244_create_afiliados_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185538_create_grupos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185336_create_grupos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/seeders/AfiliadoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/seeders/AfiliadoSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/seeders/GrupoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/seeders/GrupoSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/seeders/VehiculoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/seeders/VehiculoSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/boot/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/boot/axios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/routes.js" afterDir="false" />
     </list>
@@ -170,8 +172,10 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/proyectos/biometrico",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
@@ -187,6 +191,7 @@
       <updated>1664821725624</updated>
       <workItem from="1664821726760" duration="7116000" />
       <workItem from="1664832701405" duration="4368000" />
+      <workItem from="1664885672355" duration="11059000" />
     </task>
     <servers />
   </component>

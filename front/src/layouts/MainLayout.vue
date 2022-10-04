@@ -49,7 +49,7 @@
             </q-item-section>
             <q-item-section>USUARIOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="antiguo">
+          <q-item clickable v-ripple active-class="my-menu-link" to="afiliados">
             <q-item-section avatar>
               <q-icon name="o_fact_check" />
             </q-item-section>
