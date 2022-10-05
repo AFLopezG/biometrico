@@ -1,5 +1,6 @@
 import Impresion from "pages/Impresion";
 import Afiliados from "pages/Afiliados";
+import Vehiculos from "pages/Vehiculos";
 
 const routes = [
   {
@@ -9,6 +10,7 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/impresion', component: Impresion},
       { path: '/afiliados', component: Afiliados},
+      { path: '/vehiculos', component: Vehiculos},
     ]
   },
 

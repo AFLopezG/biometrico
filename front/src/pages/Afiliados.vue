@@ -10,7 +10,7 @@
         </q-td>
       </template>
       <template v-slot:top-right>
-        <q-btn label="REGISTRAR" color="green" icon="person_add" @click="listreg"/>
+        <q-btn label="REGISTRAR" color="green" icon="person_add" @click="listreg" :loading="loading"/>
 
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
           <template v-slot:append>
@@ -40,7 +40,7 @@
 
         <q-card-actions align="right" class="text-primary">
           <q-btn flat color="red" label="Cancel" v-close-popup icon="cancel"/>
-          <q-btn flat color="green" label="Registrar" icon="send" type="submit" />
+          <q-btn flat color="green" label="Registrar" icon="send" type="submit" :loading="loading"/>
 
         </q-card-actions>
         </q-form>
@@ -67,7 +67,7 @@
 
           <q-card-actions align="right" class="text-primary">
             <q-btn flat color="red" label="Cancel" v-close-popup icon="cancel"/>
-            <q-btn flat color="green" label="Modificar" icon="pencil" type="submit" />
+            <q-btn flat color="green" label="Modificar" icon="pencil" type="submit" :loading="loading"/>
 
           </q-card-actions>
         </q-form>
@@ -85,6 +85,7 @@ export default {
   name: `Afiliados.vue`,
   data() {
     return {
+      loading:false,
       dialogRegistro:false,
       dialogModificar:false,
       afiliado:{fechaing:date.formatDate( Date.now(),'YYYY-MM-DD')},
@@ -118,6 +119,7 @@ export default {
 
         },
     onSubmit(){
+       this.loading=true
         this.listadoAfiliado()
         this.afiliados.forEach(r=>{
           if(r.ci==this.afiliado.ci){
@@ -127,9 +129,12 @@ export default {
               color: 'red'
             })
 
+            this.loading=false
             return false
+
           }
         })
+
         this.$api.post('afiliado',this.afiliado).then((response) => {
           this.$q.notify({
             message: 'Afiliado Registrado',
@@ -138,10 +143,13 @@ export default {
           })
           this.dialogRegistro=false
           this.listadoAfiliado()
+          this.loading=false
+
         })
 
       },
     updateAfiliado(){
+      this.loading=true
       this.$api.put('afiliado/'+this.afiliado2.id,this.afiliado2).then((response) => {
         this.$q.notify({
           message: 'Afiliado Modificado',
@@ -150,6 +158,8 @@ export default {
         })
         this.dialogModificar=false
         this.listadoAfiliado()
+        this.loading=false
+
       })
     },
     EliminarAfiliado(af){

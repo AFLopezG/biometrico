@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('modelo');
             $table->string('marca');
             $table->string('color');
-            $table->string('capacidad')->default('20');
+            $table->integer('capacidad')->default('20');
             $table->unsignedBigInteger('afiliado_id');
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->unsignedBigInteger('grupo_id');

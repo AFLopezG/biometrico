@@ -5,24 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1203e595-dc3e-4343-9830-cda089a492f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/biometrico.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/pages/Vehiculos.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/AfiliadoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/AfiliadoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StoreAfiliadoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StoreAfiliadoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StoreGrupoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StoreGrupoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/StorevehiculoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/StorevehiculoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdateAfiliadoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdateAfiliadoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdateGrupoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdateGrupoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Requests/UpdatevehiculoRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Requests/UpdatevehiculoRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Models/Afiliado.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Models/Afiliado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185244_create_afiliados_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185244_create_afiliados_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/GrupoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/GrupoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/VehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/VehiculoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Models/vehiculo.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Models/vehiculo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,17 +151,20 @@
     </include_path>
   </component>
   <component name="ProjectId" id="2FdV0cmR9JnQAtTdkzBYoX1m8FY" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/proyectos/biometrico",
+    "last_opened_file_path": "C:/xampp/htdocs/bio/front/src/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -181,6 +175,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\bio\front\src\pages" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -191,7 +190,7 @@
       <updated>1664821725624</updated>
       <workItem from="1664821726760" duration="7116000" />
       <workItem from="1664832701405" duration="4368000" />
-      <workItem from="1664885672355" duration="11059000" />
+      <workItem from="1664885672355" duration="17889000" />
     </task>
     <servers />
   </component>
@@ -208,5 +207,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

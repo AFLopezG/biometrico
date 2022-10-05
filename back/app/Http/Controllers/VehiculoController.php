@@ -16,6 +16,7 @@ class VehiculoController extends Controller
     public function index()
     {
         //
+        return Vehiculo::with('afiliado')->with('grupo')->get();
     }
 
     /**
@@ -37,6 +38,16 @@ class VehiculoController extends Controller
     public function store(StorevehiculoRequest $request)
     {
         //
+        $vehiculo=new Vehiculo;
+        $vehiculo->placa=strtoupper($request->placa);
+        $vehiculo->tipo=strtoupper($request->tipo);
+        $vehiculo->modelo=$request->modelo;
+        $vehiculo->marca=strtoupper($request->marca);
+        $vehiculo->color=strtoupper($request->color);
+        $vehiculo->capacidad=$request->capacidad;
+        $vehiculo->afiliado_id=$request->afiliado_id;
+        $vehiculo->grupo_id=$request->grupo_id;
+        $vehiculo->save();
     }
 
     /**
@@ -71,6 +82,16 @@ class VehiculoController extends Controller
     public function update(UpdatevehiculoRequest $request, vehiculo $vehiculo)
     {
         //
+        $vehiculo=Vehiculo::find($request->id);
+        //$vehiculo->placa=strtoupper($request->placa);
+        $vehiculo->tipo=strtoupper($request->tipo);
+        $vehiculo->modelo=$request->modelo;
+        $vehiculo->marca=strtoupper($request->marca);
+        $vehiculo->color=strtoupper($request->color);
+        $vehiculo->capacidad=$request->capacidad;
+        $vehiculo->afiliado_id=$request->afiliado_id;
+        $vehiculo->grupo_id=$request->grupo_id;
+        $vehiculo->save();
     }
 
     /**
@@ -82,5 +103,6 @@ class VehiculoController extends Controller
     public function destroy(vehiculo $vehiculo)
     {
         //
+        $vehiculo->delete();
     }
 }

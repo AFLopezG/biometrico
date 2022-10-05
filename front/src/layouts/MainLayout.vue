@@ -61,7 +61,7 @@
             </q-item-section>
             <q-item-section>GRUPOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="repostulante">
+          <q-item clickable v-ripple active-class="my-menu-link" to="vehiculos">
             <q-item-section avatar>
               <q-icon name="o_ballot" />
             </q-item-section>

@@ -16,6 +16,7 @@ class GrupoController extends Controller
     public function index()
     {
         //
+        return Grupo::all();
     }
 
     /**
