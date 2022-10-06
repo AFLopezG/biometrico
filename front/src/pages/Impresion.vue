@@ -1,9 +1,8 @@
 <template>
 <q-page>
-<q-table :rows="pagos" :columns="columns">
+<q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
 </q-table>
-
-  <div id="print" ></div>
+  <div id="print"></div>
 </q-page>
 </template>
 
@@ -64,13 +63,12 @@ export default {
               <td class='texto3'>Secretario de Hacienda<br>VoBo</td><td class='texto3'>Agente de Control</td>\
               </tr></table>\
               </div>"
-
             document.getElementById('print').innerHTML = cadena
             d.print( document.getElementById('print') )
           }
         });
       });
-    }, 5000);
+    }, 2000);
 
   },
 }

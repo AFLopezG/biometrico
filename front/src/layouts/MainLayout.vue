@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Pago biometrico
+          26 de julio
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>sindicato de mixto transporte</div>
       </q-toolbar>
     </q-header>
 
@@ -29,7 +29,7 @@
           <div class="row">
             <div class="col-3 flex flex-center">
               <!--              <q-avatar size="48px">-->
-              <q-icon color="primary" size="40px" name="o_restaurant" />
+              <q-icon color="black" size="40px" name="o_directions_bus_filled" />
               <!--              </q-avatar>-->
             </div>
             <div class="col-9">

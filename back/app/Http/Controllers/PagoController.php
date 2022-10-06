@@ -15,7 +15,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->whereFecha(date('Y-m-d'))->get();
+        return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->whereFecha(date('Y-m-d'))->orderBy('id', 'desc')->get();
     }
 
     /**
@@ -70,6 +70,7 @@ class PagoController extends Controller
      */
     public function update(UpdatePagoRequest $request, Pago $pago)
     {
+        $request['hora']=date('H:i:s');
         $pago->update($request->all());
     }
 
