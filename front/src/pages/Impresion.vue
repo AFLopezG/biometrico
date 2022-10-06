@@ -1,8 +1,13 @@
 <template>
 <q-page>
 <q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
+  <template v-slot:body-cell-opcion="props">
+    <q-td :props="props" auto-width>
+      <q-btn icon="delete" color="red" @click="anularPago(props.row)" v-if="props.row.anulado=='' || props.row.anulado==null"/>
+    </q-td>
+  </template>
 </q-table>
-  <div id="print"></div>
+  <div id="print" hidden></div>
 </q-page>
 </template>
 
@@ -14,6 +19,7 @@ export default {
     return {
       pagos: [],
       columns:[
+        {name:'opcion',label:'opcion',field:'opcion'},
         {name:'id',label:'id',field:'id'},
         {name:'monto',label:'monto',field:'monto'},
         {name:'multa',label:'multa',field:'multa'},
@@ -22,6 +28,7 @@ export default {
         {name:'grupo',label:'grupo',field:row=>row.grupo.tipo},
         {name:'afiliado',label:'afiliado',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
         {name:'vehiculo',label:'vehiculo',field:row=>row.vehiculo.placa},
+        {name:'anulado',label:'anulado',field:'anulado'},
       ]
     };
   },
@@ -47,7 +54,7 @@ export default {
             .texto3{font-size:8px; text-align: center; font-weight: normal;}\
             table{width:100%}\
             </style>\
-              <div >\
+              <div id='print'>\
               <table>\
               <tr><td style='width:20%'></td>\
               <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 221174</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
@@ -69,7 +76,32 @@ export default {
         });
       });
     }, 2000);
+  },
 
+  methods:{
+      anularPago(pag){
+        this.$q.dialog({
+          title: 'ANULAR PAGO',
+          message: 'Cual es el motivo ?',
+          prompt: {
+            model: '',
+            type: 'text' // optional
+          },
+          cancel: true,
+          persistent: false
+        }).onOk(data => {
+          //console.log(data)
+          if(data=='')
+            return false
+          this.$api.post('anularPago' ,{pago:pag.id,motivo:data}).then(res=>{
+            console.log(res.data)
+          })
+        }).onCancel(() => {
+          // console.log('>>>> Cancel')
+        }).onDismiss(() => {
+          // console.log('I am triggered on both OK and Cancel')
+        })
+      }
   },
 }
 </script>

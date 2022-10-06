@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pago;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
+use Illuminate\Http\Request;
 
 class PagoController extends Controller
 {
@@ -18,6 +19,12 @@ class PagoController extends Controller
         return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->whereFecha(date('Y-m-d'))->orderBy('id', 'desc')->get();
     }
 
+    public function anularPago(Request $request){
+        //return $request;
+        $pago=Pago::find($request->pago);
+        $pago->anulado=$request->motivo;
+        $pago->save();
+    }
     /**
      * Show the form for creating a new resource.
      *
