@@ -38,6 +38,17 @@ class GrupoController extends Controller
     public function store(StoreGrupoRequest $request)
     {
         //
+        $grupo=new Grupo;
+        $grupo->tipo=strtoupper($request->tipo);
+        $grupo->detalle=strtoupper($request->detalle);
+        $grupo->rango=$request->rango;
+        $grupo->sindical=$request->sindical;
+        $grupo->seguro=$request->seguro;
+        $grupo->deportico=$request->deportico;
+        $grupo->decano=$request->decano;
+        $grupo->monto=floatval($request->sindical)+floatval($request->seguro)+floatval($request->deportico)+floatval($request->decano);
+        $grupo->multa=$grupo->monto;
+        $grupo->save();
     }
 
     /**
@@ -72,6 +83,17 @@ class GrupoController extends Controller
     public function update(UpdateGrupoRequest $request, Grupo $grupo)
     {
         //
+        $grupo=Grupo::find($request->id);
+        $grupo->tipo=strtoupper($request->tipo);
+        $grupo->detalle=strtoupper($request->detalle);
+        $grupo->rango=$request->rango;
+        $grupo->sindical=$request->sindical;
+        $grupo->seguro=$request->seguro;
+        $grupo->deportico=$request->deportico;
+        $grupo->decano=$request->decano;
+        $grupo->monto=floatval($request->sindical)+floatval($request->seguro)+floatval($request->deportico)+floatval($request->decano);
+        $grupo->multa=$grupo->monto;
+        $grupo->save();
     }
 
     /**
@@ -83,5 +105,6 @@ class GrupoController extends Controller
     public function destroy(Grupo $grupo)
     {
         //
+        $grupo->delete();
     }
 }

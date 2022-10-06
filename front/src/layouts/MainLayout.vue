@@ -55,7 +55,7 @@
             </q-item-section>
             <q-item-section>AFILIADOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple activºe-class="my-menu-link" to="nuevo">
+          <q-item clickable v-ripple activºe-class="my-menu-link" to="grupos">
             <q-item-section avatar>
               <q-icon name="o_dns" />
             </q-item-section>

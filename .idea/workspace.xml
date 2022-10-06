@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1203e595-dc3e-4343-9830-cda089a492f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/pages/Vehiculos.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/pages/Grupos.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/GrupoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/GrupoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Http/Controllers/VehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Http/Controllers/VehiculoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/app/Models/vehiculo.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Models/vehiculo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/database/migrations/2022_10_03_185337_create_vehiculos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/app/Models/Grupo.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/app/Models/Grupo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/layouts/MainLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Afiliados.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/pages/Impresion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/pages/Impresion.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,23 +155,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/bio/front/src/pages",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/bio/front/src/pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\bio\front\src\pages" />
@@ -190,7 +187,9 @@
       <updated>1664821725624</updated>
       <workItem from="1664821726760" duration="7116000" />
       <workItem from="1664832701405" duration="4368000" />
-      <workItem from="1664885672355" duration="17889000" />
+      <workItem from="1664885672355" duration="18568000" />
+      <workItem from="1665012775834" duration="2343000" />
+      <workItem from="1665059625022" duration="10788000" />
     </task>
     <servers />
   </component>

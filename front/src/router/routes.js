@@ -1,6 +1,7 @@
 import Impresion from "pages/Impresion";
 import Afiliados from "pages/Afiliados";
 import Vehiculos from "pages/Vehiculos";
+import Grupos from "pages/Grupos";
 
 const routes = [
   {
@@ -11,6 +12,7 @@ const routes = [
       { path: '/impresion', component: Impresion},
       { path: '/afiliados', component: Afiliados},
       { path: '/vehiculos', component: Vehiculos},
+      { path: '/grupos', component: Grupos},
     ]
   },
 

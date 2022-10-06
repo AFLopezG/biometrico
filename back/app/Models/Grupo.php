@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Grupo extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'tipo',
+        'detalle',
+        'monto',
+        'multa',
+        'rango',
+        'sindical',
+        'seguro',
+        'deportico',
+        'decano',
+    ];
 }
