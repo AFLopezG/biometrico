@@ -7,7 +7,7 @@
     </q-td>
   </template>
 </q-table>
-  <div id="print" hidden></div>
+  <div id="print" class="hidden"></div>
 </q-page>
 </template>
 
@@ -53,10 +53,11 @@ export default {
             .texto2{font-size:14px; text-align: center; font-weight: normal;}\
             .texto3{font-size:8px; text-align: center; font-weight: normal;}\
             table{width:100%}\
+            img{width:70px;height:70px;}\
             </style>\
               <div id='print'>\
               <table>\
-              <tr><td style='width:20%'></td>\
+              <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
               <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 221174</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
               <td class='titulo1'> FECHA<br>"+pago.fecha+"<br><span class='titulo3'>Strio de Conflictos Cel:73039359</span><br><span   >No "+pago.id+"</span></td></tr>\
               </table>\
