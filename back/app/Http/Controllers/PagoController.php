@@ -22,7 +22,8 @@ class PagoController extends Controller
     public function anularPago(Request $request){
         //return $request;
         $pago=Pago::find($request->pago);
-        $pago->anulado=$request->motivo;
+        $pago->anulado=true;
+        $pago->motivo=$request->motivo;
         $pago->save();
     }
     /**

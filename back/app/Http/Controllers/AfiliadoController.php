@@ -41,6 +41,7 @@ class AfiliadoController extends Controller
         $afiliado= new Afiliado();
         $afiliado->ci=strtoupper($request->ci);
         $afiliado->expedido=$request->expedido;
+        $afiliado->codigo=strtoupper($request->codigo);
         $afiliado->nombres=strtoupper($request->nombres);
         $afiliado->apellidos=strtoupper($request->apellidos);
         $afiliado->fechaing=$request->fechaing;
@@ -84,6 +85,7 @@ class AfiliadoController extends Controller
         //
         $afiliado= Afiliado::find($request->id);
         $afiliado->expedido=$request->expedido;
+        $afiliado->codigo=strtoupper($request->codigo);
         $afiliado->nombres=strtoupper($request->nombres);
         $afiliado->apellidos=strtoupper($request->apellidos);
         $afiliado->fechaing=$request->fechaing;

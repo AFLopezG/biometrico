@@ -19,6 +19,7 @@ class Pago extends Model
         'hora',
         'impreso',
         'anulado',
+        'motivo',
     ];
     public function afiliado()
     {

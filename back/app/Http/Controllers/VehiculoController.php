@@ -44,6 +44,7 @@ class VehiculoController extends Controller
         $vehiculo->modelo=$request->modelo;
         $vehiculo->marca=strtoupper($request->marca);
         $vehiculo->color=strtoupper($request->color);
+        $vehiculo->codcolor=$request->codcolor;
         $vehiculo->capacidad=$request->capacidad;
         $vehiculo->afiliado_id=$request->afiliado_id;
         $vehiculo->grupo_id=$request->grupo_id;
@@ -88,6 +89,7 @@ class VehiculoController extends Controller
         $vehiculo->modelo=$request->modelo;
         $vehiculo->marca=strtoupper($request->marca);
         $vehiculo->color=strtoupper($request->color);
+        $vehiculo->codcolor=$request->codcolor;
         $vehiculo->capacidad=$request->capacidad;
         $vehiculo->afiliado_id=$request->afiliado_id;
         $vehiculo->grupo_id=$request->grupo_id;

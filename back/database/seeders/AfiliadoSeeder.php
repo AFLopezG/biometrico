@@ -18,6 +18,7 @@ class AfiliadoSeeder extends Seeder
         DB::table('afiliados')->insert([
             [
                 'ci' => '2020',
+                'codigo' => 'D1',
                 'expedido' => 'LP',
                 'nombres' => 'Juan',
                 'apellidos' => 'Perez',
@@ -28,6 +29,7 @@ class AfiliadoSeeder extends Seeder
             ],
             [
                 'ci' => '1010',
+                'codigo' => 'D2',
                 'expedido' => 'LP',
                 'nombres' => 'Alejandro ',
                 'apellidos' => 'Lopez',

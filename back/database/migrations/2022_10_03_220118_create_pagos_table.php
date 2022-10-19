@@ -28,7 +28,8 @@ return new class extends Migration
             $table->date('fecha')->nullable();;
             $table->time('hora')->nullable();;
             $table->boolean('impreso')->default(false);
-            $table->string('anulado')->nullable();
+            $table->boolean('anulado')->default(false);
+            $table->string('motivo')->nullable();
             $table->timestamps();
         });
     }

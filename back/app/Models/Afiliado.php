@@ -10,6 +10,7 @@ class Afiliado extends Model
     use HasFactory;
     protected $fillable = [
         'ci',
+        'codigo',
         'expedido',
         'nombres',
         'apellidos',

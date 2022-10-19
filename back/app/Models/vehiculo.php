@@ -14,6 +14,7 @@ class vehiculo extends Model
         'modelo',
         'marca',
         'color',
+        'codcolor',
         'capacidad',
         'afiliado_id',
         'grupo_id'
