@@ -1,9 +1,25 @@
 <template>
 <q-page>
+    <q-form
+      @submit="consultar"
+      class="q-gutter-md"
+    >
+  <div class="row">
+
+
+
+    <div class="col-3"><q-input v-model="ini" type="date" label="Fecha ini" outlined dense required/></div>
+    <div class="col-3"><q-input v-model="fin" type="date" label="Fecha fin"  outlined dense required/></div>
+
+    <div class="col-3"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
+  </div>
+
+  </q-form>
 <q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
   <template v-slot:body-cell-opcion="props">
     <q-td :props="props" auto-width>
-      <q-btn icon="delete" dense color="red" @click="anularPago(props.row)" v-if="props.row.anulado=='' || props.row.anulado==null"/>
+      <q-btn icon="print" dense color="info" @click="printPago(props.row)" v-if="props.row.anulado==false"/>
+      <q-btn icon="delete" dense color="red" @click="anularPago(props.row)" v-if="props.row.anulado==false"/>
     </q-td>
   </template>
 </q-table>
@@ -13,36 +29,40 @@
 
 <script>
 import Printd from 'printd'
+import {date} from 'quasar'
+
 export default {
-  name: `Impresion`,
+  name: `Pagos`,
   data() {
     return {
       pagos: [],
+      ini:date.formatDate( Date.now(),'YYYY-MM-DD'),
+      fin:date.formatDate( Date.now(),'YYYY-MM-DD'),
       columns:[
-        {name:'opcion',label:'opcion',field:'opcion'},
-        {name:'id',label:'id',field:'id'},
-        {name:'monto',label:'monto',field:'monto'},
-        {name:'multa',label:'multa',field:'multa'},
-        {name:'fecha',label:'fecha',field:'fecha'},
-        {name:'hora',label:'hora',field:'hora'},
-        {name:'grupo',label:'grupo',field:row=>row.grupo.tipo},
-        {name:'afiliado',label:'afiliado',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
-        {name:'vehiculo',label:'vehiculo',field:row=>row.vehiculo.placa},
-        {name:'anulado',label:'anulado',field:'anulado'},
+        {name:'opcion',label:'OPCION',field:'opcion'},
+        {name:'id',label:'ID',field:'id'},
+        {name:'monto',label:'MONTO',field:'monto'},
+        {name:'multa',label:'MULTA',field:'multa'},
+        {name:'fecha',label:'FECHA',field:'fecha'},
+        {name:'hora',label:'HORA',field:'hora'},
+        {name:'grupo',label:'GRUPO',field:row=>row.grupo.tipo},
+        {name:'afiliado',label:'AFILIADO',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {name:'vehiculo',label:'VEHICULO',field:row=>row.vehiculo.placa},
+        {name:'anulado',label:'ANULADO',field:'motivo'},
       ]
     };
   },
   created() {
-    setInterval(() => {
-      this.$api.get('pago').then((response) => {
-        this.pagos = response.data;
-       // const d = new Printd()
+      this.consultar()
+  },
 
-        this.pagos.forEach((pago) => {
-          if (pago.impreso==0) {
+  methods:{
+      consultar(){
+        this.$api.post('consultapago',{ini:this.ini,fin:this.fin}).then((res) => {
+          this.pagos=res.data})
+      },
+      printPago(pago){
             const d = new Printd()
-            this.$api.put('pago/' + pago.id,{impreso:1})
-            pago.impreso = 1
             let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
             let cadena="<style>\
             .titulo1{font-size:10px; text-align: center;}\
@@ -73,13 +93,7 @@ export default {
               </div>"
             document.getElementById('print').innerHTML = cadena
             d.print( document.getElementById('print') )
-          }
-        });
-      });
-    }, 2000);
-  },
-
-  methods:{
+            },
       anularPago(pag){
         this.$q.dialog({
           title: 'ANULAR PAGO',

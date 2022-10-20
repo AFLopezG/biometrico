@@ -22,3 +22,4 @@ Route::resource('grupo', \App\Http\Controllers\GrupoController::class);
 Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::post('anularPago', [\App\Http\Controllers\PagoController::class,'anularPago']);
+Route::post('consultapago', [\App\Http\Controllers\PagoController::class,'consultapago']);

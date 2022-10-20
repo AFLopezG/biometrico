@@ -43,12 +43,14 @@
           <q-toolbar-title>Opciones</q-toolbar-title>
         </q-toolbar>
         <q-list bordered>
+<!--
           <q-item clickable v-ripple active-class="my-menu-link" to="misDatos">
             <q-item-section avatar>
               <q-icon name="o_save" />
             </q-item-section>
             <q-item-section>USUARIOS</q-item-section>
           </q-item>
+-->
           <q-item clickable v-ripple active-class="my-menu-link" to="afiliados">
             <q-item-section avatar>
               <q-icon name="o_fact_check" />
@@ -67,7 +69,7 @@
             </q-item-section>
             <q-item-section>VEHICULOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="critico">
+          <q-item clickable v-ripple active-class="my-menu-link" to="pagos">
             <q-item-section avatar>
               <q-icon name="o_speaker_notes" />
             </q-item-section>

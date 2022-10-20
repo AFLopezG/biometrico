@@ -19,6 +19,12 @@ class PagoController extends Controller
         return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->whereFecha(date('Y-m-d'))->orderBy('id', 'desc')->get();
     }
 
+    public function consultapago(Request $request){
+        return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->
+        whereDate('fecha','>=',$request->ini)->whereDate('fecha','<=',$request->fin)->orderBy('id', 'desc')->get();
+
+    }
+
     public function anularPago(Request $request){
         //return $request;
         $pago=Pago::find($request->pago);
