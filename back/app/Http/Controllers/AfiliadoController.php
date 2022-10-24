@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Afiliado;
 use App\Http\Requests\StoreAfiliadoRequest;
 use App\Http\Requests\UpdateAfiliadoRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AfiliadoController extends Controller
 {
@@ -29,6 +31,11 @@ class AfiliadoController extends Controller
         //
     }
 
+    public function listGrupoAf(Request $request){
+        return DB::SELECT("SELECT a.id,a.ci,a.expedido,a.nombres,a.apellidos,a.codigo,v.placa
+        FROM afiliados a INNER JOIN vehiculos v on a.id=v.afiliado_id inner join grupos g on v.grupo_id=g.id
+        where g.id=$request->id");
+    }
     /**
      * Store a newly created resource in storage.
      *

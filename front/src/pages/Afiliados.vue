@@ -34,7 +34,7 @@
           <div class="col-6"><q-select v-model="afiliado.expedido" :options="exped" label="Expedido" dense outlined/></div>
           <div class="col-6"><q-input v-model="afiliado.nombres" label="Nombres" outlined dense required/></div>
           <div class="col-6"><q-input v-model="afiliado.apellidos" label="Apellidos" outlined dense required/></div>
-          <div class="col-6"><q-input v-model="afiliado.codigo" label="Codigo" outlined dense required/></div>
+          <div class="col-6"><q-input v-model="afiliado.codigo" label="Telefono" outlined dense required/></div>
           <div class="col-6"><q-input v-model="afiliado.fechaing" label="Fecha Ing" type="date" outlined dense required/></div>
           </div>
         </q-card-section>
@@ -62,7 +62,7 @@
               <div class="col-6"><q-select v-model="afiliado2.expedido" :options="exped" label="Expedido" dense outlined/></div>
               <div class="col-6"><q-input v-model="afiliado2.nombres" label="Nombres" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.apellidos" label="Apellidos" outlined dense required/></div>
-              <div class="col-6"><q-input v-model="afiliado2.codigo" label="Codigo" outlined dense required/></div>
+              <div class="col-6"><q-input v-model="afiliado2.codigo" label="Telefono" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.fechaing" label="Fecha Ing" type="date" outlined dense required/></div>
             </div>
           </q-card-section>
@@ -99,7 +99,7 @@ export default {
         {name:'opcion',label:'OPCION'},
         {name:'ci',label:'CI',field:'ci'},
         {name:'expedido',label:'EXPEDIDO',field:'expedido'},
-        {name:'codigo',label:'CODIGO',field:'codigo'},
+        {name:'codigo',label:'TELEFONO',field:'codigo'},
         {name:'nombres',label:'NOMBRES',field:'nombres'},
         {name:'apellidos',label:'APELLIDOS',field:'apellidos'},
         {name:'fechaing',label:'FECHA ING',field:'fechaing'},

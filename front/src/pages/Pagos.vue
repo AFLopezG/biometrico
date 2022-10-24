@@ -110,6 +110,7 @@ export default {
             return false
           this.$api.post('anularPago' ,{pago:pag.id,motivo:data}).then(res=>{
             console.log(res.data)
+            this.consultar()
           })
         }).onCancel(() => {
           // console.log('>>>> Cancel')
