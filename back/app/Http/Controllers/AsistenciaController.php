@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Asistencia;
 use App\Http\Requests\StoreAsistenciaRequest;
 use App\Http\Requests\UpdateAsistenciaRequest;
+use Illuminate\Http\Request;
+
 
 class AsistenciaController extends Controller
 {
@@ -30,7 +32,7 @@ class AsistenciaController extends Controller
     }
 
     public function reporte(Request $request){
-        return Asistencia::where('fecha',$request->fecha)->with('afiliado')->get();
+        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->get();
     }
 
     /**
@@ -43,7 +45,7 @@ class AsistenciaController extends Controller
     {
         //
         return Asistencia::create($request->all());
-        
+
     }
 
     /**

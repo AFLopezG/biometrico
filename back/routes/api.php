@@ -23,4 +23,7 @@ Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::post('anularPago', [\App\Http\Controllers\PagoController::class,'anularPago']);
 Route::post('consultapago', [\App\Http\Controllers\PagoController::class,'consultapago']);
+Route::post('datoimp', [\App\Http\Controllers\PagoController::class,'datoimp']);
 Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);
+Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
+

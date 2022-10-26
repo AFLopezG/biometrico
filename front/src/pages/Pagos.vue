@@ -23,6 +23,11 @@
     </q-td>
   </template>
 </q-table>
+<q-table
+  title="Pagos semanales"
+  :rows="semanal"
+  row-key="name"
+/>
   <div id="print" class="hidden"></div>
 </q-page>
 </template>
@@ -36,6 +41,7 @@ export default {
   data() {
     return {
       pagos: [],
+      semanal:[],
       ini:date.formatDate( Date.now(),'YYYY-MM-DD'),
       fin:date.formatDate( Date.now(),'YYYY-MM-DD'),
       columns:[
@@ -54,12 +60,22 @@ export default {
   },
   created() {
       this.consultar()
+
   },
 
   methods:{
       consultar(){
         this.$api.post('consultapago',{ini:this.ini,fin:this.fin}).then((res) => {
-          this.pagos=res.data})
+          this.pagos=res.data
+        })
+        this.consultimp()
+      },
+      consultimp(){
+        this.$api.post('datoimp',{ini:this.ini,fin:this.fin}).then((res) => {
+          console.log(res.data)
+        this.semanal=res.data
+      })
+
       },
       printPago(pago){
             const d = new Printd()

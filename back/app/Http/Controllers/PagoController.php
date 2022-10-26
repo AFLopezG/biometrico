@@ -6,6 +6,7 @@ use App\Models\Pago;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagoController extends Controller
 {
@@ -20,9 +21,42 @@ class PagoController extends Controller
     }
 
     public function consultapago(Request $request){
-        return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])->
-        whereDate('fecha','>=',$request->ini)->whereDate('fecha','<=',$request->fin)->orderBy('id', 'desc')->get();
 
+        return Pago::with(['afiliado', 'grupo', 'vehiculo', 'user'])
+        ->whereDate('fecha','>=',$request->ini)
+        ->whereDate('fecha','<=',$request->fin)
+        ->orderBy('id', 'desc')->get();
+        /*
+        SELECT DATE_ADD('2022-10-01', INTERVAL row DAY) AS fecha1,
+        DATE_ADD(DATE_ADD('2022-10-01', INTERVAL row DAY),INTERVAL 6 DAY) AS fecha2
+        FROM ( SELECT @row := @row+1 AS row FROM INFORMATION_SCHEMA.COLUMNS, (SELECT @row := 0) t ) T
+         WHERE DATE_ADD('2022-10-01', INTERVAL row DAY) BETWEEN '2022-10-01' AND '2022-10-31'
+         AND DAYOFWEEK(DATE_ADD('2022-10-01', INTERVAL row DAY)) = 2; */
+    }
+
+    public function datoimp(Request $request){
+        $respago=DB::SELECT("
+        SELECT DATE_ADD('$request->ini', INTERVAL row DAY) AS fecha1,
+        DATE_ADD(DATE_ADD('$request->ini', INTERVAL row DAY),INTERVAL 6 DAY) AS fecha2
+        FROM ( SELECT @row := @row+1 AS row FROM INFORMATION_SCHEMA.COLUMNS, (SELECT @row := 0) t ) T
+         WHERE DATE_ADD('$request->ini', INTERVAL row DAY) BETWEEN '$request->ini' AND '$request->fin'
+         AND DAYOFWEEK(DATE_ADD('$request->ini', INTERVAL row DAY)) = 2; ");
+        $cad='';
+         foreach($respago as $r){
+            $cad.=" ,(SELECT case when count(*)>0
+            then 'x'
+            else ''
+          end
+          from pagos p2 where date(p2.fecha)>='$r->fecha1'
+          and date(p2.fecha)<='$r->fecha2' and p2.anulado=false
+          and p2.vehiculo_id=v.id ) as '$r->fecha1'";
+        }
+        $datos=DB::SELECT("SELECT a.nombres,a.apellidos,a.codigo as telefono,a.fechaing,v.id,v.placa ".$cad."
+        from afiliados a inner join pagos p on a.id=p.afiliado_id
+        inner join vehiculos v on p.vehiculo_id=v.id
+        where date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin'
+        group by a.nombres,a.apellidos,a.codigo,a.fechaing,v.id,v.placa");
+        return $datos;
     }
 
     public function anularPago(Request $request){
