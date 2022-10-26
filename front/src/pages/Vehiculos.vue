@@ -236,6 +236,7 @@ export default {
     updateVehiculo(){
       this.loading=true
       this.vehiculo2.afiliado_id=this.vehiculo2.afiliado.id
+      this.vehiculo2.grupo_id=this.vehiculo2.grupo.id
       this.$api.put('vehiculo/'+this.vehiculo2.id,this.vehiculo2).then((response) => {
         this.$q.notify({
           message: 'Vehiculo Modificado',
