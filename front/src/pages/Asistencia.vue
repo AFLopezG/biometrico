@@ -12,13 +12,7 @@
     </div>
 
     </q-form>
-  <q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
-    <template v-slot:body-cell-opcion="props">
-      <q-td :props="props" auto-width>
-        <q-btn icon="print" dense color="info" @click="printPago(props.row)" v-if="props.row.anulado==false"/>
-        <q-btn icon="delete" dense color="red" @click="anularPago(props.row)" v-if="props.row.anulado==false"/>
-      </q-td>
-    </template>
+  <q-table :rows="asistencias" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
   </q-table>
     <div id="print" class="hidden"></div>
   </q-page>
@@ -29,7 +23,7 @@
   import {date} from 'quasar'
 
   export default {
-    name: `Pagos`,
+    name: `Asistencia`,
     data() {
       return {
         asistencias: [],

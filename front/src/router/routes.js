@@ -4,6 +4,7 @@ import Vehiculos from "pages/Vehiculos";
 import Grupos from "pages/Grupos";
 import Pagos from "pages/Pagos";
 import Listas from "pages/Listas";
+import Asistencia from "pages/Asistencia";
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
       { path: '/grupos', component: Grupos},
       { path: '/pagos', component: Pagos},
       { path: '/listas', component: Listas},
+      { path: '/asistencia', component: Asistencia},
     ]
   },
 

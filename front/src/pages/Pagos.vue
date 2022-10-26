@@ -15,7 +15,15 @@
   </div>
 
   </q-form>
-<q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
+<q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]" :filter="filter">
+  <template v-slot:top-right>
+
+        <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
   <template v-slot:body-cell-opcion="props">
     <q-td :props="props" auto-width>
       <q-btn icon="print" dense color="info" @click="printPago(props.row)" v-if="props.row.anulado==false"/>
@@ -42,6 +50,7 @@ export default {
     return {
       pagos: [],
       semanal:[],
+      filter:'',
       ini:date.formatDate( Date.now(),'YYYY-MM-DD'),
       fin:date.formatDate( Date.now(),'YYYY-MM-DD'),
       columns:[
