@@ -32,8 +32,9 @@ class AfiliadoController extends Controller
     }
 
     public function listGrupoAf(Request $request){
-        return DB::SELECT("SELECT a.id,a.ci,a.expedido,a.nombres,a.apellidos,a.codigo,v.placa
-        FROM afiliados a INNER JOIN vehiculos v on a.id=v.afiliado_id inner join grupos g on v.grupo_id=g.id
+        return DB::SELECT("SELECT a.id,a.ci,a.expedido,a.nombres,a.apellidos,a.codigo,a.telefono,v.placa
+        FROM afiliados a INNER JOIN vehiculos v on a.id=v.afiliado_id
+        inner join grupos g on v.grupo_id=g.id
         where g.id=$request->id");
     }
     /**
@@ -49,6 +50,7 @@ class AfiliadoController extends Controller
         $afiliado->ci=strtoupper($request->ci);
         $afiliado->expedido=$request->expedido;
         $afiliado->codigo=strtoupper($request->codigo);
+        $afiliado->telefono=$request->telfono;
         $afiliado->nombres=strtoupper($request->nombres);
         $afiliado->apellidos=strtoupper($request->apellidos);
         $afiliado->fechaing=$request->fechaing;
@@ -93,6 +95,7 @@ class AfiliadoController extends Controller
         $afiliado= Afiliado::find($request->id);
         $afiliado->expedido=$request->expedido;
         $afiliado->codigo=strtoupper($request->codigo);
+        $afiliado->telefono=$request->telfono;
         $afiliado->nombres=strtoupper($request->nombres);
         $afiliado->apellidos=strtoupper($request->apellidos);
         $afiliado->fechaing=$request->fechaing;

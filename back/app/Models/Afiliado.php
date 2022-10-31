@@ -11,6 +11,7 @@ class Afiliado extends Model
     protected $fillable = [
         'ci',
         'codigo',
+        'telefono',
         'expedido',
         'nombres',
         'apellidos',

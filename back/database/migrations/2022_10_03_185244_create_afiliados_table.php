@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('codigo');
+            $table->string('telefono');
             $table->text('dedo1')->default('');
             $table->text('dedo2')->default('');
             $table->text('dedo3')->default('');
