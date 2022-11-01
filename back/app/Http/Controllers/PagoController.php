@@ -51,7 +51,7 @@ class PagoController extends Controller
           and date(p2.fecha)<='$r->fecha2' and p2.anulado=false
           and p2.vehiculo_id=v.id ) as '$r->fecha1'";
         }
-        $datos=DB::SELECT("SELECT a.nombres,a.apellidos,a.codigo as telefono,a.fechaing,v.id,v.placa,g.tipo ".$cad."
+        $datos=DB::SELECT("SELECT a.nombres,a.apellidos,a.codigo ,a.fechaing,v.id,v.placa,g.tipo ".$cad."
         from afiliados a inner join pagos p on a.id=p.afiliado_id
         inner join vehiculos v on p.vehiculo_id=v.id
         inner join grupos g on p.grupo_id=g.id
