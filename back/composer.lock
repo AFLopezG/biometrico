@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbd816a07b206f971042295b899d1ba",
+    "content-hash": "ae84382a3761bc6596cf2bb3c16a224f",
     "packages": [
         {
             "name": "brick/math",
@@ -432,6 +432,78 @@
                 }
             ],
             "time": "2022-06-18T20:57:19+00:00"
+        },
+        {
+            "name": "elephantio/elephant.io",
+            "version": "v4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElephantIO/elephant.io.git",
+                "reference": "8a063278218db3b0729a543d62683e9d5593acdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ElephantIO/elephant.io/zipball/8a063278218db3b0729a543d62683e9d5593acdb",
+                "reference": "8a063278218db3b0729a543d62683e9d5593acdb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "psr/log": "^3.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^3.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElephantIO\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Baptiste Clavié",
+                    "email": "baptiste@wisembly.com",
+                    "homepage": "http://baptiste.xn--clavi-fsa.net/",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Guillaume Potier",
+                    "email": "guillaume@wisembly.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Toha",
+                    "email": "tohenk@yahoo.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ludovic Barreca",
+                    "email": "ludogp2@gmail.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Elephant.IO Community",
+                    "role": "Contributors :)"
+                }
+            ],
+            "description": "Send events to a real time websocket engine through PHP",
+            "homepage": "https://elephantio.github.io/elephant.io/",
+            "keywords": [
+                "dialog",
+                "nodejs",
+                "real time",
+                "websocket"
+            ],
+            "support": {
+                "source": "https://github.com/ElephantIO/elephant.io/tree/v4.1.1"
+            },
+            "time": "2022-10-25T06:12:20+00:00"
         },
         {
             "name": "fruitcake/php-cors",

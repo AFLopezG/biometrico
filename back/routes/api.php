@@ -26,4 +26,5 @@ Route::post('consultapago', [\App\Http\Controllers\PagoController::class,'consul
 Route::post('datoimp', [\App\Http\Controllers\PagoController::class,'datoimp']);
 Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);
 Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
+Route::post('pagoConsulta', [\App\Http\Controllers\PagoController::class,'pagoConsulta']);
 

@@ -15,7 +15,7 @@
           26 de julio
         </q-toolbar-title>
 
-        <div>sindicato de mixto transporte</div>
+        <div>Sindicato de Mixto Transporte</div>
       </q-toolbar>
     </q-header>
 
@@ -44,38 +44,38 @@
         </q-toolbar>
         <q-list bordered>
 <!--
-          <q-item clickable v-ripple active-class="my-menu-link" to="misDatos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="misDatos">
             <q-item-section avatar>
               <q-icon name="o_save" />
             </q-item-section>
             <q-item-section>USUARIOS</q-item-section>
           </q-item>
 -->
-          <q-item clickable v-ripple active-class="my-menu-link" to="afiliados">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="afiliados">
             <q-item-section avatar>
               <q-icon name="o_fact_check" />
             </q-item-section>
             <q-item-section>AFILIADOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple activºe-class="my-menu-link" to="grupos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="grupos">
             <q-item-section avatar>
               <q-icon name="o_dns" />
             </q-item-section>
             <q-item-section>GRUPOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="vehiculos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="vehiculos">
             <q-item-section avatar>
               <q-icon name="o_ballot" />
             </q-item-section>
             <q-item-section>VEHICULOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="pagos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="pagos">
             <q-item-section avatar>
               <q-icon name="o_speaker_notes" />
             </q-item-section>
             <q-item-section>PAGOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="my-menu-link" to="impresion">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="impresion">
             <q-item-section avatar>
               <q-icon name="o_list_alt" />
             </q-item-section>
@@ -89,6 +89,7 @@
       <router-view />
     </q-page-container>
   </q-layout>
+  <div id="print" class="hidden"></div>
 </template>
 <script>
 export default {

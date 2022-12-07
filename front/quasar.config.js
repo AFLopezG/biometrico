@@ -81,9 +81,8 @@ module.exports = configure(function (ctx) {
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
       },
       env: {
-        API: ctx.dev
-          ? 'http://localhost:8000/api/'
-          : 'https://back.miganancia.cf/api/'
+        API: ctx.dev ? 'http://localhost:8000/api/' : 'https://back.miganancia.cf/api/',
+        API_SOCKET: ctx.dev ? 'http://localhost:3000/' : 'https://back.miganancia.cf/api/',
       }
 
     },
@@ -171,7 +170,7 @@ module.exports = configure(function (ctx) {
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#650101',
+        theme_color: '#015d65',
         icons: [
           {
             src: 'logo.jpg',

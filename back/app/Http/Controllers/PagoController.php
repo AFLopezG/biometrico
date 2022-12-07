@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Pago;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
+use App\Models\vehiculo;
+use DateTime;
+use ElephantIO\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -85,7 +88,20 @@ class PagoController extends Controller
      */
     public function store(StorePagoRequest $request)
     {
-        //
+        $mifecha = new DateTime();
+        $mifecha->modify('-3 second');
+        $pago=Pago::where('afiliado_id',$request->afiliado_id)->orderBy('id','desc');
+        if ( $pago->count()==0) {
+            return $this->pagoInsert($request);
+        }else {
+            $pago=$pago->first();
+            if ($pago->created_at->format('Y-m-d H:i:s')<$mifecha->format('Y-m-d H:i:s')){
+                return $this->pagoInsert($request);
+            }
+        }
+        return "Ya se registro un pago";
+
+
     }
 
     /**
@@ -94,9 +110,22 @@ class PagoController extends Controller
      * @param  \App\Models\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function show(Pago $pago)
+    public function show($grupo_id)
     {
-        //
+        return Pago::where('grupo_id',$grupo_id)->with(['afiliado', 'grupo', 'vehiculo'])->groupBy('afiliado_id')->get();
+    }
+    public function pagoConsulta(Request $request)
+    {
+        return DB::select('SELECT a.codigo,a.nombres,a.apellidos
+FROM pagos p
+INNER JOIN afiliados a ON p.afiliado_id=a.id
+INNER JOIN vehiculos v ON p.vehiculo_id=v.id
+INNER JOIN grupos g ON p.grupo_id=g.id
+WHERE date(p.fecha) BETWEEN ? AND ?
+AND p.grupo_id=?
+GROUP BY a.codigo,a.nombres,a.apellidos
+ORDER BY a.codigo DESC
+',[$request->ini,$request->fin,$request->grupo_id]);
     }
 
     /**
@@ -132,5 +161,41 @@ class PagoController extends Controller
     public function destroy(Pago $pago)
     {
         //
+    }
+
+    /**
+     * @param StorePagoRequest $request
+     * @return Pago
+     */
+    public function pagoInsert(StorePagoRequest $request): Pago
+    {
+
+        $dias = array("domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado");
+        $dia = $dias[date("w")];
+        $vehiculo = Vehiculo::find($request->vehiculo_id);
+        $pago = new Pago();
+        $pago->afiliado_id = $vehiculo->afiliado_id;
+        $pago->grupo_id = $vehiculo->grupo_id;
+        $pago->vehiculo_id = $vehiculo->id;
+        $pago->user_id = 1;
+        $pago->fecha = date('Y-m-d');
+        $pago->hora = date('H:i:s');
+        $pago->impreso = true;
+        $pago->monto = $request->monto;
+        if ($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') {
+            $pago->multa = true;
+            $pago->monto = intval($request->monto) * 2;
+        }
+        $pago->save();
+        error_log(json_encode($pago));
+        $url = env('URL_SOCKET');
+        $client = new Client(Client::engine(Client::CLIENT_4X, $url));
+        $client->initialize();
+        $client->of('/');
+
+// emit an event to the server
+        $data = [$pago->with('afiliado')->with('grupo')->with('vehiculo')->find($pago->id)];
+        $client->emit('chat message', $data);
+        return $pago;
     }
 }
