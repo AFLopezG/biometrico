@@ -27,4 +27,13 @@ Route::post('datoimp', [\App\Http\Controllers\PagoController::class,'datoimp']);
 Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);
 Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
 Route::post('pagoConsulta', [\App\Http\Controllers\PagoController::class,'pagoConsulta']);
+Route::post('login', [App\Http\Controllers\UserController::class, 'login']);
 
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('me', [App\Http\Controllers\UserController::class, 'me']);
+    Route::post('logout', [App\Http\Controllers\UserController::class, 'logout']);
+    Route::apiResource('user', App\Http\Controllers\UserController::class);
+    Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
+    Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
+    Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
+});

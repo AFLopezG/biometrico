@@ -30,7 +30,7 @@
 
 <script>
 import Printd from 'printd'
-import {useCounterStore} from "stores/example-store";
+import {useCounterStore} from "src/stores/globalStore";
 import { io } from "socket.io-client";
 
 export default {
