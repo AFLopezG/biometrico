@@ -50,8 +50,39 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function repAsistencia(Request $request){
-        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->get();
+    public function repAsistencia($fecha){
+        $asist= DB::SELECT("SELECT a.* from afiliados a inner join asistencias s on a.id=s.afiliado_id where date(s.fecha)='$fecha' order by cast(a.codigo as unsigned)");
+        $noasis= DB::SELECT("SELECT * from afiliados a where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') order by cast(a.codigo as unsigned)");
+        $pdf = App::make('dompdf.wrapper');
+        $cadena="";
+        $cadena2="";
+
+        foreach ($asist as $r ) {
+           $cadena.="<tr><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+        }
+
+        foreach ($noasis as $r ) {
+            $cadena2.="<tr><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+         }
+        $pdf->loadHTML("<style>
+        table, th, td {
+            border: 1px solid;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+        </style>
+        <h3 style='text-align:center;color:red;'>ASISTENCIA REUNION EN FECHA $fecha </h3>
+        <table><thead><tr><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena."</tbody></table>
+
+        <br>
+        <div style='page-break-after: always;'></div>
+        <h3 style='text-align:center;color:red;'>NO ASISTIERON A REUNION EN FECHA $fecha </h3>
+        <table><thead><tr><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena2."</tbody></table>
+
+        ");
+        return $pdf->stream();
     }
 
 

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [App\Http\Controllers\UserController::class, 'login']);
 Route::get('reportlist/{grupo}/{fechaDesde}/{fechasHasta}', [\App\Http\Controllers\ReportController::class, 'reportList']);
+Route::get('repAsistencia/{fecha}', [\App\Http\Controllers\ReportController::class, 'repAsistencia']);
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('me', [App\Http\Controllers\UserController::class, 'me']);
