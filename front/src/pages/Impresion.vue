@@ -30,7 +30,7 @@
 
 <script>
 import Printd from 'printd'
-import {useCounterStore} from "src/stores/globalStore";
+import {globalStore} from "src/stores/globalStore";
 import { io } from "socket.io-client";
 
 export default {
@@ -39,7 +39,7 @@ export default {
     return {
       pagos: [],
       filter:'',
-      store:useCounterStore(),
+      store:globalStore(),
       socket: io(process.env.API_SOCKET),
       columns:[
         {name:'opcion',label:'Opciones',field:'opcion'},

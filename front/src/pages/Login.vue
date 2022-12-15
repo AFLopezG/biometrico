@@ -97,7 +97,7 @@
       //         this.store.user=res.data.user
       //         this.store.isLoggedIn=true
       //         this.$api.defaults.headers.common['Authorization'] = 'Bearer '+res.data.token
-      //         localStorage.setItem('tokenMulti',res.data.token)
+      //         localStorage.setItem('tokenBio',res.data.token)
       //       }).catch(err => {
       //         console.log({err:err})
       //       }).finally(() => {
@@ -129,30 +129,15 @@
           this.store.user=res.data.user
           this.store.isLoggedIn=true
           res.data.user.permisos.forEach(r => {
-              if(r.id==1) this.store.booluser=true
-              if(r.id==2) this.store.boolcuis=true
-              if(r.id==3) this.store.boolsincr=true
-              if(r.id==4) this.store.boolcufd=true
-              if(r.id==5) this.store.boolevento=true
-              if(r.id==6) this.store.boolmovie=true
-              if(r.id==7) this.store.booldistrib=true
-              if(r.id==8) this.store.boolsala=true
-              if(r.id==9) this.store.booltarifa=true
-              if(r.id==10) this.store.boolrubro=true
-              if(r.id==11) this.store.boolproducto=true
-              if(r.id==12) this.store.boolprogram=true
-              if(r.id==13) this.store.boolboleteria=true
-              if(r.id==14) this.store.boollistbol=true
-              if(r.id==15) this.store.boolcandy=true
-              if(r.id==16) this.store.boollistcandy=true
-              if(r.id==17) this.store.boolcajabol=true
-              if(r.id==18) this.store.boolcajacandy=true
-              if(r.id==19) this.store.boolalquiler=true
-              if(r.id==20) this.store.boolcliente=true
-              if(r.id==21) this.store.boolcortesia=true
+            if(r.id==1)  this.store.booluser=true
+            if(r.id==2)  this.store.boolafiliado=true
+            if(r.id==3)  this.store.boolgrupo=true
+            if(r.id==4)  this.store.boolvehiculo=true
+            if(r.id==5)  this.store.boolpago=true
+            if(r.id==6)  this.store.boolprint=true
           });
           this.$api.defaults.headers.common['Authorization'] = 'Bearer '+res.data.token
-          localStorage.setItem('tokenMulti',res.data.token)
+          localStorage.setItem('tokenBio',res.data.token)
         }).catch(error => {
           console.log(error)
           this.$q.notify({

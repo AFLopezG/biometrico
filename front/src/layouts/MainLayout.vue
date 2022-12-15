@@ -87,6 +87,12 @@
             </q-item-section>
             <q-item-section>IMPRESION</q-item-section>
           </q-item>
+          <q-item clickable v-ripple active-class="bg-primary text-white" @click="logout" v-if="store.boolprint">
+            <q-item-section avatar>
+              <q-icon name="o_close" />
+            </q-item-section>
+            <q-item-section>Salir</q-item-section>
+          </q-item>
         </q-list>
       </q-list>
     </q-drawer>
