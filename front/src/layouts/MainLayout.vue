@@ -75,6 +75,12 @@
             </q-item-section>
             <q-item-section>VEHICULOS</q-item-section>
           </q-item>
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="asistencia" v-if="store.boolasistencia">
+            <q-item-section avatar>
+              <q-icon name="o_speaker_notes" />
+            </q-item-section>
+            <q-item-section>ASISTENCIA</q-item-section>
+          </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="pagos" v-if="store.boolpago">
             <q-item-section avatar>
               <q-icon name="o_speaker_notes" />
@@ -87,7 +93,7 @@
             </q-item-section>
             <q-item-section>IMPRESION</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="bg-primary text-white" @click="logout" v-if="store.boolprint">
+          <q-item clickable v-ripple active-class="bg-primary text-white" @click="logout" v-if="store.isLoggedIn">
             <q-item-section avatar>
               <q-icon name="o_close" />
             </q-item-section>
@@ -136,6 +142,7 @@ export default {
           globalStore().boolvehiculo=false
           globalStore().boolpago=false
           globalStore().boolprint=false
+          globalStore().boolasistencia=false
         })
 
       }).onCancel(() => {

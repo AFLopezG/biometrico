@@ -23,6 +23,7 @@ class PermisoSeeder extends Seeder
             ['nombre' => 'Vehiculos'],
             ['nombre' => 'Pagos'],
             ['nombre' => 'Impresion'],
+            ['nombre' => 'Asistencia'],
         ]);
     }
 }

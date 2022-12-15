@@ -33,6 +33,7 @@ export default boot(({ app,router }) => {
           if(r.id==4) globalStore().boolvehiculo=true
           if(r.id==5) globalStore().boolpago=true
           if(r.id==6) globalStore().boolprint=true
+          if(r.id==7) globalStore().boolasistencia=true
       });
     }).catch((error) => {
       app.config.globalProperties.$api.defaults.headers.common['Authorization']=''
@@ -57,6 +58,7 @@ export default boot(({ app,router }) => {
     globalStore().boolvehiculo=false
     globalStore().boolpago=false
     globalStore().boolprint=false
+    globalStore().boolasistencia=false
     localStorage.removeItem('tokenBio')
     globalStore().isLoggedIn=false
   }
