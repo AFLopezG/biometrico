@@ -1,9 +1,18 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const globalStore = defineStore('global', {
   state: () => ({
     counter: 0,
-    socket: false,
+    user: {},
+    eventNumber: 0,
+    isLoggedIn: !!localStorage.getItem('tokenBio'),
+
+    booluser:false,
+    boolafiliado:false,
+    boolgrupo:false,
+    boolvehiculo:false,
+    boolpago:false,
+    boolprint:false,
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,

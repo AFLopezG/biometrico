@@ -51,31 +51,37 @@
             <q-item-section>USUARIOS</q-item-section>
           </q-item>
 -->
-          <q-item clickable v-ripple active-class="bg-primary text-white" to="afiliados">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="usuarios" v-if="store.booluser">
+            <q-item-section avatar>
+              <q-icon name="o_people" />
+            </q-item-section>
+            <q-item-section>USUARIOS</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="afiliados" v-if="store.boolafiliado">
             <q-item-section avatar>
               <q-icon name="o_fact_check" />
             </q-item-section>
             <q-item-section>AFILIADOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="bg-primary text-white" to="grupos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="grupos" v-if="store.boolgrupo">
             <q-item-section avatar>
               <q-icon name="o_dns" />
             </q-item-section>
             <q-item-section>GRUPOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="bg-primary text-white" to="vehiculos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="vehiculos" v-if="store.boolvehiculo">
             <q-item-section avatar>
               <q-icon name="o_ballot" />
             </q-item-section>
             <q-item-section>VEHICULOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="bg-primary text-white" to="pagos">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="pagos" v-if="store.boolpago">
             <q-item-section avatar>
               <q-icon name="o_speaker_notes" />
             </q-item-section>
             <q-item-section>PAGOS</q-item-section>
           </q-item>
-          <q-item clickable v-ripple active-class="bg-primary text-white" to="impresion">
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="impresion" v-if="store.boolprint">
             <q-item-section avatar>
               <q-icon name="o_list_alt" />
             </q-item-section>
@@ -88,20 +94,56 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-  </q-layout>
   <div id="print" class="hidden"></div>
+
+  </q-layout>
 </template>
 <script>
+import {globalStore} from "stores/globalStore";
+
 export default {
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      store:globalStore()
     }
   },
   methods: {
-    toggleLeftDrawer () {
-      this.leftDrawerOpen = !this.leftDrawerOpen
+    logout(){
+      this.$q.dialog({
+        title: 'Cerrar sesión',
+        message: '¿Está seguro que desea cerrar sesión?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.$q.loading.show()
+        this.$api.post('logout').then(() => {
+          globalStore().user={}
+          localStorage.removeItem('tokenBio')
+          globalStore().isLoggedIn=false
+          this.$router.push('/login')
+          this.$q.loading.hide()
+          globalStore().isLoggedIn=false
+          globalStore().booluser=false
+          globalStore().boolafiliado=false
+          globalStore().boolgrupo=false
+          globalStore().boolvehiculo=false
+          globalStore().boolpago=false
+          globalStore().boolprint=false
+        })
+
+      }).onCancel(() => {
+      })
+    },
+      eventSearch(){
+        this.$api.post('eventSearch').then(res=>{
+          // console.log(res.data)
+          this.store.eventNumber=res.data
+        })
+      },
+      toggleLeftDrawer() {
+        this.leftDrawerOpen = !this.leftDrawerOpen
+      }
     }
-  }
 }
 </script>

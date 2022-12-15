@@ -5,6 +5,7 @@ import Grupos from "pages/Grupos";
 import Pagos from "pages/Pagos";
 import Listas from "pages/Listas";
 import Asistencia from "pages/Asistencia";
+import User from "pages/User";
 import Login from "pages/Login";
 
 const routes = [
@@ -20,6 +21,7 @@ const routes = [
       { path: '/pagos', component: Pagos,meta: { requiresAuth: true }},
       { path: '/listas', component: Listas,meta: { requiresAuth: true }},
       { path: '/asistencia', component: Asistencia,meta: { requiresAuth: true }},
+      { path: '/usuarios', component: User,meta: { requiresAuth: true }},
     ]
   },
   {

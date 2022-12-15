@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             AfiliadoSeeder::class,
             GrupoSeeder::class,
             VehiculoSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            PermisoSeeder::class
         ]);
     }
 }
