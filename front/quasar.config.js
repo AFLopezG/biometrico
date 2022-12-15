@@ -81,7 +81,7 @@ module.exports = configure(function (ctx) {
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
       },
       env: {
-        API: ctx.dev ? 'http://localhost:8000/api/' : 'https://cbio.siscenter.org/',
+        API: ctx.dev ? 'http://localhost:8000/api/' : 'https://cbio.siscenter.org/api/',
         API_SOCKET: ctx.dev ? 'http://localhost:3000/' : 'https://sbio.siscenter.org/',
       }
 
