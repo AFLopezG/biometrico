@@ -1,24 +1,34 @@
-const app = require('express')();
-const httpServer = require("http").createServer();
-require('dotenv').config();
-const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: process.env.URL,
-  },
+var cors = require('cors')
+var express=require('express');
+// var Pedido=require('./models/Pedido');
+var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+var path=require('path');
+// require('./database');
+app.set('port', process.env.PORT || 3000);
+app.use(cors());
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/public.html');
 });
-const port = process.env.PORT || 3000;
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/index.html');
-// });
-
-io.on('connection', (socket) => {
-  socket.on('chat message', msg => {
-    console.log(msg);
-    io.emit('chat message', msg);
-  });
+app.get('/adminpro', function(req, res){
+    res.sendFile(__dirname + '/admin.html');
 });
+app.get('/chat', function(req, res){
+    res.sendFile(__dirname + '/chat.html');
+});
+io.on('connection',(socket)=>{
+    // console.log('newuser')
+    socket.on('chat message', (msg) => {
+        console.log(msg)
+        io.emit('chat message', msg);
+    });
+})
 
-httpServer.listen(port, () => {
-  console.log(`Socket.IO server running at http://localhost:${port}/`);
+http.listen(app.get('port'), function(){
+    console.log('listening on *:'+app.get('port'));
 });
