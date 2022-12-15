@@ -6,7 +6,7 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var path=require('path');
 // require('./database');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3005);
 app.use(cors());
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
