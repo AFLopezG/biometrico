@@ -189,7 +189,7 @@ ORDER BY a.codigo DESC
         $pago->save();
         error_log(json_encode($pago));
         $url = env('URL_SOCKET');
-        $client = new Client(Client::engine(Client::CLIENT_4X, $url));
+        $client = new Client(Client::engine(Client::CLIENT_1X, $url));
         $client->initialize();
 //        $client->of('/');
 //
