@@ -1,5 +1,6 @@
 <?php
 
+use ElephantIO\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +39,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);
     Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
     Route::post('pagoConsulta', [\App\Http\Controllers\PagoController::class,'pagoConsulta']);
+});
+Route::get('test', function () {
+    $pago = \App\Models\Pago::find(1);
+    error_log(json_encode($pago));
+    $url = "http://localhost:3005";
+    $client = new Client(Client::engine(Client::CLIENT_4X, $url));
+    $client->initialize();
+    $client->of('/');
+
+// emit an event to the server
+    $data = [$pago->with('afiliado')->with('grupo')->with('vehiculo')->find($pago->id)];
+    $client->emit('chat message', $data);
+    return $pago;
 });

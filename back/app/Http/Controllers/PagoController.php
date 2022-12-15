@@ -191,11 +191,11 @@ ORDER BY a.codigo DESC
         $url = env('URL_SOCKET');
         $client = new Client(Client::engine(Client::CLIENT_4X, $url));
         $client->initialize();
-//        $client->of('/');
-//
-//// emit an event to the server
-//        $data = [$pago->with('afiliado')->with('grupo')->with('vehiculo')->find($pago->id)];
-//        $client->emit('chat message', $data);
+        $client->of('/');
+
+// emit an event to the server
+        $data = [$pago->with('afiliado')->with('grupo')->with('vehiculo')->find($pago->id)];
+        $client->emit('chat message', $data);
         return $pago;
     }
 }
