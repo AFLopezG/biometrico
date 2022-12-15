@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pago;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
-use App\Models\vehiculo;
+use App\Models\Vehiculo;
 use DateTime;
 use ElephantIO\Client;
 use Illuminate\Http\Request;
