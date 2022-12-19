@@ -31,9 +31,9 @@
         columns:[
           {name:'id',label:'ID',field:'id'},
           {name:'fecha',label:'FECHA',field:'fecha'},
-          {name:'afiliado',label:'AFILIADO',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
-          {name:'ci',label:'CI',field:row=>row.afiliado.ci+' '+row.afiliado.expedido},
-          {name:'telefono',label:'Telefono',field:row=>row.afiliado.codigo},
+          {name:'afiliado',label:'AFILIADO',field:row=>row.nombres+' '+row.apellidos},
+          {name:'ci',label:'CI',field:row=>row.ci+' '+row.expedido},
+          {name:'telefono',label:'Telefono',field:row=>row.codigo},
         ]
       };
     },
@@ -44,6 +44,7 @@
     methods:{
         consultar(){
           this.$api.post('reporte',{fecha:this.fecha}).then((res) => {
+            console.log(res.data)
             this.asistencias=res.data})
         },
 
