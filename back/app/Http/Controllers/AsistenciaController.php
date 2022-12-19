@@ -6,6 +6,7 @@ use App\Models\Asistencia;
 use App\Http\Requests\StoreAsistenciaRequest;
 use App\Http\Requests\UpdateAsistenciaRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class AsistenciaController extends Controller
@@ -32,7 +33,7 @@ class AsistenciaController extends Controller
     }
 
     public function reporte(Request $request){
-        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->groupBy('afiliado_id')->get();
+        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->get();
     }
 
     /**
