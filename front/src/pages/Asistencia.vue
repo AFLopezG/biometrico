@@ -33,7 +33,7 @@
           {name:'fecha',label:'FECHA',field:'fecha'},
           {name:'afiliado',label:'AFILIADO',field:row=>row.nombres+' '+row.apellidos},
           {name:'ci',label:'CI',field:row=>row.ci+' '+row.expedido},
-          {name:'telefono',label:'Telefono',field:row=>row.codigo},
+          {name:'telefono',label:'Telefono',field:row=>row.telefono},
         ]
       };
     },

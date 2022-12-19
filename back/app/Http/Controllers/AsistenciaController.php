@@ -39,6 +39,7 @@ class AsistenciaController extends Controller
         f.expedido,
         f.nombres,
         f.apellidos,
+        f.telefono,
         f.codigo
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
         where date(a.fecha)='$request->fecha'
@@ -46,6 +47,7 @@ class AsistenciaController extends Controller
         f.expedido,
         f.nombres,
         f.apellidos,
+        f.telefono,
         f.codigo");
     }
 
