@@ -69,10 +69,10 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'state' => 'required',
+//            'state' => 'required',
             'fechaLimite' => 'required',
         ]);
-        $user = User::create($validated);
+        $user = User::create($request->all());
         $permisos= array();
         foreach ($request->permisos as $permiso){
             if ($permiso['estado']==true)

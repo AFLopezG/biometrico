@@ -60,7 +60,7 @@ export default {
     if (this.store.socket==false) {
       this.store.socket = true
       this.socket.on('chat message', (data) => {
-        console.log(data[0])
+        // console.log(data[0])
         this.pagos.unshift(data[0])
         let pago= data[0]
         const d = new Printd()
@@ -82,7 +82,7 @@ export default {
           <table>\
           <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
           <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 221174</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
-          <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> Cel:73039359</span><br><span   >No "+pago.id+"</span></td></tr>\
+          <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\
           <table><tr>\
           <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.grupo.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto1'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
