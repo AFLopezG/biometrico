@@ -31,6 +31,7 @@
         columns:[
           {name:'codigo',label:'MOVIL',field:'codigo'},
           {name:'fecha',label:'FECHA',field:'fecha'},
+          {name:'hora',label:'HORA',field:'hora'},
           {name:'afiliado',label:'AFILIADO',field:row=>row.nombres+' '+row.apellidos},
           {name:'ci',label:'CI',field:row=>row.ci+' '+row.expedido},
           {name:'telefono',label:'Telefono',field:row=>row.telefono},

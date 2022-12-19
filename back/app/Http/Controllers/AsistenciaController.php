@@ -34,7 +34,7 @@ class AsistenciaController extends Controller
 
     public function reporte(Request $request){
         //return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->groupBy('afiliado_id')->get();
-        return DB::SELECT("SELECT a.fecha,
+        return DB::SELECT("SELECT a.fecha,a.hora,
         f.ci,
         f.expedido,
         f.nombres,
@@ -48,7 +48,8 @@ class AsistenciaController extends Controller
         f.nombres,
         f.apellidos,
         f.telefono,
-        f.codigo");
+        f.codigo
+        having max(a.hora)");
     }
 
     /**
