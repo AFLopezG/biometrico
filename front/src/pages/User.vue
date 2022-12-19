@@ -300,7 +300,8 @@ export default {
         name:this.dato.name,
         password:this.dato.password,
         email:this.dato.email,
-        permisos:this.permisos
+        permisos:this.permisos,
+        fechaLimite:this.dato.fechaLimite,
       }).then((res) => {
         // console.log(res.data)
         this.$q.notify({
