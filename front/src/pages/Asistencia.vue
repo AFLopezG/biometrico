@@ -5,10 +5,9 @@
         class="q-gutter-md"
       >
     <div class="row">
-
-      <div class="col-3"><q-input v-model="fecha" type="date" label="Fecha" outlined dense required/></div>
-
-      <div class="col-3"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
+      <div class="col-12 col-sm-3"><q-input v-model="fecha" type="date" label="Fecha" outlined dense required/></div>
+      <div class="col-12 col-sm-3 flex flex-center"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
+      <div class="col-12 col-sm-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}repAsistencia/${fecha}`" color="primary" icon="print" label="Imprimir lista"/></div>
     </div>
 
     </q-form>
@@ -26,6 +25,7 @@
     name: `Asistencia`,
     data() {
       return {
+        url: process.env.API,
         asistencias: [],
         fecha:date.formatDate( Date.now(),'YYYY-MM-DD'),
         columns:[
