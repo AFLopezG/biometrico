@@ -41,11 +41,13 @@ class AsistenciaController extends Controller
      * @param  \App\Http\Requests\StoreAsistenciaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAsistenciaRequest $request)
+    public function store(Request $request)
     {
-        //
-        return Asistencia::create($request->all());
-
+        $asistencia= new Asistencia();
+        $asistencia->afiliado_id=$request->afiliado_id;
+        $asistencia->fecha=date('Y-m-d');
+        $asistencia->hora=date('H:i:s');
+        $asistencia->save();
     }
 
     /**
