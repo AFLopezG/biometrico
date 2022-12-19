@@ -29,7 +29,7 @@
         asistencias: [],
         fecha:date.formatDate( Date.now(),'YYYY-MM-DD'),
         columns:[
-          {name:'id',label:'ID',field:'id'},
+          {name:'codigo',label:'MOVIL',field:'codigo'},
           {name:'fecha',label:'FECHA',field:'fecha'},
           {name:'afiliado',label:'AFILIADO',field:row=>row.nombres+' '+row.apellidos},
           {name:'ci',label:'CI',field:row=>row.ci+' '+row.expedido},
