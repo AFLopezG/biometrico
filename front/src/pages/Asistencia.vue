@@ -31,7 +31,6 @@
         columns:[
           {name:'id',label:'ID',field:'id'},
           {name:'fecha',label:'FECHA',field:'fecha'},
-          {name:'hora',label:'HORA',field:'hora'},
           {name:'afiliado',label:'AFILIADO',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
           {name:'ci',label:'CI',field:row=>row.afiliado.ci+' '+row.afiliado.expedido},
           {name:'telefono',label:'Telefono',field:row=>row.afiliado.codigo},
