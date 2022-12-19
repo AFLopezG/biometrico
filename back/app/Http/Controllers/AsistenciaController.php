@@ -41,7 +41,8 @@ class AsistenciaController extends Controller
         f.apellidos,
         f.codigo
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
-        where date(a.fecha)=$request->fecha group by a.fecha,f.ci,
+        where date(a.fecha)='$request->fecha'
+        group by a.fecha,f.ci,
         f.expedido,
         f.nombres,
         f.apellidos,
