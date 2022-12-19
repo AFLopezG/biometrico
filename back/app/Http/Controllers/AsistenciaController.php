@@ -18,7 +18,7 @@ class AsistenciaController extends Controller
     public function index()
     {
         //
-        return Asistencia::with('afiliado')->get();
+        return Asistencia::with('afiliado')->groupBy('fecha')->get();
     }
 
     /**
