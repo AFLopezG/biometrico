@@ -51,7 +51,7 @@ class ReportController extends Controller
     }
 
     public function repAsistencia($fecha){
-        $asist= DB::SELECT("SELECT a.* from afiliados a inner join asistencias s on a.id=s.afiliado_id where date(s.fecha)='$fecha' order by cast(a.codigo as unsigned)");
+        $asist= DB::SELECT("SELECT a.* from afiliados a inner join asistencias s on a.id=s.afiliado_id where date(s.fecha)='$fecha' group by s.fecha,s.afiliado_id order by cast(a.codigo as unsigned)");
         $noasis= DB::SELECT("SELECT * from afiliados a where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') order by cast(a.codigo as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";

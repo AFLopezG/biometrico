@@ -32,7 +32,7 @@ class AsistenciaController extends Controller
     }
 
     public function reporte(Request $request){
-        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->get();
+        return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->groupBy('fecha','afiliado_id')->get();
     }
 
     /**
