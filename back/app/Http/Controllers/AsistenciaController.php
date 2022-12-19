@@ -6,6 +6,7 @@ use App\Models\Asistencia;
 use App\Http\Requests\StoreAsistenciaRequest;
 use App\Http\Requests\UpdateAsistenciaRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class AsistenciaController extends Controller
@@ -18,7 +19,7 @@ class AsistenciaController extends Controller
     public function index()
     {
         //
-        return Asistencia::with('afiliado')->get();
+        return Asistencia::with('afiliado')->groupBy('fecha','afiliado_id')->get();
     }
 
     /**
