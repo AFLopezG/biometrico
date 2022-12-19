@@ -135,6 +135,7 @@
             if(r.id==4)  this.store.boolvehiculo=true
             if(r.id==5)  this.store.boolpago=true
             if(r.id==6)  this.store.boolprint=true
+            if(r.id==7)  this.store.boolasistencia=true
           });
           this.$api.defaults.headers.common['Authorization'] = 'Bearer '+res.data.token
           localStorage.setItem('tokenBio',res.data.token)
