@@ -34,10 +34,10 @@ class AsistenciaController extends Controller
 
     public function reporte(Request $request){
         //return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->groupBy('afiliado_id')->get();
-        return DB::SELECT("SELECT a.fecha,a.hora,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
+        return DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
         where date(a.fecha)='$request->fecha'
-        group by a.fecha,a.hora,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo having max(a.hora) ");
+        group by f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
     }
 
     /**
