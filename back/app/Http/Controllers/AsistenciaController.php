@@ -37,7 +37,7 @@ class AsistenciaController extends Controller
         return DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
         where date(a.fecha)='$request->fecha'
-        group by f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
+        group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
     }
 
     /**
