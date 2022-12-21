@@ -40,6 +40,14 @@ class AsistenciaController extends Controller
         group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
     }
 
+    public function reporteImp($fecha,$grupo){
+        $result= DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
+        from asistencias a inner join afiliados f on a.afiliado_id=f.id
+        inner join vehiculos v on f.id=v.afiliado_id
+       where date(a.fecha)='$fecha'
+       and v.grupo_id=$grupo
+       group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
+    }
     /**
      * Store a newly created resource in storage.
      *

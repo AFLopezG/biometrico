@@ -50,8 +50,14 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function repAsistencia($fecha){
-        $asist= DB::SELECT("SELECT a.ci,a.expedido,a.nombres, a.apellidos,a.codigo from afiliados a inner join asistencias s on a.id=s.afiliado_id where date(s.fecha)='$fecha' group by a.ci,a.expedido,a.nombres, a.apellidos,a.codigo order by cast(a.codigo as unsigned)");
+    public function repAsistencia($fecha,$grupo){
+        $datogrupo=Grupo::find($grupo);
+        $asist= DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
+        from asistencias a inner join afiliados f on a.afiliado_id=f.id
+        inner join vehiculos v on f.id=v.afiliado_id
+       where date(a.fecha)='$fecha'
+       and v.grupo_id=$grupo
+       group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo order by cast(f.codigo as unsigned)");
         $noasis= DB::SELECT("SELECT * from afiliados a where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') order by cast(a.codigo as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
@@ -74,6 +80,7 @@ class ReportController extends Controller
           }
         </style>
         <h3 style='text-align:center;color:red;'>ASISTENCIA REUNION EN FECHA $fecha </h3>
+        <h3 style='text-align:center;color:red;'>".$datogrupo->tipo."</h3>
         <table><thead><tr><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena."</tbody></table>
 
         <br>
