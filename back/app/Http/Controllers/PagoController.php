@@ -38,6 +38,7 @@ class PagoController extends Controller
     }
 
     public function datoimp(Request $request){
+        $request->ini=date("Y-m-d",strtotime($request->ini."- 1 days"));
         $respago=DB::SELECT("
         SELECT DATE_ADD('$request->ini', INTERVAL row DAY) AS fecha1,
         DATE_ADD(DATE_ADD('$request->ini', INTERVAL row DAY),INTERVAL 6 DAY) AS fecha2
