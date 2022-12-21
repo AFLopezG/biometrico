@@ -35,7 +35,8 @@
       </div>
     </q-card-section>
   </q-card>
-
+<div class="col-4"> <q-btn color="info" icon="download" label="Export Excel" @click="exportTable"/>
+</div>
 <q-table
   title="Pagos semanales"
   :rows="semanal"
@@ -49,6 +50,8 @@
 import Printd from 'printd'
 import {date} from 'quasar'
 import moment from 'moment'
+import xlsx from "json-as-xlsx"
+
 export default {
   name: `Pagos`,
   data() {
@@ -58,6 +61,7 @@ export default {
       moment: moment,
       semanal:[],
       filter:'',
+      titulos:[],
       ini:moment().day("Monday").format("YYYY-MM-DD"),
       fin:moment().day("Saturday").add(1, 'days').format("YYYY-MM-DD"),
       columns:[
@@ -100,12 +104,41 @@ export default {
       this.consultimp()
     },
     consultimp(){
+      this.titulos=[]
       this.$api.post('datoimp',{ini:this.ini,fin:this.fin}).then((res) => {
-        // console.log(res.data)
+      console.log(res.data)
       this.semanal=res.data
+      for (let j in this.semanal[0]) {
+       // const element = array[index];
+        this.titulos.push({label:j,value:j})
+        
+      }
+      
+      console.log(this.titulos)
+
     })
 
     },
+    exportTable () {
+      if(this.titulos.length==0)
+      return false
+let datacaja = [
+  {
+    sheet: "reporte",
+    columns: this.titulos,
+    content: this.semanal
+  },
+
+    ]
+
+    let settings = {
+      fileName: "Pagos", // Name of the resulting spreadsheet
+      extraLength: 20, // A bigger number means that columns will be wider
+      writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+    }
+
+    xlsx(datacaja, settings) // Will download the excel file
+      },
     printPago(pago){
           const d = new Printd()
           let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
