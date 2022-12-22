@@ -92,5 +92,30 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
+    public function repEconomico(Request $request){
+        $gr=Grupo::find($request->grupo);
+        $multa=0;
+        $result=DB::SELECT("SELECT * FROM pagos p WHERE date(fecha)>='$request->ini' and date(fecha)<='$request->fin' and p.anulado=false and p.grupo_id=$request->grupo GROUP BY p.fecha,p.afiliado_id;");
+        if(sizeof($result)==0){
+            $tsindical=0;
+            $tseguro=0;
+            $tdeportico=0;
+            $tdecano=0;
+            $multa=0;
+        }
+        else{
+            $tsindical=$gr->sindical * sizeof($result);
+            $tseguro=$gr->seguro * sizeof($result);
+            $tdeportico=$gr->deportico * sizeof($result);
+            $tdecano=$gr->decano * sizeof($result);  
+            foreach ($result as $j) {
+                # code...
+                $multa+=$j->multa;
+            }
+        }
+        return ['sindical'=>$tsindical,'seguro'=>$tseguro,'deportivo'=>$tdeportico,'decano'=>$tdecano,'multa'=>$multa];
+
+    }
+
 
 }
