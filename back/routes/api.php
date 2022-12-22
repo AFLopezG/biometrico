@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);
     Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
     Route::post('pagoConsulta', [\App\Http\Controllers\PagoController::class,'pagoConsulta']);
+    Route::post('repEconomico', [\App\Http\Controllers\ReportController::class,'repEconomico']);
+    
 });
 Route::get('test', function () {
     $pago = \App\Models\Pago::find(1);
