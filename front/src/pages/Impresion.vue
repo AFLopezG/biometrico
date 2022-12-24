@@ -61,8 +61,8 @@ export default {
       this.store.socket = true
       this.socket.on('chat message', (data) => {
         console.log(data)
-        if (data.tipo=='asistencia') {
-          let pago= data[0]
+        if (data.type=='asistencia') {
+          let pago= data.data
           const d = new Printd()
           pago.impreso = 1
           let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
