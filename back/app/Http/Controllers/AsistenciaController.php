@@ -79,7 +79,6 @@ class AsistenciaController extends Controller
         $asistencia->fecha=date('Y-m-d');
         $asistencia->hora=date('H:i:s');
         $asistencia->save();
-        $asistencia->tipe="asistencia";
         error_log(json_encode($asistencia));
         $url = env('URL_SOCKET');
         $client = new Client(Client::engine(Client::CLIENT_4X, $url));
@@ -87,7 +86,7 @@ class AsistenciaController extends Controller
         $client->of('/');
 
 // emit an event to the server
-        $data = ["type" => "asistencia", "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->orderBy('id','asc')->first()];
+        $data = ["type" => "asistencia", "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first()];
         $client->emit('chat message', $data);
         return $asistencia;
     }
