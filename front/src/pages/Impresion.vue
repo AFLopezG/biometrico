@@ -60,6 +60,7 @@ export default {
     if (this.store.socket==false) {
       this.store.socket = true
       this.socket.on('chat message', (data) => {
+        console.log(data)
         if (data.tipo=='asistencia') {
           let pago= data[0]
           const d = new Printd()
