@@ -60,13 +60,46 @@ export default {
     if (this.store.socket==false) {
       this.store.socket = true
       this.socket.on('chat message', (data) => {
-        // console.log(data[0])
-        this.pagos.unshift(data[0])
-        let pago= data[0]
-        const d = new Printd()
-        pago.impreso = 1
-        let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
-        let cadena="<style>\
+        if (data.tipo=='asistencia') {
+          let pago= data[0]
+          const d = new Printd()
+          pago.impreso = 1
+          let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:8px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <table>\
+          <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
+          <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 221174</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
+          <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
+          </table>\
+          <div class='col-12 titulo4'>AFILIADO</div><div class='col-12 texto2'>"+pago.afiliado.nombres +' ' +pago.afiliado.apellidos+"</div>\
+          <div class='titulo4'>Muchas gracias por su Asistencia</div>\
+          </div><br><br>\
+          <table><tr>\
+          <td class='texto3'>Secretario de Hacienda<br>VoBo</td><td class='texto3'>Agente de Control</td>\
+          </tr></table>\
+          </div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+        }else{
+          // console.log(data[0])
+          this.pagos.unshift(data[0])
+          let pago= data[0]
+          const d = new Printd()
+          pago.impreso = 1
+          let obs=pago.multa>0?'TIENE MULTA POR RETRASO':''
+          let cadena="<style>\
         .titulo1{font-size:10px; text-align: center;}\
         .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
         .titulo3{font-size:10px; text-align: center;}\
@@ -94,8 +127,9 @@ export default {
           <td class='texto3'>Secretario de Hacienda<br>VoBo</td><td class='texto3'>Agente de Control</td>\
           </tr></table>\
           </div>"
-        document.getElementById('print').innerHTML = cadena
-        d.print( document.getElementById('print') )
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+        }
 
       });
     }

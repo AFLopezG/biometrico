@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asistencia;
 use App\Http\Requests\StoreAsistenciaRequest;
 use App\Http\Requests\UpdateAsistenciaRequest;
+use ElephantIO\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,6 +62,17 @@ class AsistenciaController extends Controller
         $asistencia->fecha=date('Y-m-d');
         $asistencia->hora=date('H:i:s');
         $asistencia->save();
+        $asistencia->tipe="asistencia";
+        error_log(json_encode($asistencia));
+        $url = env('URL_SOCKET');
+        $client = new Client(Client::engine(Client::CLIENT_4X, $url));
+        $client->initialize();
+        $client->of('/');
+
+// emit an event to the server
+        $data = [$asistencia->with('afiliado')->find($asistencia->id)];
+        $client->emit('chat message', $data);
+        return $asistencia;
     }
 
     /**
