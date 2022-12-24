@@ -70,7 +70,7 @@ class AsistenciaController extends Controller
         $client->of('/');
 
 // emit an event to the server
-        $data = [$asistencia->with('afiliado')->find($asistencia->id)];
+        $data = [$asistencia->with('afiliado')];
         $client->emit('chat message', $data);
         return $asistencia;
     }
