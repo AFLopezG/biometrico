@@ -57,6 +57,22 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
+        $mifecha = new DateTime();
+        $mifecha->modify('-3 second');
+        $asistencia=Asistencia::where('afiliado_id',$request->afiliado_id)->orderBy('id','desc');
+        if ( $asistencia->count()==0) {
+            return $this->asistenciaPago($request);
+        }else {
+            $asistencia=$asistencia->first();
+            if ($asistencia->created_at->format('Y-m-d H:i:s')<$mifecha->format('Y-m-d H:i:s')){
+                return $this->asistenciaPago($request);
+            }
+        }
+        return "Ya se registro un pago";
+
+
+    }
+    public function asistenciaPago($request){
         $asistencia= new Asistencia();
         $asistencia->afiliado_id=$request->afiliado_id;
         $asistencia->fecha=date('Y-m-d');
