@@ -67,7 +67,7 @@
           afiliado_id:row.afiliado_id,
         }).then((res) => {
           this.loading=false
-          let pago=res.data
+          let pago=res.data.data
           console.log(pago)
           let cadena="<style>\
         .titulo1{font-size:10px; text-align: center;}\
