@@ -74,12 +74,16 @@ class AsistenciaController extends Controller
 
     }
     public function asistenciaPago($request){
+        $search = Asistencia::where('afiliado_id',$request->afiliado_id)->whereDate('fecha',date('Y-m-d'))->first();
+        if ($search) {
+            return "Ya se registro un pago";
+        }
         $asistencia= new Asistencia();
         $asistencia->afiliado_id=$request->afiliado_id;
         $asistencia->fecha=date('Y-m-d');
         $asistencia->hora=date('H:i:s');
         $asistencia->save();
-        error_log(json_encode($asistencia));
+//        error_log(json_encode($asistencia));
         $url = env('URL_SOCKET');
         $client = new Client(Client::engine(Client::CLIENT_4X, $url));
         $client->initialize();
