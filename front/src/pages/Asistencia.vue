@@ -68,6 +68,7 @@
         }).then((res) => {
           this.loading=false
           let pago=res.data
+          console.log(pago)
           let cadena="<style>\
         .titulo1{font-size:10px; text-align: center;}\
         .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
