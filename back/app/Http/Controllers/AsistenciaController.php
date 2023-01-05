@@ -39,7 +39,7 @@ class AsistenciaController extends Controller
         return DB::SELECT("SELECT a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
         where date(a.fecha)='$request->fecha'
-        group by a.afiliado_id,f.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
+        group by a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
     }
 
     public function reporteImp($fecha,$grupo){
