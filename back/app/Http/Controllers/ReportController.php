@@ -58,7 +58,9 @@ class ReportController extends Controller
        where date(a.fecha)='$fecha'
        and v.grupo_id=$grupo
        group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo order by cast(f.codigo as unsigned)");
-        $noasis= DB::SELECT("SELECT * from afiliados a where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') order by cast(a.codigo as unsigned)");
+        $noasis= DB::SELECT("SELECT a.ci,a.expedido,a.nombres,a.apellidos,a.telefono,a.codigo 
+        from afiliados a inner join vehiculos v on a.id=v.afiliado_id 
+        where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') and v.grupo_id=$grupo order by cast(a.codigo as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
         $cadena2="";
