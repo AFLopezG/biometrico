@@ -64,13 +64,16 @@ class ReportController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
         $cadena2="";
-
+        $cont=0;
+        $cont2=0;
         foreach ($asist as $r ) {
-           $cadena.="<tr><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+            $cont++;
+           $cadena.="<tr><td>".$cont."</td><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
         }
 
         foreach ($noasis as $r ) {
-            $cadena2.="<tr><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+            $cont2++;
+            $cadena2.="<tr><td>".$cont2."</td><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
          }
         $pdf->loadHTML("<style>
         table, th, td {
@@ -83,12 +86,13 @@ class ReportController extends Controller
         </style>
         <h3 style='text-align:center;color:red;'>ASISTENCIA REUNION EN FECHA $fecha </h3>
         <h3 style='text-align:center;color:red;'>".$datogrupo->tipo."</h3>
-        <table><thead><tr><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena."</tbody></table>
-
+        <table><thead><tr><th>No</th><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena."</tbody></table>
+          <div><b>TOTAL ASISTENCIA: </b>".$cont."</div>
         <br>
         <div style='page-break-after: always;'></div>
         <h3 style='text-align:center;color:red;'>NO ASISTIERON A REUNION EN FECHA $fecha </h3>
-        <table><thead><tr><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena2."</tbody></table>
+        <table><thead><tr><th>No</th><th>CODIGO</th><th>Nombre Afiliado</th></tr></thead><tbody>".$cadena2."</tbody></table>
+        <div><b>TOTAL AUSENTES: </b>".$cont2."</div>
 
         ");
         return $pdf->stream();
