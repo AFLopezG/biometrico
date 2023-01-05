@@ -95,6 +95,11 @@ class AsistenciaController extends Controller
         return $asistencia;
     }
 
+    public function printAsistencia(Request $request){
+        $data = ["type" => "asistencia", "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first()];
+        return $data;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -135,8 +140,10 @@ class AsistenciaController extends Controller
      * @param  \App\Models\Asistencia  $asistencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy($id)
     {
-        //
+        $asistencia=Asistencia::find($id);
+        $asistencia->delete();
+        return $asistencia;
     }
 }

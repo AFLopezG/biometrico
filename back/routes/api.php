@@ -27,6 +27,7 @@ Route::resource('asistencia', \App\Http\Controllers\AsistenciaController::class)
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('me', [App\Http\Controllers\UserController::class, 'me']);
     Route::post('logout', [App\Http\Controllers\UserController::class, 'logout']);
+    Route::post('printAsistencia', [App\Http\Controllers\AsistenciaController::class, 'printAsistencia']);
     Route::apiResource('user', App\Http\Controllers\UserController::class);
     Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
@@ -42,7 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('reporte', [\App\Http\Controllers\AsistenciaController::class,'reporte']);
     Route::post('pagoConsulta', [\App\Http\Controllers\PagoController::class,'pagoConsulta']);
     Route::post('repEconomico', [\App\Http\Controllers\ReportController::class,'repEconomico']);
-    
+
 });
 Route::get('test', function () {
     $pago = \App\Models\Pago::find(1);
