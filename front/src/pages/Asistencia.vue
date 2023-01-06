@@ -19,10 +19,12 @@
       </div>
   <q-table :rows="asistencias" :columns="columns" dense :rows-per-page-options="[20,50,100,0]">
     <template v-slot:body-cell-option="props">
-      <q-btn-group>
-        <q-btn round :loading="loading" dense color="negative" icon="delete" @click="eliminar(props.row)" />
-        <q-btn round :loading="loading" dense color="info" icon="print" @click="imprimir(props.row)" />
-      </q-btn-group>
+      <q-td auto-width :props="props">
+        <q-btn-group>
+          <q-btn round :loading="loading" dense color="negative" icon="delete" @click="eliminar(props.row)" />
+          <q-btn round :loading="loading" dense color="info" icon="print" @click="imprimir(props.row)" />
+        </q-btn-group>
+      </q-td>
     </template>
   </q-table>
     <div id="print" class="hidden"></div>
