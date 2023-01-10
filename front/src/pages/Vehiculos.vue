@@ -61,7 +61,7 @@
           <q-card-section class="q-pt-none">
             <div class="row">
 
-              <div class="col-6"><q-input v-model="vehiculo2.placa" label="PLACA" outlined dense required readonly/></div>
+              <div class="col-6"><q-input v-model="vehiculo2.placa" label="PLACA" outlined dense required /></div>
               <div class="col-6"><q-select v-model="vehiculo2.tipo" :options="tipovehiculo"  label="TIPO" dense outlined/></div>
               <div class="col-6"><q-input v-model="vehiculo2.modelo" label="MODELO" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.marca" label="MARCA" :options="marca" outlined dense required/></div>
