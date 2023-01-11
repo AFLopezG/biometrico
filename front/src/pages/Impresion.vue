@@ -70,7 +70,7 @@ export default {
         .titulo1{font-size:10px; text-align: center;}\
         .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
         .titulo3{font-size:10px; text-align: center;}\
-        .titulo5{font-size:8px; text-align: center;}\
+        .titulo5{font-size:14px; text-align: center;}\
         .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
         .texto1{font-size:10px; text-align: center; font-weight: normal;}\
         .texto2{font-size:14px; text-align: center; font-weight: normal;}\
@@ -106,6 +106,7 @@ export default {
         .titulo3{font-size:10px; text-align: center;}\
         .titulo5{font-size:8px; text-align: center;}\
         .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:12px; text-align: center; font-weight: normal;}\
         .texto1{font-size:10px; text-align: center; font-weight: normal;}\
         .texto2{font-size:14px; text-align: center; font-weight: normal;}\
         .texto3{font-size:8px; text-align: center; font-weight: normal;}\
@@ -115,11 +116,11 @@ export default {
           <div id='print'>\
           <table>\
           <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
-          <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 221174</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
+          <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 27465</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
           <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\
           <table><tr>\
-          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.grupo.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto1'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
+          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.grupo.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto4'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
           </tr></table>\
           <div class='col-12 titulo4'>AFILIADO</div><div class='col-12 texto2'>"+pago.afiliado.nombres +' ' +pago.afiliado.apellidos+"</div>\
           <div class='titulo4'>OBSERVACION: <span class='texto1'>"+obs+"</span></div>\
