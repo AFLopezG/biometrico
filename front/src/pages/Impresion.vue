@@ -104,9 +104,9 @@ export default {
         .titulo1{font-size:10px; text-align: center;}\
         .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
         .titulo3{font-size:10px; text-align: center;}\
-        .titulo5{font-size:8px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
         .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
-        .texto4{font-size:12px; text-align: center; font-weight: normal;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
         .texto1{font-size:10px; text-align: center; font-weight: normal;}\
         .texto2{font-size:14px; text-align: center; font-weight: normal;}\
         .texto3{font-size:8px; text-align: center; font-weight: normal;}\
