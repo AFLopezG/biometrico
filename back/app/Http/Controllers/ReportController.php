@@ -14,7 +14,7 @@ class ReportController extends Controller
 {
     public function reportList($grupo, $fechaDesde, $fechaHasta)
     {   $g=Grupo::find($grupo);
-        $af=DB::SELECT("SELECT a.codigo FROM pagos p inner join afiliados a on p.afiliado_id=a.id WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=false group by a.codigo order by cast(a.codigo as unsigned)");
+        $af=DB::SELECT("SELECT a.codigo FROM pagos p inner join afiliados a on p.afiliado_id=a.id WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by a.codigo order by cast(a.codigo as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
 
@@ -101,7 +101,8 @@ class ReportController extends Controller
     public function repEconomico(Request $request){
         $gr=Grupo::find($request->grupo);
         $multa=0;
-        $result=DB::SELECT("SELECT * FROM pagos p WHERE date(fecha)>='$request->ini' and date(fecha)<='$request->fin' and p.anulado=false and p.grupo_id=$request->grupo GROUP BY p.fecha,p.afiliado_id;");
+        $result=DB::SELECT("SELECT * FROM pagos p 
+        WHERE date(fecha)>='$request->ini' and date(fecha)<='$request->fin' and p.anulado=0 and p.grupo_id=$request->grupo GROUP BY p.fecha,p.afiliado_id;");
         if(sizeof($result)==0){
             $tsindical=0;
             $tseguro=0;
