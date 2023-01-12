@@ -25,6 +25,8 @@
   <q-card>
     <q-card-section>
       <div class="text-h6">Total: {{total}} Bs</div>
+      <q-table  :columns="resumen" row-key="name" />
+      
     </q-card-section>
     <q-card-section>
       <div class="row">
@@ -62,6 +64,7 @@ export default {
       semanal:[],
       filter:'',
       titulos:[],
+      resumen:[],
       ini:moment().day("Monday").format("YYYY-MM-DD"),
       fin:moment().day("Saturday").add(1, 'days').format("YYYY-MM-DD"),
       columns:[
@@ -100,6 +103,10 @@ export default {
     consultar(){
       this.$api.post('consultapago',{ini:this.ini,fin:this.fin}).then((res) => {
         this.pagos=res.data
+        this.$api.post('resumenPago',{ini:this.ini,fin:this.fin}).then((res2) => {
+          this.resumen=res2.data
+        })
+
       })
       this.consultimp()
     },
