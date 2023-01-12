@@ -25,7 +25,7 @@
   <q-card>
     <q-card-section>
       <div class="text-h6">Total: {{total}} Bs</div>
-      <q-table  :columns="resumen" row-key="name" />
+      <q-table  :rows="resumen" row-key="name" />
       
     </q-card-section>
     <q-card-section>
