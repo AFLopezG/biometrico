@@ -14,14 +14,15 @@ class ReportController extends Controller
 {
     public function reportList($grupo, $fechaDesde, $fechaHasta)
     {   $g=Grupo::find($grupo);
-        $af=DB::SELECT("SELECT a.codigo FROM pagos p inner join afiliados a on p.afiliado_id=a.id WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by a.codigo order by cast(a.codigo as unsigned)");
+        $af=DB::SELECT("SELECT v.codmovil FROM pagos p inner join afiliados a on p.afiliado_id=a.id inner join vehiculos v on a.id=v.afiliado_id
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by v.codmovil order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
 
         foreach ($af as $r ) {
-            if(!is_numeric($r->codigo)) $col=" style='color:black' ";
+            if(!is_numeric($r->codmovil)) $col=" style='color:black' ";
             else $col='';
-           $cadena.="<div ".$col." class='textcod inline'>".$r->codigo."</div>";
+           $cadena.="<div ".$col." class='textcod inline'>".$r->codmovil."</div>";
         }
         $pdf->loadHTML("<style>
         .textcod{
@@ -52,15 +53,15 @@ class ReportController extends Controller
 
     public function repAsistencia($fecha,$grupo){
         $datogrupo=Grupo::find($grupo);
-        $asist= DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
+        $asist= DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil
         from asistencias a inner join afiliados f on a.afiliado_id=f.id
         inner join vehiculos v on f.id=v.afiliado_id
        where date(a.fecha)='$fecha'
        and v.grupo_id=$grupo
-       group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo order by cast(f.codigo as unsigned)");
-        $noasis= DB::SELECT("SELECT a.ci,a.expedido,a.nombres,a.apellidos,a.telefono,a.codigo 
+       group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil order by cast(v.codmovil as unsigned)");
+        $noasis= DB::SELECT("SELECT a.ci,a.expedido,a.nombres,a.apellidos,a.telefono,v.codmovil
         from afiliados a inner join vehiculos v on a.id=v.afiliado_id 
-        where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') and v.grupo_id=$grupo order by cast(a.codigo as unsigned)");
+        where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') and v.grupo_id=$grupo order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
         $cadena2="";
@@ -68,12 +69,12 @@ class ReportController extends Controller
         $cont2=0;
         foreach ($asist as $r ) {
             $cont++;
-           $cadena.="<tr><td>".$cont."</td><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+           $cadena.="<tr><td>".$cont."</td><td>".$r->codmovil."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
         }
 
         foreach ($noasis as $r ) {
             $cont2++;
-            $cadena2.="<tr><td>".$cont2."</td><td>".$r->codigo."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
+            $cadena2.="<tr><td>".$cont2."</td><td>".$r->codmovil."</td> <td>".$r->nombres." ".$r->apellidos."</td></tr>";
          }
         $pdf->loadHTML("<style>
         table, th, td {

@@ -36,10 +36,11 @@ class AsistenciaController extends Controller
 
     public function reporte(Request $request){
         //return Asistencia::whereDate('fecha',$request->fecha)->with('afiliado')->groupBy('afiliado_id')->get();
-        return DB::SELECT("SELECT a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo
+        return DB::SELECT("SELECT a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil
          from asistencias a inner join afiliados f on a.afiliado_id=f.id
+         inner join vehiculos v on f.id=v.afiliado_id
         where date(a.fecha)='$request->fecha'
-        group by a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,f.codigo  ");
+        group by a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil  ");
     }
 
     public function reporteImp($fecha,$grupo){

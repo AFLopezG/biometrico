@@ -16,6 +16,7 @@ class Vehiculo extends Model
         'color',
         'codcolor',
         'capacidad',
+        'codmovil',
         'afiliado_id',
         'grupo_id'
     ];

@@ -31,6 +31,7 @@
           <div class="row">
 
           <div class="col-6"><q-input v-model="vehiculo.placa" label="PLACA" outlined dense required/></div>
+          <div class="col-6"><q-input v-model="vehiculo.codmovil" label="COD MOVIL" outlined dense required/></div>
           <div class="col-6"><q-select v-model="vehiculo.tipo"  label="TIPO" :options="tipovehiculo" dense outlined/></div>
           <div class="col-6"><q-input v-model="vehiculo.modelo" label="MODELO" outlined dense required/></div>
             <div class="col-6"><q-select v-model="vehiculo.marca" label="MARCA" :options="marca" outlined dense required/></div>
@@ -62,6 +63,7 @@
             <div class="row">
 
               <div class="col-6"><q-input v-model="vehiculo2.placa" label="PLACA" outlined dense required /></div>
+              <div class="col-6"><q-input v-model="vehiculo2.codmovil" label="COD MOVIL" outlined dense required /></div>
               <div class="col-6"><q-select v-model="vehiculo2.tipo" :options="tipovehiculo"  label="TIPO" dense outlined/></div>
               <div class="col-6"><q-input v-model="vehiculo2.modelo" label="MODELO" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.marca" label="MARCA" :options="marca" outlined dense required/></div>
@@ -109,6 +111,7 @@ export default {
       columns:[
         {name:'opcion',label:'OPCION'},
         {name:'placa',label:'PLACA',field:'placa'},
+        {name:'codmovil',label:'COD MOVIL',field:'codmovil'},
         {name:'tipo',label:'TIPO',field:'tipo'},
         {name:'modelo',label:'MODELO',field:'modelo'},
         {name:'marca',label:'MARCA',field:'marca'},

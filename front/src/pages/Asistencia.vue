@@ -45,7 +45,7 @@
         loading: false,
         columns:[
           {name:'option',label:'Opciónes',field:'option',align:'center'},
-          {name:'codigo',label:'MOVIL',field:'codigo'},
+          {name:'codmovil',label:'MOVIL',field:'codmovil'},
           {name:'fecha',label:'FECHA',field:'fecha'},
           {name:'afiliado',label:'AFILIADO',field:row=>row.nombres+' '+row.apellidos},
           {name:'ci',label:'CI',field:row=>row.ci+' '+row.expedido},

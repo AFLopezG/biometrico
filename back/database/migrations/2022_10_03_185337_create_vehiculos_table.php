@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('marca');
             $table->string('color');
             $table->string('codcolor')->default('');
+            $table->string('codmovil')->default('');
             $table->integer('capacidad')->default('20');
             $table->unsignedBigInteger('afiliado_id');
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
