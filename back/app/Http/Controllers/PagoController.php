@@ -205,7 +205,7 @@ ORDER BY a.codigo DESC
         return DB::SELECT("SELECT g.tipo grupo, 
          (g.sindical * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) sindical,
          (g.decano * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) decano, 
-         (g.deportico * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) deportico, 
+         (g.deportico * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) deportivo, 
          (g.seguro * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) proaccidente, 
          (g.monto * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) total 
          from grupos g;");

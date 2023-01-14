@@ -105,6 +105,7 @@ export default {
         this.pagos=res.data
         this.$api.post('resumenPago',{ini:this.ini,fin:this.fin}).then((res2) => {
           this.resumen=res2.data
+          this.resumen.push({grupo:'TOTALES','sindical':this.totalsindical,'decano':this.totaldecano,'deportivo':this.totaldeportivo,'proaccidente':this.totalproaccidente});
         })
 
       })
@@ -218,6 +219,18 @@ let datacaja = [
     },
     totalMultaSemanal(){
       return this.semanal.reduce((a,b)=>a+parseFloat(b.multa),0)
+    },
+    totalsindical(){
+      return this.resumen.reduce((a,b)=>a+parseFloat(b.sindical),0)
+    },
+    totaldecano(){
+      return this.resumen.reduce((a,b)=>a+parseFloat(b.decano),0)
+    },
+    totaldeportivo(){
+      return this.resumen.reduce((a,b)=>a+parseFloat(b.deportivo),0)
+    },
+    totalproaccidente(){
+      return this.resumen.reduce((a,b)=>a+parseFloat(b.proaccidente),0)
     },
   }
 }
