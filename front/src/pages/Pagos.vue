@@ -24,7 +24,11 @@
 </q-table>
   <q-card>
     <q-card-section>
-      <div class="text-h6">Total: {{total}} Bs</div>
+      <div class="row">
+      <div class="col-6 text-h6">Total: {{total}} Bs</div>
+      <div class="col-6"> <q-btn color="info" icon="print" @click="printPagoResumen"/>
+      </div>
+      </div>
       <q-table  :rows="resumen" row-key="name" />
       
     </q-card-section>
@@ -88,6 +92,34 @@ export default {
     this.consultar()
   },
   methods:{
+    printPagoResumen(){
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div class='titulo2'>PAGOS POR GRUPO "+this.ini+" al " +this.fin+" </div><br>\
+          <table>\
+           <tr><th>GRUPO</th><th>SINDICAL</th><th>DECANO</th><th>DEPORTIVO</th><th>PROACCIDENTE</th><th>TOTAL</th></tr>"
+           this.resumen.forEach(r => {
+            cadena+="<tr><td>"+r.grupo+"</td><td>"+r.sindical+"</td><td>"+r.decano+"</td><td>"+r.deportivo+"</td><td>"+r.proaccidente+"</td><td>"+r.total+"</td></tr>"
+           });
+          //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
+          cadena+="</table></div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+    },
     imprimir(grupo_id){
       this.$api.post(`pagoConsulta`,{ini:this.ini,fin:this.fin,grupo_id:grupo_id}).then(res=>{
         console.log(res.data)
@@ -105,7 +137,7 @@ export default {
         this.pagos=res.data
         this.$api.post('resumenPago',{ini:this.ini,fin:this.fin}).then((res2) => {
           this.resumen=res2.data
-          this.resumen.push({grupo:'TOTALES','sindical':this.totalsindical,'decano':this.totaldecano,'deportivo':this.totaldeportivo,'proaccidente':this.totalproaccidente});
+          this.resumen.push({grupo:'TOTALES','sindical':this.totalsindical,'decano':this.totaldecano,'deportivo':this.totaldeportivo,'proaccidente':this.totalproaccidente,'total':this.total});
         })
 
       })

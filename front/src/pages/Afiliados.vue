@@ -2,7 +2,7 @@
 <q-page>
   <div class="col-12">
     <div class="text-h5 text-center">LISTA DE AFILIADOS</div>
-    <q-table :rows="afiliados" :columns="columns">
+    <q-table :rows="afiliados" :columns="columns" :filter="filter">
       <template v-slot:body-cell-opcion="props">
           <q-td key="opcion" :props="props">
             <q-btn dense icon="edit" color="yellow" @click="afiliado2=props.row;dialogModificar=true;" />
