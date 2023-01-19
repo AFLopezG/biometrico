@@ -22,6 +22,8 @@ class ReportController extends Controller
         foreach ($af as $r ) {
             if(!is_numeric($r->codmovil)) $col=" style='color:black' ";
             else $col='';
+            if(date('N',strtotime($r->fecha))==4)
+                $col=" style='color:green' ";
            $cadena.="<div ".$col." class='textcod inline'>".$r->codmovil."</div>";
         }
         $pdf->loadHTML("<style>
@@ -47,7 +49,8 @@ class ReportController extends Controller
 
         }
         }
-        </style><h3 style='text-align:center;color:red;'>NOMINA DE MOVILIDADES QUE SACARON HOJA SEMANAL <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3> <div class='wrapper '>".$cadena."</div>");
+        </style><h3 style='text-align:center;color:red;'>NOMINA DE MOVILIDADES QUE SACARON HOJA SEMANAL <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3>
+         <div class='wrapper '>".$cadena."</div>");
         return $pdf->stream();
     }
 
