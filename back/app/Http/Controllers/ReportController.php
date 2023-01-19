@@ -14,8 +14,8 @@ class ReportController extends Controller
 {
     public function reportList($grupo, $fechaDesde, $fechaHasta)
     {   $g=Grupo::find($grupo);
-        $af=DB::SELECT("SELECT v.codmovil FROM pagos p inner join afiliados a on p.afiliado_id=a.id inner join vehiculos v on a.id=v.afiliado_id
-        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by v.codmovil order by cast(v.codmovil as unsigned)");
+        $af=DB::SELECT("SELECT v.codmovil,p.fecha FROM pagos p inner join afiliados a on p.afiliado_id=a.id inner join vehiculos v on a.id=v.afiliado_id
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by v.codmovil,p.fecha order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
 
@@ -63,7 +63,7 @@ class ReportController extends Controller
        and v.grupo_id=$grupo
        group by a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil order by cast(v.codmovil as unsigned)");
         $noasis= DB::SELECT("SELECT a.ci,a.expedido,a.nombres,a.apellidos,a.telefono,v.codmovil
-        from afiliados a inner join vehiculos v on a.id=v.afiliado_id 
+        from afiliados a inner join vehiculos v on a.id=v.afiliado_id
         where a.id not in (select s.afiliado_id from asistencias s where date(s.fecha)='$fecha') and v.grupo_id=$grupo order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
@@ -105,7 +105,7 @@ class ReportController extends Controller
     public function repEconomico(Request $request){
         $gr=Grupo::find($request->grupo);
         $multa=0;
-        $result=DB::SELECT("SELECT * FROM pagos p 
+        $result=DB::SELECT("SELECT * FROM pagos p
         WHERE date(fecha)>='$request->ini' and date(fecha)<='$request->fin' and p.anulado=0 and p.grupo_id=$request->grupo GROUP BY p.fecha,p.afiliado_id;");
         if(sizeof($result)==0){
             $tsindical=0;
@@ -118,7 +118,7 @@ class ReportController extends Controller
             $tsindical=$gr->sindical * sizeof($result);
             $tseguro=$gr->seguro * sizeof($result);
             $tdeportico=$gr->deportico * sizeof($result);
-            $tdecano=$gr->decano * sizeof($result);  
+            $tdecano=$gr->decano * sizeof($result);
             foreach ($result as $j) {
                 # code...
                 $multa+=$j->multa;
