@@ -54,6 +54,59 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
+    public function reportListPago($grupo, $fechaDesde, $fechaHasta){
+      
+        $g=Grupo::find($grupo);
+        $result= DB::SELECT("select a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha 
+        from afiliados a inner join pagos p on p.afiliado_id=a.id 
+        inner JOIN vehiculos v on v.afiliado_id=a.id
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and v.grupo_id=$grupo and p.anulado=0
+        group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
+        order by v.codmovil;");
+
+        $pdf = App::make('dompdf.wrapper');
+        $cadena="";
+        foreach ($result as $value) {
+           $cadena.="<tr><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
+        }
+
+        $pdf->loadHTML("<style>
+        table, th, td {
+            border: 1px solid;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+        .textcod{
+            width:12%';
+            font-size:25px;
+            padding:10px;
+            color:blue;
+            font-weight: bold;
+
+        }
+        div.wrapper {
+            width: 100%; /* or whatever */
+            overflow: hidden;
+            white-space: nowrap;
+
+        }
+
+        div.inline {
+            display: inline-block;
+            width: 80px;
+            height: 20px;
+
+        }
+        }
+        </style><h3 style='text-align:center;color:red;'>INFORME DE PAGO <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3>
+         <div ><table><tr>NOMBRE<th></th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
+         ".$cadena."</table></div>");
+        return $pdf->stream();
+    }
+
     public function repAsistencia($fecha,$grupo){
         $datogrupo=Grupo::find($grupo);
         $asist= DB::SELECT("SELECT a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil

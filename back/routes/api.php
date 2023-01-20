@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [App\Http\Controllers\UserController::class, 'login']);
 Route::get('reportlist/{grupo}/{fechaDesde}/{fechasHasta}', [\App\Http\Controllers\ReportController::class, 'reportList']);
+Route::get('reportlistPago/{grupo}/{fechaDesde}/{fechasHasta}', [\App\Http\Controllers\ReportController::class, 'reportListPago']);
 Route::get('repAsistencia/{fecha}/{grupo}', [\App\Http\Controllers\ReportController::class, 'repAsistencia']);
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::resource('asistencia', \App\Http\Controllers\AsistenciaController::class);

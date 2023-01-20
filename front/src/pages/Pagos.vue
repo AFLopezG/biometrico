@@ -7,6 +7,12 @@
       <div class="col-4 flex flex-center"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
     </div>
   </q-form>
+  <div class="row">
+    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/1/${ini}/${fin}`" color="primary" icon="print" label="Grupo A y B"/></div>
+    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/2/${ini}/${fin}`" color="secondary" icon="print" label="GRUPO C"/></div>
+    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/3/${ini}/${fin}`" color="green" icon="print" label="GRUPO D"/></div>
+    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/4/${ini}/${fin}`" color="info" icon="print" label="GRUPO E"/></div>
+  </div>
 <q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]" :filter="filter">
   <template v-slot:top-right>
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
