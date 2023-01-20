@@ -55,14 +55,14 @@ class ReportController extends Controller
     }
 
     public function reportListPago($grupo, $fechaDesde, $fechaHasta){
-      
+
         $g=Grupo::find($grupo);
-        $result= DB::SELECT("select a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha 
-        from afiliados a inner join pagos p on p.afiliado_id=a.id 
+        $result= DB::SELECT("select a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
+        from afiliados a inner join pagos p on p.afiliado_id=a.id
         inner JOIN vehiculos v on v.afiliado_id=a.id
         WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and v.grupo_id=$grupo and p.anulado=0
         group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
-        order by v.codmovil;");
+        order by p.fecha,v.codmovil;");
 
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
@@ -102,7 +102,7 @@ class ReportController extends Controller
         }
         }
         </style><h3 style='text-align:center;color:red;'>INFORME DE PAGO <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3>
-         <div ><table><tr>NOMBRE<th></th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
+         <div ><table><tr><th>NOMBRE</th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
          ".$cadena."</table></div>");
         return $pdf->stream();
     }
