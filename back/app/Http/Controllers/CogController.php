@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cog;
 use App\Http\Requests\StoreCogRequest;
 use App\Http\Requests\UpdateCogRequest;
+use Illuminate\Http\Request;
 
 class CogController extends Controller
 {
@@ -16,6 +17,7 @@ class CogController extends Controller
     public function index()
     {
         //
+        return Cog::first();
     }
 
     /**
@@ -68,9 +70,12 @@ class CogController extends Controller
      * @param  \App\Models\Cog  $cog
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCogRequest $request, Cog $cog)
+    public function modcog(Request $request)
     {
         //
+        $cog=Cog::first();
+        $cog->state=$request->estado;
+        $cog->save();
     }
 
     /**

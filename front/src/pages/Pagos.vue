@@ -2,9 +2,11 @@
 <q-page class="q-pa-xs">
   <q-form @submit="consultar" class="q-gutter-md">
     <div class="row">
-      <div class="col-4"><q-input v-model="ini" type="date" label="Fecha Desde" outlined dense required/></div>
-      <div class="col-4"><q-input v-model="fin" type="date" label="Fecha Hast"  outlined dense required/></div>
-      <div class="col-4 flex flex-center"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
+      <div class="col-3"><q-input v-model="ini" type="date" label="Fecha Desde" outlined dense required/></div>
+      <div class="col-3"><q-input v-model="fin" type="date" label="Fecha Hast"  outlined dense required/></div>
+      <div class="col-3"><q-toggle v-model="cog" :label="cog+' COBRAR MULTA'" true-value="SI" false-value="NO" @click="cambiarCog"/>
+      </div>
+      <div class="col-3 flex flex-center"><q-btn color="green" icon="search" label="Buscar"  type="submit"/></div>
     </div>
   </q-form>
   <div class="row">
@@ -73,6 +75,7 @@ export default {
       moment: moment,
       semanal:[],
       filter:'',
+      cog:'SI',
       titulos:[],
       resumen:[],
       ini:moment().day("Monday").format("YYYY-MM-DD"),
@@ -96,8 +99,30 @@ export default {
   //   console.log(moment().day("Monday").format("YYYY-MM-DD"));
   //   console.log(moment().day("Saturday").add(1, 'days').format("YYYY-MM-DD"));
     this.consultar()
+    this.recuperaCog()
   },
   methods:{
+
+    recuperaCog(){
+      this.$api.get(`cog`).then(res=>{
+        if(res.data.state=='active')
+        this.cog='SI'
+        else
+        this.cog='NO'
+      })
+
+    },
+    cambiarCog(){
+      let valor=''
+      if(this.cog=='SI') 
+        valor='active'
+      else
+        valor='inactive'
+      this.$api.post(`modcog`,{'estado':valor}).then(res=>{
+
+      })
+
+    },
     printPagoResumen(){
       const d = new Printd()
           let cadena="<style>\

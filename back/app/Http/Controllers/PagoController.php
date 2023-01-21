@@ -184,9 +184,25 @@ ORDER BY v.codmovil DESC
         $pago->hora = date('H:i:s');
         $pago->impreso = true;
         $pago->monto = $request->monto;
+        $grupo=Grupo::find($vehiculo->grupo_id);
         if ($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') {
+            $cog=Cog::first();
+            if($cog->state=='active'){
             $pago->multa = true;
-            $pago->monto = intval($request->monto) * 2;
+            $pago->monto = floatval($request->monto) * 2;
+            $pago->sindical=floatval($grupo->sindical) * 2;
+            $pago->seguro=floatval($grupo->seguro) * 2 ;
+            $pago->deportico=floatval($grupo->deportico) * 2;
+            $pago->decano=floatval($grupo->decano) * 2;
+            }
+            else{
+                $pago->multa = false;
+                $pago->monto = floatval($request->monto);
+                $pago->sindical=floatval($grupo->sindical);
+                $pago->seguro=floatval($grupo->seguro) ;
+                $pago->deportico=floatval($grupo->deportico);
+                $pago->decano=floatval($grupo->decano);
+            }
         }
         $pago->save();
         error_log(json_encode($pago));

@@ -17,7 +17,7 @@ class CogSeeder extends Seeder
     {
         DB::table('cogs')->insert([
             'name' => 'PAGO MULTA',
-            'state' => 'inactive',
+            'state' => 'active',
         ]);
     }
 }
