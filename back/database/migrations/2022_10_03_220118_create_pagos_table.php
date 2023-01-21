@@ -25,6 +25,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->double('monto',11,2)->nullable();;
             $table->boolean('multa')->default(false)->nullable();;
+            $table->double('sindical',11,2);
+            $table->double('seguro',11,2);
+            $table->double('deportico',11,2);
+            $table->double('decano',11,2);
             $table->date('fecha')->nullable();;
             $table->time('hora')->nullable();;
             $table->boolean('impreso')->default(false);
