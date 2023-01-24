@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\Grupo;
+use App\Models\Cog;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
 use App\Models\Vehiculo;
