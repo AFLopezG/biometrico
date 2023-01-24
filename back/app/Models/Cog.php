@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cog extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'state',
+    ];
 }
