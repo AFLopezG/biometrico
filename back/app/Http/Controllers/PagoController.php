@@ -184,6 +184,10 @@ ORDER BY v.codmovil DESC
         $pago->hora = date('H:i:s');
         $pago->impreso = true;
         $pago->monto = $request->monto;
+        $pago->sindical=floatval($grupo->sindical);
+        $pago->seguro=floatval($grupo->seguro) ;
+        $pago->deportico=floatval($grupo->deportico);
+        $pago->decano=floatval($grupo->decano);
         $grupo=Grupo::find($vehiculo->grupo_id);
         if ($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') {
             $cog=Cog::first();
