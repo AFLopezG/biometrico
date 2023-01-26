@@ -64,7 +64,9 @@ class ReportController extends Controller
         $result= DB::SELECT("select a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         from afiliados a inner join pagos p on p.afiliado_id=a.id
         inner JOIN vehiculos v on v.afiliado_id=a.id
-        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and v.grupo_id=$grupo and p.anulado=0
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        and v.id=p.vehiculo_id
+        and v.grupo_id=$grupo and p.anulado=0
         group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         order by p.fecha,v.codmovil;");
 
