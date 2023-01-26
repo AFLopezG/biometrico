@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('logout', [App\Http\Controllers\UserController::class, 'logout']);
     Route::post('printAsistencia', [App\Http\Controllers\AsistenciaController::class, 'printAsistencia']);
     Route::apiResource('user', App\Http\Controllers\UserController::class);
+    Route::apiResource('cog', App\Http\Controllers\CogController::class);
     Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);
 
     Route::post('anularPago', [\App\Http\Controllers\PagoController::class,'anularPago']);
+    Route::post('modcog', [\App\Http\Controllers\CogController::class,'modcog']);
     Route::post('consultapago', [\App\Http\Controllers\PagoController::class,'consultapago']);
     Route::post('datoimp', [\App\Http\Controllers\PagoController::class,'datoimp']);
     Route::post('listGrupoAf', [\App\Http\Controllers\AfiliadoController::class,'listGrupoAf']);

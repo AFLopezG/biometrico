@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pago;
+use App\Models\Grupo;
+use App\Models\Cog;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
 use App\Models\Vehiculo;
@@ -175,6 +177,7 @@ ORDER BY v.codmovil DESC
         $dias = array("domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado");
         $dia = $dias[date("w")];
         $vehiculo = Vehiculo::find($request->vehiculo_id);
+        $grupo=Grupo::find($vehiculo->grupo_id);
         $pago = new Pago();
         $pago->afiliado_id = $vehiculo->afiliado_id;
         $pago->grupo_id = $vehiculo->grupo_id;
@@ -183,10 +186,29 @@ ORDER BY v.codmovil DESC
         $pago->fecha = date('Y-m-d');
         $pago->hora = date('H:i:s');
         $pago->impreso = true;
-        $pago->monto = $request->monto;
+        $pago->monto = $grupo->monto;
+        $pago->sindical=floatval($grupo->sindical);
+        $pago->seguro=floatval($grupo->seguro) ;
+        $pago->deportico=floatval($grupo->deportico);
+        $pago->decano=floatval($grupo->decano);
         if ($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') {
+            $cog=Cog::first();
+            if($cog->state=='active'){
             $pago->multa = true;
-            $pago->monto = intval($request->monto) * 2;
+            $pago->monto = floatval($grupo->monto) * 2;
+            $pago->sindical=floatval($grupo->sindical) * 2;
+            $pago->seguro=floatval($grupo->seguro) * 2 ;
+            $pago->deportico=floatval($grupo->deportico) * 2;
+            $pago->decano=floatval($grupo->decano) * 2;
+            }
+            else{
+                $pago->multa = false;
+                $pago->monto = floatval($grupo->monto);
+                $pago->sindical=floatval($grupo->sindical);
+                $pago->seguro=floatval($grupo->seguro) ;
+                $pago->deportico=floatval($grupo->deportico);
+                $pago->decano=floatval($grupo->decano);
+            }
         }
         $pago->save();
         error_log(json_encode($pago));

@@ -70,8 +70,10 @@ class ReportController extends Controller
 
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
+        $num=0;
         foreach ($result as $value) {
-           $cadena.="<tr><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
+            $num++;
+           $cadena.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
         }
 
         $pdf->loadHTML("<style>
@@ -106,7 +108,7 @@ class ReportController extends Controller
         }
         }
         </style><h3 style='text-align:center;color:red;'>INFORME DE PAGO <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3>
-         <div ><table><tr><th>NOMBRE</th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
+         <div ><table><tr><th>No</th><th>NOMBRE</th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
          ".$cadena."</table></div>");
         return $pdf->stream();
     }
