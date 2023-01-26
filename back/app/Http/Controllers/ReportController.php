@@ -14,8 +14,12 @@ class ReportController extends Controller
 {
     public function reportList($grupo, $fechaDesde, $fechaHasta)
     {   $g=Grupo::find($grupo);
-        $af=DB::SELECT("SELECT v.codmovil,p.fecha FROM pagos p inner join afiliados a on p.afiliado_id=a.id inner join vehiculos v on a.id=v.afiliado_id
-        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta' and p.grupo_id=$grupo and p.anulado=0 group by v.codmovil,p.fecha order by cast(v.codmovil as unsigned)");
+        $af=DB::SELECT("SELECT v.codmovil,p.fecha
+        FROM pagos p inner join afiliados a on p.afiliado_id=a.id
+        inner join vehiculos v on a.id=v.afiliado_id
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        and v.grupo_id=$grupo and p.anulado=0 group by v.codmovil,p.fecha
+        order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
 
