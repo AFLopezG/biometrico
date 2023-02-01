@@ -204,7 +204,7 @@ export default {
         title: 'ANULAR PAGO',
         message: 'Cual es el motivo ?',
         prompt: {
-          model: '',
+          model: 'pago anulado',
           type: 'text' // optional
         },
         cancel: true,
