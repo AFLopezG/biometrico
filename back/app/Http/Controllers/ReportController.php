@@ -67,9 +67,8 @@ class ReportController extends Controller
         WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.id=p.vehiculo_id
         and v.grupo_id=$grupo and p.anulado=0
-        group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         order by p.fecha,v.codmovil;");
-
+//        group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
         $num=0;
