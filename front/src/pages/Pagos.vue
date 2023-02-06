@@ -38,7 +38,7 @@
       </div>
       </div>
       <q-table  :rows="resumen" row-key="name" />
-      
+
     </q-card-section>
     <q-card-section>
       <div class="row">
@@ -114,7 +114,7 @@ export default {
     },
     cambiarCog(){
       let valor=''
-      if(this.cog=='SI') 
+      if(this.cog=='SI')
         valor='active'
       else
         valor='inactive'
@@ -182,9 +182,9 @@ export default {
       for (let j in this.semanal[0]) {
        // const element = array[index];
         this.titulos.push({label:j,value:j})
-        
+
       }
-      
+
       console.log(this.titulos)
 
     })
