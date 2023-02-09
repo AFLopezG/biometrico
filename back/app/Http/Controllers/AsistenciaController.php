@@ -41,7 +41,7 @@ class AsistenciaController extends Controller
          inner join vehiculos v on f.id=v.afiliado_id
         where date(a.fecha)='$request->fecha'
         group by a.afiliado_id,a.id,a.fecha,f.ci,f.expedido,f.nombres,f.apellidos,f.telefono,v.codmovil
-        order by v.codmovil ");
+        order by cast(v.codmovil as UNSIGNED) ");
     }
 
     public function reporteImp($fecha,$grupo){
