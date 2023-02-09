@@ -7,6 +7,7 @@ import Listas from "pages/Listas";
 import Asistencia from "pages/Asistencia";
 import User from "pages/User";
 import Login from "pages/Login";
+import AsistenciaManual from "pages/AsistenciaManual";
 
 const routes = [
   {
@@ -22,6 +23,7 @@ const routes = [
       { path: '/listas', component: Listas,meta: { requiresAuth: true }},
       { path: '/asistencia', component: Asistencia,meta: { requiresAuth: true }},
       { path: '/usuarios', component: User,meta: { requiresAuth: true }},
+      { path: '/asistenciaManual', component: AsistenciaManual,meta: { requiresAuth: true }},
     ]
   },
   {

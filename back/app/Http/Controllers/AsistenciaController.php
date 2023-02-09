@@ -74,6 +74,24 @@ class AsistenciaController extends Controller
 
 
     }
+
+
+    public function asistencialocal(Request $request)
+    {
+        $asistencia=Asistencia::where('afiliado_id',$request->afiliado_id)->orderBy('id','desc');
+        if ( $asistencia->count()==0) {
+            $asistencia= new Asistencia();
+            $asistencia->afiliado_id=$request->afiliado_id;
+            $asistencia->fecha=date('Y-m-d');
+            $asistencia->hora=date('H:i:s');
+            $asistencia->save();
+//            return $asistencia;
+//            $data = ["type" => "asistencia", "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first()];
+            return Asistencia::where('id',$asistencia->id)->with('afiliado')->orderBy('id','desc')->first();
+        }else {
+            return response()->json(['message' => 'Ya se registro un pago'], 500);
+        }
+    }
     public function asistenciaPago($request){
         $search = Asistencia::where('afiliado_id',$request->afiliado_id)->whereDate('fecha',date('Y-m-d'))->first();
         if ($search) {

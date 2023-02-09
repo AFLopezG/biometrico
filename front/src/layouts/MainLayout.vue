@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -10,11 +10,9 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
         <q-toolbar-title>
           26 de julio
         </q-toolbar-title>
-
         <div>Sindicato de Mixto Transporte</div>
       </q-toolbar>
     </q-header>
@@ -75,6 +73,12 @@
             </q-item-section>
             <q-item-section>VEHICULOS</q-item-section>
           </q-item>
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="asistenciaManual" v-if="store.boolasistencia">
+            <q-item-section avatar>
+              <q-icon name="check" />
+            </q-item-section>
+            <q-item-section>Asistencia Manual</q-item-section>
+          </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="asistencia" v-if="store.boolasistencia">
             <q-item-section avatar>
               <q-icon name="o_speaker_notes" />
@@ -95,7 +99,7 @@
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" @click="logout" v-if="store.isLoggedIn">
             <q-item-section avatar>
-              <q-icon name="o_close" />
+              <q-icon name="o_logout" />
             </q-item-section>
             <q-item-section>Salir</q-item-section>
           </q-item>

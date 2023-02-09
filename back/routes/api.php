@@ -26,6 +26,7 @@ Route::get('repAsistencia/{fecha}/{grupo}', [\App\Http\Controllers\ReportControl
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::resource('asistencia', \App\Http\Controllers\AsistenciaController::class);
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('asistencialocal', [\App\Http\Controllers\AsistenciaController::class,'asistencialocal']);
     Route::post('me', [App\Http\Controllers\UserController::class, 'me']);
     Route::post('logout', [App\Http\Controllers\UserController::class, 'logout']);
     Route::post('printAsistencia', [App\Http\Controllers\AsistenciaController::class, 'printAsistencia']);
