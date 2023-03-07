@@ -112,6 +112,7 @@ export default {
         {name:'opcion',label:'OPCION'},
         {name:'placa',label:'PLACA',field:'placa'},
         {name:'codmovil',label:'COD MOVIL',field:'codmovil'},
+        {name:'codcolor',label:'COD COLOR',field:'codcolor'},
         {name:'tipo',label:'TIPO',field:'tipo'},
         {name:'modelo',label:'MODELO',field:'modelo'},
         {name:'marca',label:'MARCA',field:'marca'},
