@@ -156,9 +156,9 @@ let datacaja = [
     sheet: "Lista"+this.datocolor,
     columns: [
         {label:'NUM',value:'numero'},
+        {label:'COD MOVIL',value:'codmovil'},
         {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
         {label:'PLACA',value:'placa'},
-        {label:'COD MOVIL',value:'codmovil'},
     ],
     content: this.datoprint
   },
