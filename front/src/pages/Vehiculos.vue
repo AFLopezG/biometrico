@@ -2,6 +2,11 @@
 <q-page>
   <div class="col-12">
     <div class="text-h5 text-center">LISTA DE VEHICULOS</div>
+    <div class="row">
+      <div class="col-4"><q-select v-model="datocolor" :options="colores" label="CodMovil"  outlined dense/></div>
+      <div class="col-4"><q-btn color="green" icon="print" label="EXCEL" @click="ExportExcel" /></div>
+      <div class="col-4"><q-btn color="red" icon="print" label="PDF" @click="ExportPDF" /></div>
+    </div>
     <q-table :rows="vehiculos" :columns="columns" :filter="filter">
       <template v-slot:body-cell-opcion="props">
           <q-td key="opcion" :props="props">
@@ -90,6 +95,7 @@
 
 <script>
 import {date} from 'quasar'
+import xlsx from "json-as-xlsx"
 
 export default {
   name: `Vehiculos.vue`,
@@ -107,6 +113,8 @@ export default {
       afiliados:[],
       filterAf:[],
       grupos:[],
+      datoprint:[],
+      datocolor:'NINGUNO',
       filter:'',
       columns:[
         {name:'opcion',label:'OPCION'},
@@ -129,6 +137,56 @@ export default {
     this.listadoVehiculos()
     },
   methods:{
+    ExportExcel(){
+      if(this.datocolor=='NINGUNO' || this.datocolor=='' && this.datocolor==undefined)
+      return false
+      this.datoprint=[]
+      let i=0
+      this.vehiculos.forEach(x => {
+        if(x.codcolor==this.datocolor && this.datocolor!='NINGUNO'){
+          i++
+          x.numero=i
+          this.datoprint.push(x)
+        }
+      });
+      console.log(this.datoprint)
+
+let datacaja = [
+  {
+    sheet: "Lista"+this.datocolor,
+    columns: [
+        {label:'NUM',value:'numero'},
+        {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {label:'PLACA',value:'placa'},
+        {label:'COD MOVIL',value:'codmovil'},
+    ],
+    content: this.datoprint
+  },
+
+    ]
+
+    let settings = {
+      fileName: "Listado", // Name of the resulting spreadsheet
+      extraLength: 7, // A bigger number means that columns will be wider
+      writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+    }
+
+    xlsx(datacaja, settings) // Will download the excel file
+    },
+    ExportPDF(){
+      if(this.datocolor=='NINGUNO' || this.datocolor=='' && this.datocolor==undefined)
+      return false
+      this.datoprint=[]
+      let i=0
+      this.vehiculos.forEach(x => {
+        if(x.codcolor==this.datocolor && this.datocolor!='NINGUNO'){
+          i++
+          x.numero=i
+          this.datoprint.push(x)
+        }
+      });
+      console.log(this.datoprint)
+    },
     filterFn (val, update) {
       if (val === '') {
         update(() => {
