@@ -205,8 +205,8 @@ let datacaja = [
         img{width:70px;height:70px;}\
         </style>\
           <div id='print'>\
-          <div>GRUPO "+this.datocolor+"</div><br>\
-          <table><tr><th>Num<th><th>Cod Vehiculo<th><th>Nombre Completo<th><th>Placa<th></tr>"
+          <div class='titulo2'>GRUPO "+this.datocolor+"</div><br>\
+          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Placa</th></tr>"
             this.datoprint.forEach(x => {
               cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
             });
