@@ -88,6 +88,8 @@
         </q-form>
       </q-card>
     </q-dialog>
+    <div id="print" class="hidden"></div>
+
   </div>
 </q-page>
 
@@ -96,6 +98,7 @@
 <script>
 import {date} from 'quasar'
 import xlsx from "json-as-xlsx"
+import Printd from 'printd'
 
 export default {
   name: `Vehiculos.vue`,
@@ -184,8 +187,33 @@ let datacaja = [
           x.numero=i
           this.datoprint.push(x)
         }
-      });
-      console.log(this.datoprint)
+      })
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div>GRUPO "+this.datocolor+"</div><br>\
+          <table><tr><th>Num<th><th>Cod Vehiculo<th><th>Nombre Completo<th><th>Placa<th></tr>"
+            this.datoprint.forEach(x => {
+              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
+            });
+          cadena+="</table>\
+          </div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+      //console.log(this.datoprint)
     },
     filterFn (val, update) {
       if (val === '') {
