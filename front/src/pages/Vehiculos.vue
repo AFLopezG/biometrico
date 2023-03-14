@@ -200,7 +200,8 @@ let datacaja = [
         .texto1{font-size:10px; text-align: center; font-weight: normal;}\
         .texto2{font-size:14px; text-align: center; font-weight: normal;}\
         .texto3{font-size:8px; text-align: center; font-weight: normal;}\
-        table{width:100%}\
+        table{width:100%;border-collapse: collapse;}\
+        table, th, td { border: 1px solid;}\
         img{width:70px;height:70px;}\
         </style>\
           <div id='print'>\
