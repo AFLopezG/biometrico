@@ -7,6 +7,11 @@
       <div class="col-4"><q-btn color="green" icon="print" label="EXCEL" @click="ExportExcel" /></div>
       <div class="col-4"><q-btn color="red" icon="print" label="PDF" @click="ExportPDF" /></div>
     </div>
+    <div class="row">
+      <div class="col-4"><q-select v-model="grupo" :options="grupos" label="CodMovil"  outlined dense/></div>
+      <div class="col-4"><q-btn color="green" icon="print" label="EXCEL" @click="ExportExcel2" /></div>
+      <div class="col-4"><q-btn color="red" icon="print" label="PDF" @click="ExportPDF2" /></div>
+    </div>
     <q-table :rows="vehiculos" :columns="columns" :filter="filter">
       <template v-slot:body-cell-opcion="props">
           <q-td key="opcion" :props="props">
@@ -118,6 +123,7 @@ export default {
       grupos:[],
       datoprint:[],
       datocolor:'NINGUNO',
+      printgrupo:[],
       filter:'',
       columns:[
         {name:'opcion',label:'OPCION'},
@@ -176,6 +182,42 @@ let datacaja = [
 
     xlsx(datacaja, settings) // Will download the excel file
     },
+    ExportExcel2(){
+      if(this.grupo.id == '' && this.grupo.id==undefined)
+      return false
+      this.printgrupo=[]
+      let i=0
+      this.vehiculos.forEach(x => {
+        if(x.grupo.tipo==this.grupo.tipo ){
+          i++
+          x.numero=i
+          this.printgrupo.push(x)
+        }
+      });
+      console.log(this.printgrupo)
+
+let datacaja = [
+  {
+    sheet: "Lista"+this.grupo.tipo,
+    columns: [
+        {label:'NUM',value:'numero'},
+        {label:'COD MOVIL',value:'codmovil'},
+        {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {label:'PLACA',value:'placa'},
+    ],
+    content: this.printgrupo
+  },
+
+    ]
+
+    let settings = {
+      fileName: "ListadoGrupo", // Name of the resulting spreadsheet
+      extraLength: 7, // A bigger number means that columns will be wider
+      writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+    }
+
+    xlsx(datacaja, settings) // Will download the excel file
+    },
     ExportPDF(){
       if(this.datocolor=='NINGUNO' || this.datocolor=='' && this.datocolor==undefined)
       return false
@@ -208,6 +250,46 @@ let datacaja = [
           <div class='titulo2'>GRUPO "+this.datocolor+"</div><br>\
           <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Placa</th></tr>"
             this.datoprint.forEach(x => {
+              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
+            });
+          cadena+="</table>\
+          </div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+      //console.log(this.datoprint)
+    },
+    ExportPDF2(){
+      if(this.grupo.id =='' && this.grupo.id==undefined)
+      return false
+      this.printgrupo=[]
+      let i=0
+      this.vehiculos.forEach(x => {
+        if(x.grupo.tipo==this.grupo.tipo){
+          i++
+          x.numero=i
+          this.printgrupo.push(x)
+        }
+      })
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%;border-collapse: collapse;}\
+        table, th, td { border: 1px solid;}\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div class='titulo2'>GRUPO "+this.grupo.tipo+"</div><br>\
+          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Placa</th></tr>"
+            this.printgrupo.forEach(x => {
               cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
             });
           cadena+="</table>\
