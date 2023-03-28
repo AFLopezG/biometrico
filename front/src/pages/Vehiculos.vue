@@ -402,6 +402,8 @@ let datacaja = [
       },
     upVehiculo(ve){
       this.vehiculo2=ve;
+      this.vehiculo2.codcolor=ve.codcolor
+      this.vehiculo2.tipo=ve.tipo
       this.vehiculo2.grupo.label=this.vehiculo2.grupo.tipo
       this.vehiculo2.afiliado.label=this.vehiculo2.afiliado.nombres+' '+this.vehiculo2.afiliado.apellidos
       this.dialogModificar=true;
