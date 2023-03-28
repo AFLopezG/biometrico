@@ -78,7 +78,7 @@
               <div class="col-6"><q-input v-model="vehiculo2.modelo" label="MODELO" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.marca" label="MARCA" :options="marca" outlined dense required/></div>
               <div class="col-6"><q-input v-model="vehiculo2.color" label="COLOR" outlined dense required/></div>
-              <div class="col-6"><q-select v-model="vehiculo2.coddcolor" label="COD COLOR" :options="colores" outlined dense required/></div>
+              <div class="col-6"><q-select v-model="vehiculo2.codcolor" label="COD COLOR" :options="colores" outlined dense required/></div>
               <div class="col-6"><q-input v-model="vehiculo2.capacidad" label="CAPACIDAD" type="number" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.afiliado" :options="afiliados" label="Afiliado" dense outlined @filter="filterFn"  use-input input-debounce="0"/></div>
               <div class="col-6"><q-select v-model="vehiculo2.grupo" :options="grupos" label="Grupo" dense outlined /></div>
