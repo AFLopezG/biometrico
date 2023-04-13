@@ -167,6 +167,7 @@ let datacaja = [
         {label:'NUM',value:'numero'},
         {label:'COD MOVIL',value:'codmovil'},
         {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {label:'TELEFONO',value:row=>row.afiliado.telefono},
         {label:'PLACA',value:'placa'},
     ],
     content: this.datoprint
@@ -203,6 +204,7 @@ let datacaja = [
         {label:'NUM',value:'numero'},
         {label:'COD MOVIL',value:'codmovil'},
         {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {label:'TELEFONO',value:row=>row.afiliado.telefono},
         {label:'PLACA',value:'placa'},
     ],
     content: this.printgrupo
@@ -248,9 +250,9 @@ let datacaja = [
         </style>\
           <div id='print'>\
           <div class='titulo2'>GRUPO "+this.datocolor+"</div><br>\
-          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Placa</th></tr>"
+          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Telefono</th><th>Placa</th></tr>"
             this.datoprint.forEach(x => {
-              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
+              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.afiliado.telefono+"</td><td>"+x.placa+"</td></tr>"
             });
           cadena+="</table>\
           </div>"
@@ -288,9 +290,9 @@ let datacaja = [
         </style>\
           <div id='print'>\
           <div class='titulo2'>GRUPO "+this.grupo.tipo+"</div><br>\
-          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Placa</th></tr>"
+          <table><tr><th>Num</th><th>Cod Vehiculo</th><th>Nombre Completo</th><th>Telefono</th><th>Placa</th></tr>"
             this.printgrupo.forEach(x => {
-              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.placa+"</td></tr>"
+              cadena+="<tr><td>"+x.numero+"</td><td>"+x.codmovil+"</td><td>"+x.afiliado.nombres+' '+x.afiliado.apellidos+"</td><td>"+x.afiliado.telefono+"</td><td>"+x.placa+"</td></tr>"
             });
           cadena+="</table>\
           </div>"
