@@ -55,7 +55,16 @@
   title="Pagos semanales"
   :rows="semanal"
   row-key="name"
-/>
+  :filter="filterPagos"
+>
+  <template v-slot:top-right>
+    <q-input borderless dense debounce="300" v-model="filterPagos" placeholder="Buscar">
+      <template v-slot:append>
+        <q-icon name="search" />
+      </template>
+    </q-input>
+  </template>
+</q-table>
   <div id="print" class="hidden"></div>
 </q-page>
 </template>
@@ -71,6 +80,7 @@ export default {
   data() {
     return {
       url: process.env.API,
+      filterPagos:'',
       pagos: [],
       moment: moment,
       semanal:[],
