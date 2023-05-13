@@ -8,6 +8,7 @@ import Asistencia from "pages/Asistencia";
 import User from "pages/User";
 import Login from "pages/Login";
 import AsistenciaManual from "pages/AsistenciaManual";
+import Drivers from "pages/Drivers";
 
 const routes = [
   {
@@ -24,6 +25,7 @@ const routes = [
       { path: '/asistencia', component: Asistencia,meta: { requiresAuth: true }},
       { path: '/usuarios', component: User,meta: { requiresAuth: true }},
       { path: '/asistenciaManual', component: AsistenciaManual,meta: { requiresAuth: true }},
+      { path: '/Choferes', component: Drivers,meta: { requiresAuth: true }},
     ]
   },
   {

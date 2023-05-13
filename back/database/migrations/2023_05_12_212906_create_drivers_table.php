@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('foto')->nullable();
-            $table->string('nombre')->nullable();
-            $table->string('ci')->nullable();
+            $table->string('nombres')->nullable();
+            $table->string('ci')->unique();
             $table->string('celular')->nullable();
             $table->timestamps();
         });

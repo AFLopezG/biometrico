@@ -15,5 +15,8 @@ class Driver extends Model
         'foto',
     ];
 
-
+    public function afiliados()
+    {
+        return $this->belongsToMany(Afiliado::class);
+    }
 }

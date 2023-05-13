@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
     Route::resource('afiliado', \App\Http\Controllers\AfiliadoController::class);
     Route::resource('grupo', \App\Http\Controllers\GrupoController::class);
+    Route::resource('driver', \App\Http\Controllers\DriverController::class);
     Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);
 
     Route::post('anularPago', [\App\Http\Controllers\PagoController::class,'anularPago']);
