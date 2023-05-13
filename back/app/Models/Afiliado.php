@@ -12,6 +12,7 @@ class Afiliado extends Model
         'ci',
         'codigo',
         'telefono',
+        'estado',
         'expedido',
         'nombres',
         'apellidos',
@@ -20,4 +21,8 @@ class Afiliado extends Model
         'dedo3',
         'fechaing',
     ];
+
+    public function drivers(){
+        return $this->belongsToMany(Driver::class);
+    }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers');
-            $table->date('fechaIngreso')->nullable();
+            $table->date('fechaingreso')->nullable();
             $table->date('fechabaja')->nullable();
             $table->timestamps();
         });

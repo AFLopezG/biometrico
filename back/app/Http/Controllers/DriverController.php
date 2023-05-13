@@ -16,6 +16,7 @@ class DriverController extends Controller
     public function index()
     {
         //
+        return Driver::all();
     }
 
     /**
@@ -37,6 +38,12 @@ class DriverController extends Controller
     public function store(StoreDriverRequest $request)
     {
         //
+        $driver= new Driver();
+        $driver->ci=strtoupper($request->ci);
+        $driver->celular=$request->celular;
+        $driver->nombres=strtoupper($request->nombres);
+        $driver->foto='';
+        $driver->save();  
     }
 
     /**
@@ -70,9 +77,24 @@ class DriverController extends Controller
      */
     public function update(UpdateDriverRequest $request, Driver $driver)
     {
-        //
+        $driver=  Driver::find($request);
+        $driver->ci=strtoupper($request->ci);
+        $driver->celular=$request->celular;
+        $driver->nombres=strtoupper($request->nombres);
+        $driver->save();  
     }
 
+    public function cambiar(Request $request){
+        $fecha=date('Y-m-d');
+        $result=DB::SELECT("SELECT from afiliado_driver where fechabaja is not null and driver_id = $request->driver_id");
+        if(sizeof($result)>0)
+            { if($result[0]->afiliado_id==$request->afiliado_id)
+                return '';
+                else 
+                DB::SELECT("UPDATE afiliado_driver set fechabaja=$fecha where driver_id = $request->driver_id");
+            }
+        DB::SELECT("INSERT into afiliado_driver (afiliado_id,driver_id,fechaingreso) values ($request->afiliado_id,$request->driver_id,$request->fecha)");
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -82,5 +104,6 @@ class DriverController extends Controller
     public function destroy(Driver $driver)
     {
         //
+        $driver->delete();
     }
 }

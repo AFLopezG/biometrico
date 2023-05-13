@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('nombre')->nullable();
             $table->string('ci')->nullable();
             $table->string('celular')->nullable();
-            $table->unsignedBigInteger('afiliado_id');
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->timestamps();
         });
     }

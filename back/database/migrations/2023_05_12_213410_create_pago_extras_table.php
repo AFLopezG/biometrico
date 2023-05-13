@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('pago_extras', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha');
+            $table->double('monto');
+            $table->string('motivo');
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers');
             $table->timestamps();
         });
     }

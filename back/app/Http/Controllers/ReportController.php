@@ -17,7 +17,7 @@ class ReportController extends Controller
         $af=DB::SELECT("SELECT v.codmovil,p.fecha,p.color
         FROM pagos p inner join afiliados a on p.afiliado_id=a.id
         inner join vehiculos v on a.id=v.afiliado_id
-        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        WHERE a.estado='ACTIVO' and date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.grupo_id=$grupo and p.anulado=0
         and p.vehiculo_id=v.id
         group by v.codmovil,p.fecha,p.color
@@ -65,10 +65,10 @@ class ReportController extends Controller
     public function reportListPago($grupo, $fechaDesde, $fechaHasta){
 
         $g=Grupo::find($grupo);
-        $result= DB::SELECT("select a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
+        $result= DB::SELECT("SELECT a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         from afiliados a inner join pagos p on p.afiliado_id=a.id
         inner JOIN vehiculos v on v.afiliado_id=a.id
-        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        WHERE a.estado='ACTIVO' and date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.id=p.vehiculo_id
         and v.grupo_id=$grupo and p.anulado=0
         order by p.fecha,v.codmovil;");
