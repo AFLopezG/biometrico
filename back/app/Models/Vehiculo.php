@@ -18,7 +18,8 @@ class Vehiculo extends Model
         'capacidad',
         'codmovil',
         'afiliado_id',
-        'grupo_id'
+        'grupo_id',
+        'colorRetraso',
     ];
 
     public function afiliado()

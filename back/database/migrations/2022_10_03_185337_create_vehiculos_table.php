@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->unsignedBigInteger('grupo_id');
             $table->foreign('grupo_id')->references('id')->on('grupos');
+            $table->integer('colorRetraso')->nullable()->default(0);
             $table->timestamps();
         });
     }

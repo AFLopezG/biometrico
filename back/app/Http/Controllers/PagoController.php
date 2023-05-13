@@ -179,6 +179,15 @@ ORDER BY v.codmovil DESC
         $vehiculo = Vehiculo::find($request->vehiculo_id);
         $grupo=Grupo::find($vehiculo->grupo_id);
         $pago = new Pago();
+        if ($dia == 'domingo' || $dia == 'sábado' || $dia == 'viernes' || $dia == 'jueves') {
+            $vehiculo->colorRetraso ++;
+            $vehiculo->save();
+            $color=$vehiculo->colorRetraso;
+        }else{
+            $vehiculo->colorRetraso=0;
+            $vehiculo->save();
+            $color=0;
+        }
         $pago->afiliado_id = $vehiculo->afiliado_id;
         $pago->grupo_id = $vehiculo->grupo_id;
         $pago->vehiculo_id = $vehiculo->id;
@@ -210,6 +219,7 @@ ORDER BY v.codmovil DESC
                 $pago->decano=floatval($grupo->decano);
             }
         }
+        $pago->color=$color;
         $pago->save();
         error_log(json_encode($pago));
         $url = env('URL_SOCKET');
@@ -224,12 +234,12 @@ ORDER BY v.codmovil DESC
     }
 
     public function resumenPago(Request $request){
-        return DB::SELECT("SELECT g.tipo grupo, 
+        return DB::SELECT("SELECT g.tipo grupo,
          (g.sindical * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) sindical,
-         (g.decano * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) decano, 
-         (g.deportico * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) deportivo, 
-         (g.seguro * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) proaccidente, 
-         (g.monto * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) total 
+         (g.decano * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) decano,
+         (g.deportico * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) deportivo,
+         (g.seguro * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) proaccidente,
+         (g.monto * (SELECT count(*) from pagos p where p.anulado=0 and p.grupo_id=g.id and date(p.fecha)>='$request->ini' and date(p.fecha)<='$request->fin')) total
          from grupos g;");
     }
 }

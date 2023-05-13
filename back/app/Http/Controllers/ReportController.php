@@ -14,22 +14,24 @@ class ReportController extends Controller
 {
     public function reportList($grupo, $fechaDesde, $fechaHasta)
     {   $g=Grupo::find($grupo);
-        $af=DB::SELECT("SELECT v.codmovil,p.fecha
+        $af=DB::SELECT("SELECT v.codmovil,p.fecha,p.color
         FROM pagos p inner join afiliados a on p.afiliado_id=a.id
         inner join vehiculos v on a.id=v.afiliado_id
         WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.grupo_id=$grupo and p.anulado=0
         and p.vehiculo_id=v.id
-        group by v.codmovil,p.fecha
+        group by v.codmovil,p.fecha,p.color
         order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
 
+        error_log(json_encode($af));
         foreach ($af as $r ) {
-            if(!is_numeric($r->codmovil)) $col=" style='color:black' ";
-            else $col='';
-            if(date('N',strtotime($r->fecha))==4)
-                $col=" style='color:green' ";
+//            if(!is_numeric($r->codmovil)) $col=" style='color:black' ";
+//            else $col='';
+//            if(date('N',strtotime($r->fecha))==4)
+//                $col=" style='color:green' ";
+            $col=$r->color==0?" style='color:blue' ":($r->color==1?" style='color:green' ":" style='color:red' ");
            $cadena.="<div ".$col." class='textcod inline'>".$r->codmovil."</div>";
         }
         $pdf->loadHTML("<style>

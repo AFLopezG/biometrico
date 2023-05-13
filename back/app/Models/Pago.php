@@ -20,6 +20,7 @@ class Pago extends Model
         'impreso',
         'anulado',
         'motivo',
+        'color',
     ];
     public function afiliado()
     {
