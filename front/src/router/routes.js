@@ -25,7 +25,7 @@ const routes = [
       { path: '/asistencia', component: Asistencia,meta: { requiresAuth: true }},
       { path: '/usuarios', component: User,meta: { requiresAuth: true }},
       { path: '/asistenciaManual', component: AsistenciaManual,meta: { requiresAuth: true }},
-      { path: '/Choferes', component: Drivers,meta: { requiresAuth: true }},
+      { path: '/choferes', component: Drivers,meta: { requiresAuth: true }},
     ]
   },
   {
