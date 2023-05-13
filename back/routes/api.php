@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('cog', App\Http\Controllers\CogController::class);
     Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
+    Route::post('cambioEstado/{id}',[\App\Http\Controllers\AfiliadoController::class,'cambioEstado']);
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
     Route::resource('afiliado', \App\Http\Controllers\AfiliadoController::class);
     Route::resource('grupo', \App\Http\Controllers\GrupoController::class);

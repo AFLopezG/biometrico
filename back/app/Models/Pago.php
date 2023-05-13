@@ -21,6 +21,7 @@ class Pago extends Model
         'anulado',
         'motivo',
         'color',
+        'estado',
     ];
     public function afiliado()
     {

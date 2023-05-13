@@ -3,8 +3,15 @@
   <div class="col-12">
     <div class="text-h5 text-center">LISTA DE AFILIADOS</div>
     <q-table :rows="afiliados" :columns="columns" :filter="filter">
+      <template v-slot:body-cell-estado="props">
+        <q-td key="estado" :props="props">
+          <q-badge :color="props.row.estado=='ACTIVO'?'green':'red'" :label="props.row.estado" />
+          
+      </q-td>
+    </template>
       <template v-slot:body-cell-opcion="props">
           <q-td key="opcion" :props="props">
+            <q-btn dense icon="toggle_on" color="accent" @click="cambioEstado(props.row)" />
             <q-btn dense icon="edit" color="yellow" @click="afiliado2=props.row;dialogModificar=true;" />
             <q-btn dense icon="delete" color="red" @click="EliminarAfiliado(props.row)"/>
         </q-td>
@@ -101,6 +108,7 @@ export default {
         {name:'opcion',label:'OPCION'},
         {name:'ci',label:'CI',field:'ci'},
         {name:'expedido',label:'EXPEDIDO',field:'expedido'},
+        {name:'estado',label:'ESTADO',field:'estado'},
         {name:'codigo',label:'NUM MOVIL',field:'codigo'},
         {name:'telfono',label:'TELEFONO',field:'telefono'},
         {name:'nombres',label:'NOMBRES',field:'nombres'},
@@ -114,6 +122,12 @@ export default {
     this.listadoAfiliado()
     },
   methods:{
+    cambioEstado(af){
+      this.$api.post('cambioEstado/'+af.id).then((r) => {
+        this.listadoAfiliado()
+      })
+
+    },
     listreg(){
       this.afiliado={fechaing:date.formatDate( Date.now(),'YYYY-MM-DD')};
       this.afiliado.expedido=this.exped[0];

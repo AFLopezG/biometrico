@@ -100,6 +100,7 @@ export default {
         {name:'grupo',label:'GRUPO',field:row=>row.grupo.tipo},
         {name:'afiliado',label:'AFILIADO',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
         {name:'vehiculo',label:'VEHICULO',field:row=>row.vehiculo.placa},
+        {name:'estado',label:'ESTADO',field:'estado'},
         {name:'anulado',label:'ANULADO',field:'motivo'},
       ]
     };
@@ -114,7 +115,7 @@ export default {
   methods:{
 
     recuperaCog(){
-      this.$api.get(`cog`).then(res=>{
+      this.$api.get(`cog` ).then(res=>{
         if(res.data.state=='active')
         this.cog='SI'
         else

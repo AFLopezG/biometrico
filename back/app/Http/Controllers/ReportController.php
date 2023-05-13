@@ -17,7 +17,7 @@ class ReportController extends Controller
         $af=DB::SELECT("SELECT v.codmovil,p.fecha,p.color
         FROM pagos p inner join afiliados a on p.afiliado_id=a.id
         inner join vehiculos v on a.id=v.afiliado_id
-        WHERE a.estado='ACTIVO' and date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.grupo_id=$grupo and p.anulado=0
         and p.vehiculo_id=v.id
         group by v.codmovil,p.fecha,p.color
@@ -65,20 +65,24 @@ class ReportController extends Controller
     public function reportListPago($grupo, $fechaDesde, $fechaHasta){
 
         $g=Grupo::find($grupo);
-        $result= DB::SELECT("SELECT a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
+        $result= DB::SELECT("SELECT a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha,p.estado
         from afiliados a inner join pagos p on p.afiliado_id=a.id
         inner JOIN vehiculos v on v.afiliado_id=a.id
-        WHERE a.estado='ACTIVO' and date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
+        WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.id=p.vehiculo_id
         and v.grupo_id=$grupo and p.anulado=0
         order by p.fecha,v.codmovil;");
 //        group by a.nombres,a.apellidos,v.codmovil,v.placa,p.monto,p.fecha
         $pdf = App::make('dompdf.wrapper');
         $cadena="";
+        $cadena2="";
         $num=0;
         foreach ($result as $value) {
             $num++;
-           $cadena.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
+            if($value->estado=='ACTIVO')
+                $cadena.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
+                else
+                $cadena2.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
         }
 
         $pdf->loadHTML("<style>
@@ -114,7 +118,10 @@ class ReportController extends Controller
         }
         </style><h3 style='text-align:center;color:red;'>INFORME DE PAGO <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta</h3>
          <div ><table><tr><th>No</th><th>NOMBRE</th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
-         ".$cadena."</table></div>");
+         ".$cadena."</table></div>
+         <h3 style='text-align:center;color:red;'>INFORME DE PAGO <br>  $g->tipo DE LA FECHA $fechaDesde A $fechaHasta PASIVO</h3>
+         <div ><table><tr><th>No</th><th>NOMBRE</th> <th>COD MOVIL</th><th>PLACA</th><th>MONTO</th><th>FECHA</th></tr>
+         ".$cadena2."</table></div>");
         return $pdf->stream();
     }
 

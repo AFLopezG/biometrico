@@ -35,6 +35,7 @@ return new class extends Migration
             $table->boolean('anulado')->default(false);
             $table->string('motivo')->nullable();
             $table->integer('color')->nullable()->default(0);
+            $table->string('estado');
             $table->timestamps();
         });
     }

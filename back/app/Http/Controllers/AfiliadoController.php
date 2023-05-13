@@ -71,6 +71,15 @@ class AfiliadoController extends Controller
         //
     }
 
+    public function cambioEstado($id){
+        $afiliado=Afiliado::find($id);
+        if($afiliado->estado=='ACTIVO')
+            $afiliado->estado='PASIVO';
+        else
+            $afiliado->estado='ACTIVO';
+        $afiliado->save();
+
+    }
     /**
      * Show the form for editing the specified resource.
      *

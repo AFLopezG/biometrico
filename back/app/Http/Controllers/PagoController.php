@@ -179,7 +179,8 @@ ORDER BY v.codmovil DESC
         $vehiculo = Vehiculo::find($request->vehiculo_id);
         $grupo=Grupo::find($vehiculo->grupo_id);
         $pago = new Pago();
-        if ($dia == 'domingo' || $dia == 'sábado' || $dia == 'viernes' || $dia == 'jueves') {
+        $afiliado=Afiliado::find($vehiculo->afiliado_id);
+        if (($dia == 'domingo' || $dia == 'sábado' || $dia == 'viernes' || $dia == 'jueves') && $afiliado->estado=='ACTIVO') {
             $vehiculo->colorRetraso ++;
             $vehiculo->save();
             $color=$vehiculo->colorRetraso;
@@ -200,7 +201,8 @@ ORDER BY v.codmovil DESC
         $pago->seguro=floatval($grupo->seguro) ;
         $pago->deportico=floatval($grupo->deportico);
         $pago->decano=floatval($grupo->decano);
-        if ($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') {
+        $pago->estado=$afiliado->estado;
+        if (($dia == 'domingo' || $dia == 'jueves' || $dia == 'viernes' || $dia == 'sábado') && $afiliado->estado=='ACTIVO') {
             $cog=Cog::first();
             if($cog->state=='active'){
             $pago->multa = true;
