@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->double('monto');
             $table->string('motivo');
+            $table->boolean('anulado')->default(true);
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers');
             $table->timestamps();

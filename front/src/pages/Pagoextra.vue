@@ -23,8 +23,9 @@
           </template>
       <template v-slot:body-cell-opcion="props">
         <q-td :props="props" auto-width>
-          <q-btn icon="print" dense color="info" @click="printPago(props.row)" />
-        </q-td>
+          <q-btn icon="print" dense color="info" @click="printPago(props.row)" v-if="props.row.anulado==false"/>
+      <q-btn icon="delete" dense color="red" @click="anularPago(props.row)" v-if="props.row.anulado==false"/>
+    </q-td>
       </template>
     </q-table>
 

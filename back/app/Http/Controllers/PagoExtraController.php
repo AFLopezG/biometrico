@@ -46,7 +46,7 @@ class PagoExtraController extends Controller
         $pago->driver_id=$request->driver_id;
         $pago->save();
 
-        return PagoExtra::find($pago->id)->with('driver');
+        return PagoExtra::where('id',$pago->id)->with('driver')->first();
 
     }
 

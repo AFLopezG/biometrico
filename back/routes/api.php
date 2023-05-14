@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('driver', \App\Http\Controllers\DriverController::class);
     Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);
 
+    Route::post('anularExtra', [\App\Http\Controllers\PagoExtraController::class,'anularExtra']);
     Route::post('anularPago', [\App\Http\Controllers\PagoController::class,'anularPago']);
     Route::post('modcog', [\App\Http\Controllers\CogController::class,'modcog']);
     Route::post('consultapago', [\App\Http\Controllers\PagoController::class,'consultapago']);
