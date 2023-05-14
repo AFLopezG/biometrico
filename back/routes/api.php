@@ -35,8 +35,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
     Route::post('cambioEstado/{id}',[\App\Http\Controllers\AfiliadoController::class,'cambioEstado']);
+    Route::get('listDriver',[\App\Http\Controllers\DriverController::class,'listDriver']);
+    Route::post('consultachofer',[\App\Http\Controllers\PagoExtraController::class,'consultachofer']);
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
     Route::resource('afiliado', \App\Http\Controllers\AfiliadoController::class);
+    Route::resource('pagoextra', \App\Http\Controllers\PagoExtraController::class);
     Route::resource('grupo', \App\Http\Controllers\GrupoController::class);
     Route::resource('driver', \App\Http\Controllers\DriverController::class);
     Route::resource('vehiculo', \App\Http\Controllers\VehiculoController::class);

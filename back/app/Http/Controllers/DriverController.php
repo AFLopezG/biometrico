@@ -29,6 +29,11 @@ class DriverController extends Controller
         //
     }
 
+    public function listDriver(){
+        return Driver::all();
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

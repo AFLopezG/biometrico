@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PagoExtra;
 use App\Http\Requests\StorePagoExtraRequest;
 use App\Http\Requests\UpdatePagoExtraRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class PagoExtraController extends Controller
 {
@@ -37,8 +39,24 @@ class PagoExtraController extends Controller
     public function store(StorePagoExtraRequest $request)
     {
         //
+        $pago=new PagoExtra();
+        $pago->fecha=$request->fecha;
+        $pago->motivo=$request->motivo;
+        $pago->monto=$request->monto;
+        $pago->driver_id=$request->driver_id;
+        $pago->save();
+
+        return PagoExtra::find($pago->id)->with('driver');
+
     }
 
+    public function anularExtra(Request $request){
+        //return $request;
+        $pago=PagoExtra::find($request->pago);
+        $pago->anulado=true;
+        $pago->motivo=$request->motivo;
+        $pago->save();
+    }
     /**
      * Display the specified resource.
      *
@@ -49,7 +67,9 @@ class PagoExtraController extends Controller
     {
         //
     }
-
+    public function consultachofer(Request $request){
+        return PagoExtra::with('driver')->whereDate('fecha','>=',$request->ini)->whereDate('fecha','<=',$request->fin)->get();
+    }
     /**
      * Show the form for editing the specified resource.
      *

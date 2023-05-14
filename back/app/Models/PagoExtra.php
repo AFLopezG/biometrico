@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class PagoExtra extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'driver_id',
+        'fecha',
+        'monto',
+        'motivo',
+    ];
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
 }
