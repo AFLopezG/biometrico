@@ -97,6 +97,12 @@
             </q-item-section>
             <q-item-section>Pagos</q-item-section>
           </q-item>
+          <q-item clickable v-ripple active-class="bg-primary text-white" to="Pagochofer" v-if="store.boolpago">
+            <q-item-section avatar>
+              <q-icon name="o_speaker_notes" />
+            </q-item-section>
+            <q-item-section>Pagos Extra</q-item-section>
+          </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="impresion" v-if="store.boolprint">
             <q-item-section avatar>
               <q-icon name="o_list_alt" />

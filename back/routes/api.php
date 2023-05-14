@@ -26,6 +26,8 @@ Route::get('repAsistencia/{fecha}/{grupo}', [\App\Http\Controllers\ReportControl
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::resource('asistencia', \App\Http\Controllers\AsistenciaController::class);
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('afiliadosRegister', [\App\Http\Controllers\DriverController::class, 'afiliadosRegister']);
+    Route::post('afiliadosDriverFechaBaja', [\App\Http\Controllers\DriverController::class, 'afiliadosDriverFechaBaja']);
     Route::post('asistencialocal', [\App\Http\Controllers\AsistenciaController::class,'asistencialocal']);
     Route::post('me', [App\Http\Controllers\UserController::class, 'me']);
     Route::post('logout', [App\Http\Controllers\UserController::class, 'logout']);

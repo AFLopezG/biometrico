@@ -17,6 +17,7 @@ export default boot(({ app,router }) => {
   //       so you won't necessarily have to import axios in each vue file
 
   app.config.globalProperties.$api = api
+  app.config.globalProperties.$url = process.env.API
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
   const token = localStorage.getItem('tokenBio')

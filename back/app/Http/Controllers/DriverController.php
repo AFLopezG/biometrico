@@ -2,91 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AfiliadoDriver;
 use App\Models\Driver;
 use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\UpdateDriverRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DriverController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class DriverController extends Controller{
     public function index()
     {
         //
-        return Driver::with('afiliados')->get();
+        return Driver::with('afiliadoDriver')->get();
+    }
+    public function afiliadosRegister(Request $request){
+        $afiliadoDriver=AfiliadoDriver::create([
+            'afiliado_id'=>$request->afiliado_id,
+            'driver_id'=>$request->driver_id,
+            'fechaingreso'=>now()
+        ]);
+    }
+    public function afiliadosDriverFechaBaja(Request $request){
+        $afiliadoDriver=AfiliadoDriver::find($request->id);
+        $afiliadoDriver->fechabaja=now();
+        $afiliadoDriver->save();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function create(){}
 
     public function listDriver(){
         return Driver::all();
     }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreDriverRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreDriverRequest $request)
     {
-        //
-        $driver= new Driver();
-        $driver->ci=strtoupper($request->ci);
-        $driver->celular=$request->celular;
-        $driver->nombres=strtoupper($request->nombres);
-        $driver->foto='';
-        $driver->save();  
+        $drive=Driver::create($request->all());
+        $afiliadoDriver=AfiliadoDriver::create([
+            'afiliado_id'=>$request->afiliado_id,
+            'driver_id'=>$drive->id,
+            'fechaingreso'=>now()
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
     public function show(Driver $driver)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
+    }
+        //
+
     public function edit(Driver $driver)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateDriverRequest  $request
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
+    }
+        //
+
     public function update(UpdateDriverRequest $request, Driver $driver)
     {
         $driver=  Driver::find($request);
         $driver->ci=strtoupper($request->ci);
         $driver->celular=$request->celular;
         $driver->nombres=strtoupper($request->nombres);
-        $driver->save();  
+        $driver->save();
     }
 
     public function cambiar(Request $request){
@@ -95,17 +70,11 @@ class DriverController extends Controller
         if(sizeof($result)>0)
             { if($result[0]->afiliado_id==$request->afiliado_id)
                 return '';
-                else 
+                else
                 DB::SELECT("UPDATE afiliado_driver set fechabaja=$fecha where driver_id = $request->driver_id");
             }
         DB::SELECT("INSERT into afiliado_driver (afiliado_id,driver_id,fechaingreso) values ($request->afiliado_id,$request->driver_id,$request->fecha)");
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Driver  $driver
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Driver $driver)
     {
         //

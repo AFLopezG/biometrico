@@ -19,4 +19,8 @@ class Driver extends Model
     {
         return $this->belongsToMany(Afiliado::class);
     }
+    public function afiliadoDriver()
+    {
+        return $this->hasMany(AfiliadoDriver::class)->with('afiliado');
+    }
 }
