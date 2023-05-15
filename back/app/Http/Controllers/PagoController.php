@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Afiliado;
 use App\Models\Pago;
 use App\Models\Grupo;
 use App\Models\Cog;
