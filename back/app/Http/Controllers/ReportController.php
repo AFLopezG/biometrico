@@ -32,6 +32,7 @@ class ReportController extends Controller
 //            if(date('N',strtotime($r->fecha))==4)
 //                $col=" style='color:green' ";
             $col=$r->color==0?" style='color:blue' ":($r->color==1?" style='color:green' ":" style='color:red' ");
+            if ($r->color==0 && !is_numeric($r->codmovil)) $col=" style='color:black' ";
            $cadena.="<div ".$col." class='textcod inline'>".$r->codmovil."</div>";
         }
         $pdf->loadHTML("<style>
