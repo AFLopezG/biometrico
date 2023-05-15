@@ -86,7 +86,7 @@
         </style>\
           <div id='print'>\
           <table>\
-          <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
+          <tr><td style='width:20%'><img src='images/logo.png'></td>\
           <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 27465</span><br><br><span class='titulo2'> ASISTENCIA</span></td>\
           <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\

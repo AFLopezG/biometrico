@@ -35,13 +35,13 @@
       <div id="print" class="hidden"></div>
     </q-page>
     </template>
-    
+
     <script>
     import Printd from 'printd'
     import {date} from 'quasar'
     import moment from 'moment'
     import xlsx from "json-as-xlsx"
-    
+
     export default {
       name: `Pagos`,
       data() {
@@ -59,7 +59,7 @@
           cog:'SI',
           titulos:[],
           resumen:[],
-          tipo:{}, 
+          tipo:{},
           ini:moment().day("Monday").format("YYYY-MM-DD"),
           fin:moment().day("Saturday").add(1, 'days').format("YYYY-MM-DD"),
           columns:[
@@ -82,20 +82,20 @@
           if (val === '') {
             update(() => {
               this.drivers = this.filterDr
-    
+
               // here you have access to "ref" which
               // is the Vue reference of the QSelect
             })
             return
           }
-    
+
           update(() => {
             const needle = val.toLowerCase()
             this.drivers = this.filterAf.filter(v => v.label.toLowerCase().indexOf(needle) > -1)
           })
         },
         consultar(){
-            
+
             this.$api.post('consultachofer',{ini:this.ini,fin:this.fin}).then((res) => {
                 this.pagos=res.data
             })},
@@ -108,7 +108,7 @@
             })
             this.filterDr=this.drivers
           })
-    
+
         },
         printPago(pago){
       console.log(pago)
@@ -128,7 +128,7 @@
         img{width:70px;height:70px;}\
         </style>\
           <div id='print'><table>\
-          <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
+          <tr><td style='width:20%'><img src='images/logo.png'></td>\
           <td class='titulo1' >SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 27465</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
           <td class='titulo1'> FECHA<br>"+pago.fecha +"<br><span   >No "+pago.id+"</span></td></tr>\
           </table>\
@@ -187,8 +187,7 @@
       }
     }
     </script>
-    
+
     <style scoped>
-    
+
     </style>
-    

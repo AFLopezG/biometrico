@@ -25,6 +25,7 @@ Route::get('reportlistPago/{grupo}/{fechaDesde}/{fechasHasta}', [\App\Http\Contr
 Route::get('repAsistencia/{fecha}/{grupo}', [\App\Http\Controllers\ReportController::class, 'repAsistencia']);
 Route::resource('pago', \App\Http\Controllers\PagoController::class);
 Route::resource('asistencia', \App\Http\Controllers\AsistenciaController::class);
+Route::post('upload/{id}', [\App\Http\Controllers\UploadController::class, 'upload']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('afiliadosRegister', [\App\Http\Controllers\DriverController::class, 'afiliadosRegister']);
     Route::post('afiliadosDriverFechaBaja', [\App\Http\Controllers\DriverController::class, 'afiliadosDriverFechaBaja']);

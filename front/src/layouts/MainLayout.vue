@@ -57,7 +57,7 @@
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="afiliados" v-if="store.boolafiliado">
             <q-item-section avatar>
-              <q-icon name="o_fact_check" />
+              <q-icon name="o_account_circle" />
             </q-item-section>
             <q-item-section>Afiliados</q-item-section>
           </q-item>
@@ -69,19 +69,19 @@
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="vehiculos" v-if="store.boolvehiculo">
             <q-item-section avatar>
-              <q-icon name="o_ballot" />
+              <q-icon name="o_directions_bus_filled" />
             </q-item-section>
             <q-item-section>Vehiculos</q-item-section>
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="choferes" v-if="store.boolvehiculo">
             <q-item-section avatar>
-              <q-icon name="o_person" />
+              <q-icon name="o_face" />
             </q-item-section>
             <q-item-section>Choferes</q-item-section>
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="asistenciaManual" v-if="store.boolasistencia">
             <q-item-section avatar>
-              <q-icon name="check" />
+              <q-icon name="o_check" />
             </q-item-section>
             <q-item-section>Asistencia Manual</q-item-section>
           </q-item>
@@ -93,19 +93,19 @@
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="pagos" v-if="store.boolpago">
             <q-item-section avatar>
-              <q-icon name="o_speaker_notes" />
+              <q-icon name="o_local_atm" />
             </q-item-section>
             <q-item-section>Pagos</q-item-section>
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="Pagochofer" v-if="store.boolpago">
             <q-item-section avatar>
-              <q-icon name="o_speaker_notes" />
+              <q-icon name="o_price_check" />
             </q-item-section>
             <q-item-section>Pagos Extra</q-item-section>
           </q-item>
           <q-item clickable v-ripple active-class="bg-primary text-white" to="impresion" v-if="store.boolprint">
             <q-item-section avatar>
-              <q-icon name="o_list_alt" />
+              <q-icon name="o_print" />
             </q-item-section>
             <q-item-section>Impresion</q-item-section>
           </q-item>

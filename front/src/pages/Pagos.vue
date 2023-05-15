@@ -242,7 +242,7 @@ let datacaja = [
           <div id='print'>\
           <table><tr><td class='texto5'>N° Movil "+pago.vehiculo.codmovil+"</td><td class='texto4'>"+pago.grupo.tipo+"</td></tr><table/>\
           <table>\
-          <tr><td style='width:20%'><img src='imagenes/logo.png'></td>\
+          <tr><td style='width:20%'><img src='images/logo.png'></td>\
           <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 27465</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
           <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.vehiculo.codmovil+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\

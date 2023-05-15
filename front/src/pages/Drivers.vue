@@ -19,6 +19,12 @@
                 </q-btn>
             </q-td>
           </template>
+          <template v-slot:body-cell-foto="props">
+            <q-td key="foto" :props="props" auto-width>
+<!--              <pre>{{props.row.foto}}</pre>-->
+              <q-img v-if="props.row.foto!=null && props.row.foto!=''"  :src="`${$url}../images/${props.row.foto}`" style="width: 50px;" />
+            </q-td>
+          </template>
           <template v-slot:body-cell-afiliados="props">
             <q-td key="afiliados" :props="props" auto-width>
               <ul style="padding: 0;list-style: none;">
@@ -122,7 +128,7 @@
               ref="uploader"
               max-files="1"
               auto-expand
-              :url="`${$url}upload`"
+              :url="`${$url}upload/${driver.id}`"
               stack-label="upload image"/>
           </q-card-section>
         </q-card>
@@ -171,20 +177,21 @@
           e.xhr.onload = () => {
             if (e.xhr.readyState === e.xhr.DONE) {
               if (e.xhr.status === 200) {
-                this.user.avatar = e.xhr.response
+                this.dialogPhoto=false
+                this.driver.foto = e.xhr.response
               }
             }
           }
         },
-        errorFn () {
-          // console.log(err)
-          this.$q.notify({
-            color: 'red-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            position: 'top',
-            message: 'Error al subir la imagen, intente nuevamente el nombre no debe contener espacios o ñ'
-          })
+        errorFn (err) {
+          console.log(err)
+          // this.$q.notify({
+          //   color: 'red-4',
+          //   textColor: 'white',
+          //   icon: 'cloud_done',
+          //   position: 'top',
+          //   message: 'Error al subir la imagen, intente nuevamente el nombre no debe contener espacios o ñ'
+          // })
         },
         afiliadosRegister(){
           this.loading=true
@@ -326,7 +333,8 @@
 
           })
         },
-        foto(ve){
+        foto(driver){
+          this.driver=driver
           this.dialogPhoto=true
         },
         afiliadosAdd(chofer){
