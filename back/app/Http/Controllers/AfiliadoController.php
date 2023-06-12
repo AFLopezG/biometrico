@@ -21,6 +21,9 @@ class AfiliadoController extends Controller
         return Afiliado::all();
     }
 
+    public function searchAfiliado($ci){
+        return Afiliado::with('vehiculos')->where('ci',$ci)->first();
+    }
     /**
      * Show the form for creating a new resource.
      *

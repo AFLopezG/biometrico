@@ -25,4 +25,9 @@ class Afiliado extends Model
     public function drivers(){
         return $this->belongsToMany(Driver::class);
     }
+    public function vehiculos()
+    {
+        return $this->hasMany(Vehiculo::class);
+    }
+
 }

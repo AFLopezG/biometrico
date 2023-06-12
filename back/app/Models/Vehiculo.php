@@ -26,6 +26,7 @@ class Vehiculo extends Model
     {
         return $this->belongsTo(Afiliado::class);
     }
+    
     public function grupo()
     {
         return $this->belongsTo(Grupo::class);

@@ -2,6 +2,7 @@
 <q-page>
   <div class="col-12">
     <div class="text-h5 text-center">LISTA DE AFILIADOS</div>
+    
     <q-table :rows="afiliados" :columns="columns" :filter="filter">
       <template v-slot:body-cell-estado="props">
         <q-td key="estado" :props="props">
@@ -18,7 +19,9 @@
       </template>
       <template v-slot:top-right>
         <q-btn label="REGISTRAR" color="green" icon="person_add" @click="listreg" :loading="loading"/>
-
+        <q-btn color="green" label="PDF" icon="download" @click="imprimirLista"/>
+        <q-btn color="red" label="PDF" icon="download" @click="imprimirLista2"/>
+        
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
           <template v-slot:append>
             <q-icon name="search" />
@@ -85,12 +88,16 @@
       </q-card>
     </q-dialog>
   </div>
+  <div id="print" class="hidden"></div>
+
 </q-page>
 
 </template>
 
 <script>
 import {date} from 'quasar'
+import Printd from 'printd'
+
 
 export default {
   name: `Afiliados.vue`,
@@ -122,6 +129,73 @@ export default {
     this.listadoAfiliado()
     },
   methods:{
+    imprimirLista(){
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        table, th, td {\
+        border: 1px solid;\
+        border-collapse: collapse;\
+        }\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div class='titulo2'>AFILIADOS ACTIVOS </div><br>\
+          <table>\
+           <tr><th>CI</th><th>EXPEDIDO</th><th>NOMBRES</th><th>APELLIDOS</th><th>TELEFONO</th></tr>"
+           this.afiliados.forEach(r => {
+            if(r.estado=='ACTIVO')
+            cadena+="<tr><td>"+r.ci+"</td><td>"+r.expedido+"</td><td>"+r.nombres+"</td><td>"+r.apellidos+"</td><td>"+r.telefono+"</td></tr>"
+           });
+          //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
+          cadena+="</table></div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+    },
+    imprimirLista2(){
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        table, th, td {\
+        border: 1px solid;\
+        border-collapse: collapse;\
+        }\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div class='titulo2'>AFILIADOS PASIVOS </div><br>\
+          <table>\
+           <tr><th>CI</th><th>EXPEDIDO</th><th>NOMBRES</th><th>APELLIDOS</th><th>TELEFONO</th></tr>"
+           this.afiliados.forEach(r => {
+            if(r.estado=='PASIVO')
+            cadena+="<tr><td>"+r.ci+"</td><td>"+r.expedido+"</td><td>"+r.nombres+"</td><td>"+r.apellidos+"</td><td>"+r.telefono+"</td></tr>"
+           });
+          //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
+          cadena+="</table></div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+    },
+  
     cambioEstado(af){
       this.$api.post('cambioEstado/'+af.id).then((r) => {
         this.listadoAfiliado()

@@ -40,6 +40,8 @@
           </template>
           <template v-slot:top-right>
             <q-btn label="Registrar" no-caps color="green" icon="person_add" @click="listreg" :loading="loading"/>
+             <q-btn color="red" icon="download" label="PDF" @click="imprimirLista"/>
+            
             <q-input outlined dense debounce="300" v-model="filter" placeholder="Buscar">
               <template v-slot:append>
                 <q-icon name="search" />
@@ -133,6 +135,8 @@
           </q-card-section>
         </q-card>
       </q-dialog>
+  <div id="print" class="hidden"></div>
+
     </q-page>
 
     </template>
@@ -173,6 +177,38 @@
         this.listadodrivers()
         },
       methods:{
+        imprimirLista(){
+      const d = new Printd()
+          let cadena="<style>\
+        .titulo1{font-size:10px; text-align: center;}\
+        .titulo2{font-size:14px; text-align: center; font-weight: bold;}\
+        .titulo3{font-size:10px; text-align: center;}\
+        .titulo5{font-size:15px; text-align: center;}\
+        .titulo4{font-size:12px; text-align: center; font-weight: bold;}\
+        .texto4{font-size:20px; text-align: center; font-weight: normal;}\
+        .texto5{font-size:28px; text-align: center; font-weight: normal;}\
+        .texto1{font-size:10px; text-align: center; font-weight: normal;}\
+        .texto2{font-size:14px; text-align: center; font-weight: normal;}\
+        .texto3{font-size:8px; text-align: center; font-weight: normal;}\
+        table{width:100%}\
+        table, th, td {\
+        border: 1px solid;\
+        border-collapse: collapse;\
+        }\
+        img{width:70px;height:70px;}\
+        </style>\
+          <div id='print'>\
+          <div class='titulo2'>CHOFERES </div><br>\
+          <table>\
+           <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th></tr>"
+           this.drivers.forEach(r => {
+            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td></tr>"
+           });
+          //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
+          cadena+="</table></div>"
+          document.getElementById('print').innerHTML = cadena
+          d.print( document.getElementById('print') )
+    },
         uploadingFn (e) {
           e.xhr.onload = () => {
             if (e.xhr.readyState === e.xhr.DONE) {
