@@ -10,6 +10,7 @@ import Login from "pages/Login";
 import AsistenciaManual from "pages/AsistenciaManual";
 import Drivers from "pages/Drivers";
 import Pagoextra from "pages/Pagoextra";
+import Pagoafiliado from "pages/Pagoafiliado";
 
 const routes = [
   {
@@ -28,6 +29,7 @@ const routes = [
       { path: '/asistenciaManual', component: AsistenciaManual,meta: { requiresAuth: true }},
       { path: '/choferes', component: Drivers,meta: { requiresAuth: true }},
       { path: '/Pagochofer', component: Pagoextra,meta: { requiresAuth: true }},
+      { path: '/Pagoafiliado', component: Pagoafiliado,meta: { requiresAuth: true }},
     ]
   },
   {

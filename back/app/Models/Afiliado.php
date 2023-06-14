@@ -27,7 +27,7 @@ class Afiliado extends Model
     }
     public function vehiculos()
     {
-        return $this->hasMany(Vehiculo::class);
+        return $this->hasMany(Vehiculo::class)->with('grupo');
     }
 
 }

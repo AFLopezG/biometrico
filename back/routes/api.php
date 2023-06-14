@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('repEconomico', [\App\Http\Controllers\ReportController::class,'repEconomico']);
     Route::post('resumenPago', [\App\Http\Controllers\PagoController::class,'resumenPago']);
 
+    Route::get('searchAfiliado/{ci}', [\App\Http\Controllers\AfiliadoController::class,'searchAfiliado']);
+    
+
 });
 Route::get('test', function () {
     $pago = \App\Models\Pago::find(1);

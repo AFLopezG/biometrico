@@ -93,6 +93,7 @@ class PagoController extends Controller
      */
     public function store(StorePagoRequest $request)
     {
+       // return $request;
         $mifecha = new DateTime();
         $mifecha->modify('-3 second');
         $pago=Pago::where('afiliado_id',$request->afiliado_id)->orderBy('id','desc');
