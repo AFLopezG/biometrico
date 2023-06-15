@@ -202,8 +202,8 @@
           <table>\
            <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th><th>AFILIADO</th></tr>"
            this.drivers.forEach(r => {
-            num=r.afiliadoDriver.length()
-            af=r.afiliadoDriver[num - 1]
+            num=r.afiliado_driver.length()
+            af=r.afiliado_driver[num - 1]
 
             cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>".af.nombres+ +" "+af.apellidos+"</td></tr>"
            });
