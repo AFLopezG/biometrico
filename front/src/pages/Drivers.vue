@@ -204,7 +204,7 @@
            let num=0
            let af=''
            this.drivers.forEach(r => {
-            num=r.afiliado_driver.length
+            num=(r.afiliado_driver).length
             af=r.afiliado_driver[num - 1].afiliado
             cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>"+af.nombres+ +" "+af.apellidos+"</td></tr>"
            });
