@@ -201,11 +201,12 @@
           <div class='titulo2'>CHOFERES </div><br>\
           <table>\
            <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th><th>AFILIADO</th></tr>"
+           let num=0
+           let af=''
            this.drivers.forEach(r => {
-            num=r.afiliado_driver.length()
-            af=r.afiliado_driver[num - 1]
-
-            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>".af.nombres+ +" "+af.apellidos+"</td></tr>"
+            num=r.afiliado_driver.length
+            af=r.afiliado_driver[num - 1].afiliado
+            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>"+af.nombres+ +" "+af.apellidos+"</td></tr>"
            });
           //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
           cadena+="</table></div>"
