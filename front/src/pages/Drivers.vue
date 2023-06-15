@@ -41,7 +41,7 @@
           <template v-slot:top-right>
             <q-btn label="Registrar" no-caps color="green" icon="person_add" @click="listreg" :loading="loading"/>
              <q-btn color="red" icon="download" label="PDF" @click="imprimirLista"/>
-            
+
             <q-input outlined dense debounce="300" v-model="filter" placeholder="Buscar">
               <template v-slot:append>
                 <q-icon name="search" />
@@ -200,9 +200,11 @@
           <div id='print'>\
           <div class='titulo2'>CHOFERES </div><br>\
           <table>\
-           <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th></tr>"
+           <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th><th>AFILIADO</th></tr>"
            this.drivers.forEach(r => {
-            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td></tr>"
+            num=r.afiliadoDriver.length
+            af=r.afiliadoDriver[num - 1]
+            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>".af.nombres+ +" "+af.apellidos+"</td></tr>"
            });
           //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
           cadena+="</table></div>"
