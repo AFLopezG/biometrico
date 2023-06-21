@@ -110,7 +110,9 @@ class AsistenciaController extends Controller
         $client->of('/');
 
 // emit an event to the server
-        $data = ["type" => "asistencia", "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first()];
+        $data = ["type" => "asistencia",
+            "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first()
+        ];
         $client->emit('chat message', $data);
         return $asistencia;
     }
