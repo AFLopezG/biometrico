@@ -114,6 +114,7 @@ class AsistenciaController extends Controller
             "type" => "asistencia",
             "data" => Asistencia::where('afiliado_id',$request->afiliado_id)->with('afiliado')->orderBy('id','desc')->first(),
             "tipo" => "asistencia",
+            "placa"=> "sasa"
         ];
         $client->emit('chat message', $data);
         return $asistencia;

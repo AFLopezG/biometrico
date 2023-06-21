@@ -88,7 +88,7 @@ export default {
           <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\
           <table><tr>\
-          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto5'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
+          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto5'>"+pago.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
           </tr></table>\
           <div class='col-12 titulo4'>AFILIADO</div><div class='col-12 texto2'>"+pago.afiliado.nombres +' ' +pago.afiliado.apellidos+"</div>\
           <div class='titulo4'>Muchas gracias por su Asistencia</div>\
