@@ -15,6 +15,6 @@ class Asistencia extends Model
     ];
     public function afiliado()
     {
-        return $this->belongsTo(Afiliado::class)->with('vehiculo')->with('grupo');
+        return $this->belongsTo(Afiliado::class);
     }
 }

@@ -81,14 +81,14 @@ export default {
         img{width:70px;height:70px;}\
         </style>\
           <div id='print'>\
-          <table><tr><td class='texto5'>N° Movil "+pago.afiliado.codigo+"</td><td class='texto4'>"+pago.afiliado.grupo.tipo+"</td></tr><table/>\
+          <table><tr><td class='texto5'>N° Movil "+pago.afiliado.codigo+"</td><td class='texto4'>"+pago.tipo+"</td></tr><table/>\
           <table>\
           <tr><td style='width:20%'><img src='images/logo.png'></td>\
           <td class='titulo1'  style='width:50%'>SINDICATO MIXTO DE TRANSPORTE<br><span class='titulo2'>26 DE JULIO</span><br><span class='titulo3' FUNDADO EL 26 DE JULIO DE 1970 <br> RESOLUCION SUPREMA 27465</span><br><br><span class='titulo2'> HOJA DE APORTES</span></td>\
           <td class='titulo1'> FECHA<br>"+pago.fecha +" " +pago.hora+"<br><span class='titulo5'> N° Movil "+pago.afiliado.codigo+" </span><br><span   >No "+pago.id+"</span></td></tr>\
           </table>\
           <table><tr>\
-          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.afiliado.grupo.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto5'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
+          <td class='col-4 titulo4'>GRUPO<br><span class='texto1'>"+pago.tipo+"</span></td><td class='col-4 titulo4'>PLACA<br><span class='texto5'>"+pago.vehiculo.placa+"</span></td><td class='col-4 titulo4'>TOTAL Bs<br><span class='texto1'>"+(parseFloat(pago.monto)).toFixed(2)+"</span></td>\
           </tr></table>\
           <div class='col-12 titulo4'>AFILIADO</div><div class='col-12 texto2'>"+pago.afiliado.nombres +' ' +pago.afiliado.apellidos+"</div>\
           <div class='titulo4'>Muchas gracias por su Asistencia</div>\
