@@ -179,7 +179,7 @@
       methods:{
         viewDrivers(drivers){
           this.$q.dialog({
-            html: `<img src="${this.$url}../images/${props.row.foto}" width="100%">`,
+            html: `<img src="${this.$url}../images/${drivers.foto}" width="100%">`,
             title: 'Foto',
           })
         },
