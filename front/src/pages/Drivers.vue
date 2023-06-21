@@ -20,7 +20,7 @@
             </q-td>
           </template>
           <template v-slot:body-cell-foto="props">
-            <q-td key="foto" :props="props" auto-width>
+            <q-td key="foto" :props="props" auto-width @click="viewDrivers(props.row)">
 <!--              <pre>{{props.row.foto}}</pre>-->
               <q-img v-if="props.row.foto!=null && props.row.foto!=''"  :src="`${$url}../images/${props.row.foto}`" style="width: 50px;" />
             </q-td>
@@ -177,6 +177,12 @@
         this.listadodrivers()
         },
       methods:{
+        viewDrivers(drivers){
+          this.$q.dialog({
+            html: `<img src="${$url}../images/${props.row.foto}" width="100%">`,
+            title: 'Foto',
+          })
+        },
         imprimirLista(){
       const d = new Printd()
           let cadena="<style>\
