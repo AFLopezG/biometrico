@@ -41,6 +41,7 @@
           <template v-slot:top-right>
             <q-btn label="Registrar" no-caps color="green" icon="person_add" @click="listreg" :loading="loading"/>
              <q-btn color="red" icon="download" label="PDF" @click="imprimirLista"/>
+             <q-btn color="green-8"  label="EXCEL" @click="exportTable"/>
 
             <q-input outlined dense debounce="300" v-model="filter" placeholder="Buscar">
               <template v-slot:append>
@@ -177,6 +178,32 @@
         this.listadodrivers()
         },
       methods:{
+        exportTable () {
+      if(this.drivers.length==0)
+      return false
+      let datacaja = [
+        {
+          sheet: "Listado",
+          columns: [
+            {label:'N',value:'numero'},
+            {label:'CI',value:'ci'},
+            {label:'NOMBRE',value:'nombres'},
+            {label:'CELULAR',value:'celular'},
+            {label:'AFILIADO',value:'completo'},
+          ],
+          content: this.drivers
+        },
+
+    ]
+
+    let settings = {
+      fileName: "Choferes", // Name of the resulting spreadsheet
+      extraLength: 7, // A bigger number means that columns will be wider
+      writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+    }
+
+    xlsx(datacaja, settings) // Will download the excel file
+      },
         viewDrivers(drivers){
           this.$q.dialog({
             message: `<img src="${this.$url}../images/${drivers.foto}" width="100%">`,
@@ -207,13 +234,11 @@
           <div id='print'>\
           <div class='titulo2'>CHOFERES </div><br>\
           <table>\
-           <tr><th>CI</th><th>NOMBRES</th><th>TELEFONO</th><th>AFILIADO</th></tr>"
+           <tr><th>Nº</th><th>CI</th><th>NOMBRES</th><th>TELEFONO</th><th>AFILIADO</th></tr>"
            let num=0
            let af=''
            this.drivers.forEach(r => {
-            num=(r.afiliado_driver).length
-            af=r.afiliado_driver[num - 1].afiliado
-            cadena+="<tr><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>"+af.nombres+ +" "+af.apellidos+"</td></tr>"
+            cadena+="<tr><td>"+r.numero+"</td><td>"+r.ci+"</td><td>"+r.nombres+"</td><td>"+r.celular+"</td><td>"+r.completo+"</td></tr>"
            });
           //cadena+="<tr><th>TOTALES</th><th>"+this.totalsindical+"</th><th>"+this.totaldecano+"</th><th>"+this.totaldeportivo+"</th><th>"+this.totalproaccidente+"</th><th>"+this.total+"</th></tr>\
           cadena+="</table></div>"
@@ -316,9 +341,20 @@
 
             },
         listadodrivers(){
+          this.drivers=[]
           this.$api.get('driver').then((response) => {
             // console.log(response.data)
-            this.drivers=response.data
+            let n=1
+            let num=0
+            let af=''
+            response.data.forEach(x => {
+              num=(x.afiliado_driver).length
+              af=x.afiliado_driver[num - 1].afiliado
+              x.numero=n
+              x.completo=af.nombres+" "+af.apellidos
+              n++
+              this.drivers.push(x)
+            });
           })
 
         },
