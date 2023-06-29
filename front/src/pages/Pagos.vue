@@ -84,6 +84,8 @@ export default {
       pagos: [],
       moment: moment,
       semanal:[],
+      semanalP:[],
+      semanalA:[],
       filter:'',
       cog:'SI',
       titulos:[],
@@ -187,9 +189,17 @@ export default {
     },
     consultimp(){
       this.titulos=[]
+      this.semanalA=[]
+      this.semanalP=[]
       this.$api.post('datoimp',{ini:this.ini,fin:this.fin}).then((res) => {
       console.log(res.data)
       this.semanal=res.data
+      res.data.forEach(r => {
+        if(r.estado=='ACTIVO')
+          this.semanalA.push(r)
+        else
+          this.semanalP.push(r)
+      })
       for (let j in this.semanal[0]) {
        // const element = array[index];
         this.titulos.push({label:j,value:j})
@@ -206,9 +216,15 @@ export default {
       return false
 let datacaja = [
   {
-    sheet: "reporte",
+    sheet: "Activos",
     columns: this.titulos,
-    content: this.semanal
+    content: this.semanalA
+  },
+
+  {
+    sheet: "Pasivos",
+    columns: this.titulos,
+    content: this.semanalP
   },
 
     ]
