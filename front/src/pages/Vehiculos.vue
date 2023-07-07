@@ -124,6 +124,7 @@ export default {
       datoprint:[],
       datocolor:'NINGUNO',
       printgrupo:[],
+      printgrupo2:[],
       filter:'',
       columns:[
         {name:'opcion',label:'OPCION'},
@@ -187,19 +188,26 @@ let datacaja = [
       if(this.grupo.id == '' && this.grupo.id==undefined)
       return false
       this.printgrupo=[]
+      this.printgrupo2=[]
       let i=0
+      let j=0
       this.vehiculos.forEach(x => {
         if(x.grupo.tipo==this.grupo.tipo ){
-          i++
-          x.numero=i
-          this.printgrupo.push(x)
+          if(x.afiliado.estado=='ACTIVO')
+          {i++
+          x.numero=i          
+          this.printgrupo.push(x)}
+          else
+          {j++
+          x.numero=j
+          this.printgrupo2.push(x)}
         }
       });
       console.log(this.printgrupo)
 
 let datacaja = [
   {
-    sheet: "Lista"+this.grupo.tipo,
+    sheet: "Lista Activo"+this.grupo.tipo,
     columns: [
         {label:'NUM',value:'numero'},
         {label:'COD MOVIL',value:'codmovil'},
@@ -208,6 +216,17 @@ let datacaja = [
         {label:'PLACA',value:'placa'},
     ],
     content: this.printgrupo
+  },
+  {
+    sheet: "Lista Pasivo"+this.grupo.tipo,
+    columns: [
+        {label:'NUM',value:'numero'},
+        {label:'COD MOVIL',value:'codmovil'},
+        {label:'AFILIADO',value:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},
+        {label:'TELEFONO',value:row=>row.afiliado.telefono},
+        {label:'PLACA',value:'placa'},
+    ],
+    content: this.printgrupo2
   },
 
     ]
