@@ -20,6 +20,7 @@ class ReportController extends Controller
         WHERE date(p.fecha)>='$fechaDesde' and date(p.fecha)<='$fechaHasta'
         and v.grupo_id=$grupo and p.anulado=0
         and p.vehiculo_id=v.id
+        and p.estado='ACTIVO'
         group by v.codmovil,p.fecha,p.color
         order by cast(v.codmovil as unsigned)");
         $pdf = App::make('dompdf.wrapper');
