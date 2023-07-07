@@ -79,12 +79,15 @@ class ReportController extends Controller
         $cadena="";
         $cadena2="";
         $num=0;
+        $num2=0;
         foreach ($result as $value) {
-            $num++;
-            if($value->estado=='ACTIVO')
-                $cadena.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
-                else
-                $cadena2.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";
+            if($value->estado=='ACTIVO'){
+                $num++;
+
+                $cadena.="<tr><td>".$num."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";}
+                else{
+                  $num2++;  
+                $cadena2.="<tr><td>".$num2."</td><td>".$value->nombres." ".$value->apellidos."</td><td>".$value->codmovil."</td><td>".$value->placa."</td><td>".$value->monto."</td><td>".$value->fecha."</td></tr>";}
         }
 
         $pdf->loadHTML("<style>
