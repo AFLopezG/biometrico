@@ -45,6 +45,7 @@
           <div class="col-6"><q-select v-model="vehiculo.tipo"  label="TIPO" :options="tipovehiculo" dense outlined/></div>
           <div class="col-6"><q-input v-model="vehiculo.modelo" label="MODELO" outlined dense required/></div>
             <div class="col-6"><q-select v-model="vehiculo.marca" label="MARCA" :options="marca" outlined dense required/></div>
+            <div class="col-6"><q-input v-model="vehiculo.radicatoria" label="RADICATORIA" outlined dense required/></div>
             <div class="col-6"><q-input v-model="vehiculo.color" label="COLOR" outlined dense required/></div>
             <div class="col-6"><q-select v-model="vehiculo.codcolor" label="COD COLOR" :options="colores" outlined dense required/></div>
             <div class="col-6"><q-input v-model="vehiculo.capacidad" label="CAPACIDAD" type="number" outlined dense required/></div>
@@ -78,6 +79,7 @@
               <div class="col-6"><q-input v-model="vehiculo2.modelo" label="MODELO" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.marca" label="MARCA" :options="marca" outlined dense required/></div>
               <div class="col-6"><q-input v-model="vehiculo2.color" label="COLOR" outlined dense required/></div>
+              <div class="col-6"><q-input v-model="vehiculo2.radicatoria" label="RADICATORIA" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.codcolor" label="COD COLOR" :options="colores" outlined dense required/></div>
               <div class="col-6"><q-input v-model="vehiculo2.capacidad" label="CAPACIDAD" type="number" outlined dense required/></div>
               <div class="col-6"><q-select v-model="vehiculo2.afiliado" :options="afiliados" label="Afiliado" dense outlined @filter="filterFn"  use-input input-debounce="0"/></div>
@@ -112,8 +114,8 @@ export default {
       loading:false,
       dialogRegistro:false,
       dialogModificar:false,
-      tipovehiculo:['MINIBUS','VAGONETA','FURGON'],
-      marca:['HYUNDAI','MERCEDEZ BENZ','KING LONG','FOTON','TOYOTA','MITSUBISHI','JAC'],
+      tipovehiculo:['MINIBUS','VAGONETA','FURGON','FURGONETA'],
+      marca:['HYUNDAI','MERCEDEZ BENZ','KING LONG','FOTON','TOYOTA','MITSUBISHI','JAC','JOYLONG','HIGER','MAZDA','NISSAN'],
       colores:['NINGUNO','BLANCO','CELESTE','ROJO','AZUL'],
       vehiculo:{},
       vehiculo2:{},
@@ -134,6 +136,7 @@ export default {
         {name:'tipo',label:'TIPO',field:'tipo'},
         {name:'modelo',label:'MODELO',field:'modelo'},
         {name:'marca',label:'MARCA',field:'marca'},
+        {name:'radicatoria',label:'RADICATORIA',field:'radicatoria'},
         {name:'color',label:'COLOR',field:'color'},
         {name:'capacidad',label:'CAPACIDAD',field:'capacidad'},
         {name:'afiliado',label:'AFILIADO',field:row=>row.afiliado.nombres+' '+row.afiliado.apellidos},

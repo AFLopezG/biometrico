@@ -13,6 +13,7 @@ class Vehiculo extends Model
         'tipo',
         'modelo',
         'marca',
+        'radicatoria',
         'color',
         'codcolor',
         'capacidad',

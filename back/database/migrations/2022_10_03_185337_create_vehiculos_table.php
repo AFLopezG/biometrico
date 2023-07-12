@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('modelo');
             $table->string('marca');
             $table->string('color');
+            $table->string('radicatoria')->nullable();
             $table->string('codcolor')->default('');
             $table->string('codmovil')->default('');
             $table->integer('capacidad')->default('20');

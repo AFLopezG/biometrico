@@ -95,6 +95,7 @@ export default {
       columns:[
         {name:'opcion',label:'OPCION',field:'opcion'},
         {name:'id',label:'ID',field:'id'},
+        {name:'codmovil',label:'CODMOVIL',field:row=>row.vehiculo.codmovil},
         {name:'monto',label:'MONTO',field:'monto'},
         {name:'multa',label:'MULTA',field:'multa'},
         {name:'fecha',label:'FECHA',field:'fecha'},
