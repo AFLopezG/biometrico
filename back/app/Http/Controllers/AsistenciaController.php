@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Afiliado;
 use App\Models\Asistencia;
 use App\Http\Requests\StoreAsistenciaRequest;
 use App\Http\Requests\UpdateAsistenciaRequest;

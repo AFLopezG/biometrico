@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/updatePassword/{user}',[\App\Http\Controllers\UserController::class,'updatePassword']);
     Route::put('/updatepermisos/{user}',[\App\Http\Controllers\UserController::class,'updatepermisos']);
     Route::post('cambioEstado/{id}',[\App\Http\Controllers\AfiliadoController::class,'cambioEstado']);
+    Route::post('cambioBloqueado/{id}',[\App\Http\Controllers\AfiliadoController::class,'cambioBloqueado']);
     Route::get('listDriver',[\App\Http\Controllers\DriverController::class,'listDriver']);
     Route::post('consultachofer',[\App\Http\Controllers\PagoExtraController::class,'consultachofer']);
     Route::resource('/permiso',\App\Http\Controllers\PermisoController::class);
@@ -59,7 +60,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('resumenPago', [\App\Http\Controllers\PagoController::class,'resumenPago']);
 
     Route::get('searchAfiliado/{ci}', [\App\Http\Controllers\AfiliadoController::class,'searchAfiliado']);
-    
+
 
 });
 Route::get('test', function () {

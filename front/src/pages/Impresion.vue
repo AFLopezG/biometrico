@@ -1,6 +1,6 @@
 <template>
 <q-page>
-<q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]" :filter="filter">
+<q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[0]" :filter="filter">
   <template v-slot:top-right>
     <q-input outlined dense debounce="300" v-model="filter" placeholder="Buscar">
       <template v-slot:append>
@@ -61,6 +61,7 @@ export default {
       this.store.socket = true
       this.socket.on('chat message', (data) => {
         console.log(data)
+        this.pagoGet()
         if (data.type=='asistencia') {
           let pago= data.data
           const d = new Printd()
@@ -124,6 +125,15 @@ export default {
           </div>"
           document.getElementById('print').innerHTML = cadena
           d.print( document.getElementById('print') )
+        }
+        else if(data.type=='bloqueado'){
+          this.$q.notify({
+            color: 'negative',
+            textColor: 'white',
+            icon: 'report_problem',
+            message: data.data,
+            position: 'top'
+          })
         }else{
           // console.log(data[0])
           this.pagos.unshift(data[0])

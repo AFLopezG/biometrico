@@ -175,6 +175,20 @@ ORDER BY v.codmovil DESC
      */
     public function pagoInsert(StorePagoRequest $request): Pago
     {
+        $url = env('URL_SOCKET');
+        $client = new Client(Client::engine(Client::CLIENT_4X, $url));
+        $client->initialize();
+        $client->of('/');
+
+        $afiliado_id=Afiliado::find($request->afiliado_id);
+        if ($afiliado_id->bloqueado!='') {
+            $data = [
+                "type" => "bloqueado",
+                "data" => $afiliado_id->bloqueado,
+            ];
+            $client->emit('chat message', $data);
+            return response()->json(['message' => 'El afiliado esta inactivo'], 200);
+        }
 
         $dias = array("domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado");
         $dia = $dias[date("w")];

@@ -2,26 +2,39 @@
 <q-page>
   <div class="col-12">
     <div class="text-h5 text-center">LISTA DE AFILIADOS</div>
-    
-    <q-table :rows="afiliados" :columns="columns" :filter="filter">
+
+    <q-table :rows="afiliados" :columns="columns" :filter="filter" dense :rows-per-page-options="[0]">
+      <template v-slot:body-cell-bloqueado="props">
+        <q-td key="estado" :props="props">
+          <q-badge :color="props.row.bloqueado=='SI'?'green-9':'red-9'" :label="props.row.bloqueado" />
+      </q-td>
+      </template>
       <template v-slot:body-cell-estado="props">
         <q-td key="estado" :props="props">
           <q-badge :color="props.row.estado=='ACTIVO'?'green':'red'" :label="props.row.estado" />
-          
-      </q-td>
-    </template>
+        </q-td>
+      </template>
       <template v-slot:body-cell-opcion="props">
           <q-td key="opcion" :props="props">
-            <q-btn dense icon="toggle_on" color="accent" @click="cambioEstado(props.row)" />
-            <q-btn dense icon="edit" color="yellow" @click="afiliado2=props.row;dialogModificar=true;" />
-            <q-btn dense icon="delete" color="red" @click="EliminarAfiliado(props.row)"/>
+            <q-btn dense icon="toggle_on" :color="props.row.bloqueado=='SI'?'green-9':'red-9'" @click="cambioBloqueado(props.row)">
+              <q-tooltip>Bloquear/Desbloquear</q-tooltip>
+            </q-btn>
+            <q-btn dense icon="toggle_on" :color="props.row.estado=='ACTIVO'?'green':'red'" @click="cambioEstado(props.row)">
+              <q-tooltip>PASI/ACTIVO</q-tooltip>
+            </q-btn>
+            <q-btn dense icon="edit" color="yellow" @click="afiliado2=props.row;dialogModificar=true;" >
+              <q-tooltip>Modificar</q-tooltip>
+            </q-btn>
+            <q-btn dense icon="delete" color="red" @click="EliminarAfiliado(props.row)">
+              <q-tooltip>Eliminar</q-tooltip>
+            </q-btn>
         </q-td>
       </template>
       <template v-slot:top-right>
         <q-btn label="REGISTRAR" color="green" icon="person_add" @click="listreg" :loading="loading"/>
         <q-btn color="green" label="PDF" icon="download" @click="imprimirLista"/>
         <q-btn color="red" label="PDF" icon="download" @click="imprimirLista2"/>
-        
+
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
           <template v-slot:append>
             <q-icon name="search" />
@@ -115,6 +128,7 @@ export default {
         {name:'opcion',label:'OPCION'},
         {name:'ci',label:'CI',field:'ci'},
         {name:'expedido',label:'EXPEDIDO',field:'expedido'},
+        {name:'bloqueado',label:'BLOQUEADO',field:'bloqueado'},
         {name:'estado',label:'ESTADO',field:'estado'},
         {name:'codigo',label:'NUM MOVIL',field:'codigo'},
         {name:'telfono',label:'TELEFONO',field:'telefono'},
@@ -195,8 +209,26 @@ export default {
           document.getElementById('print').innerHTML = cadena
           d.print( document.getElementById('print') )
     },
-  
+    cambioBloqueado(af){
+      this.$q.dialog({
+        title: 'Cambio de estado',
+        message: 'Esta seguro de cambiar el estado del afiliado?',
+        cancel: true,
+        prompt: {
+          model: 'Bloqueado',
+          type: 'text' // optional
+        },
+        persistent: true
+      }).onOk((data) => {
+        af.bloqueado=data
+        this.$api.post('cambioBloqueado/'+af.id,af).then((r) => {
+          this.listadoAfiliado()
+        })
+      })
+
+    },
     cambioEstado(af){
+      af.estado=af.estado=='ACTIVO'?'PASIVO':'ACTIVO'
       this.$api.post('cambioEstado/'+af.id).then((r) => {
         this.listadoAfiliado()
       })

@@ -73,7 +73,11 @@ class AfiliadoController extends Controller
     {
         //
     }
-
+public function cambioBloqueado($id, Request $request){
+    $afiliado=Afiliado::find($id);
+    $afiliado->bloqueado=isset($request->bloqueado)?$request->bloqueado:'';
+    $afiliado->save();
+}
     public function cambioEstado($id){
         $afiliado=Afiliado::find($id);
         if($afiliado->estado=='ACTIVO')

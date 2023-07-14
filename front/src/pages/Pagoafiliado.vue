@@ -95,8 +95,18 @@
         consultar(){
             this.afiliado={}
             this.$api.get('searchAfiliado/'+this.ci).then((res) => {
-                this.afiliado=res.data
-            })},
+              if (res.data.bloqueado=='') {
+                this.afiliado = res.data
+              }else{
+                this.$q.notify({
+                  message: res.data.bloqueado,
+                  icon:"info",
+                  color: 'red',
+                  position: 'top'
+                })
+              }
+            })
+        },
       irPago(vehi){
             vehi.vehiculo_id=vehi.id
               console.log(vehi)
