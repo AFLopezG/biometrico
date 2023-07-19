@@ -57,7 +57,7 @@ class DriverController extends Controller{
 
     public function update(UpdateDriverRequest $request, Driver $driver)
     {
-        $driver=  Driver::find($request);
+        $driver=  Driver::find($request->id);
         $driver->ci=strtoupper($request->ci);
         $driver->celular=$request->celular;
         $driver->nombres=strtoupper($request->nombres);
