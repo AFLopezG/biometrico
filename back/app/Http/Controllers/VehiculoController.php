@@ -16,7 +16,8 @@ class VehiculoController extends Controller
     public function index()
     {
         //
-        return Vehiculo::with('afiliado')->with('grupo')->orderBy('codmovil')->get();
+        $query = "CAST(codmovil AS int) asc";
+        return Vehiculo::with('afiliado')->with('grupo')->orderByRaw($query)->get();
     }
 
     /**
