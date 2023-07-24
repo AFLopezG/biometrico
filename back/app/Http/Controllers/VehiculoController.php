@@ -16,7 +16,7 @@ class VehiculoController extends Controller
     public function index()
     {
         //
-        return Vehiculo::with('afiliado')->with('grupo')->get();
+        return Vehiculo::with('afiliado')->with('grupo')->orderBy('codmovil')->get();
     }
 
     /**
