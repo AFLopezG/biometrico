@@ -123,6 +123,7 @@ export default {
       afiliados:[],
       filterAf:[],
       grupos:[],
+      grupo:{},
       datoprint:[],
       datocolor:'NINGUNO',
       printgrupo:[],
@@ -198,7 +199,7 @@ let datacaja = [
         if(x.grupo.tipo==this.grupo.tipo ){
           if(x.afiliado.estado=='ACTIVO')
           {i++
-          x.numero=i          
+          x.numero=i
           this.printgrupo.push(x)}
           else
           {j++
