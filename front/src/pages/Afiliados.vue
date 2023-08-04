@@ -87,7 +87,7 @@
               <div class="col-6"><q-input v-model="afiliado2.nombres" label="Nombres" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.apellidos" label="Apellidos" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.codigo" label="Num Movil" outlined dense required/></div>
-              <div class="col-6"><q-input v-model="afiliado2.telfono" label="Telefono" outlined dense required/></div>
+              <div class="col-6"><q-input v-model="afiliado2.telefono" label="Telefono" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.fechaing" label="Fecha Ing" type="date" outlined dense required/></div>
             </div>
           </q-card-section>

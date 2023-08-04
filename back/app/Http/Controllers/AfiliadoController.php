@@ -112,7 +112,7 @@ public function cambioBloqueado($id, Request $request){
         $afiliado->ci=strtoupper($request->ci);
         $afiliado->expedido=$request->expedido;
         $afiliado->codigo=strtoupper($request->codigo);
-        $afiliado->telefono=$request->telfono;
+        $afiliado->telefono=$request->telefono;
         $afiliado->nombres=strtoupper($request->nombres);
         $afiliado->apellidos=strtoupper($request->apellidos);
         $afiliado->fechaing=$request->fechaing;
