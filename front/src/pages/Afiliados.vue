@@ -82,7 +82,7 @@
           <q-card-section class="q-pt-none">
             <div class="row">
 
-              <div class="col-6"><q-input v-model="afiliado2.ci" label="CI" outlined dense required readonly/></div>
+              <div class="col-6"><q-input v-model="afiliado2.ci" label="CI" outlined dense required /></div>
               <div class="col-6"><q-select v-model="afiliado2.expedido" :options="exped" label="Expedido" dense outlined/></div>
               <div class="col-6"><q-input v-model="afiliado2.nombres" label="Nombres" outlined dense required/></div>
               <div class="col-6"><q-input v-model="afiliado2.apellidos" label="Apellidos" outlined dense required/></div>

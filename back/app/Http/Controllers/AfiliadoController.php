@@ -109,6 +109,7 @@ public function cambioBloqueado($id, Request $request){
     {
         //
         $afiliado= Afiliado::find($request->id);
+        $afiliado->ci=strtoupper($request->ci);
         $afiliado->expedido=$request->expedido;
         $afiliado->codigo=strtoupper($request->codigo);
         $afiliado->telefono=$request->telfono;
