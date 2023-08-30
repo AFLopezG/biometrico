@@ -10,10 +10,11 @@
     </div>
   </q-form>
   <div class="row">
-    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/1/${ini}/${fin}`" color="primary" icon="print" label="Grupo A y B"/></div>
-    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/2/${ini}/${fin}`" color="secondary" icon="print" label="GRUPO C"/></div>
-    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/3/${ini}/${fin}`" color="green" icon="print" label="GRUPO D"/></div>
-    <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/4/${ini}/${fin}`" color="info" icon="print" label="GRUPO E"/></div>
+    <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/1/${ini}/${fin}`" color="primary" icon="print" label="Grupo A y B"/></div>
+    <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/2/${ini}/${fin}`" color="secondary" icon="print" label="GRUPO C"/></div>
+    <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/2/${ini}/${fin}`" color="green" icon="print" label="GRUPO D"/></div>
+    <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/4/${ini}/${fin}`" color="info" icon="print" label="GRUPO E"/></div>
+    <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlistPago/5/${ini}/${fin}`" color="purple" icon="print" label="GRUPO F"/></div>
   </div>
 <q-table :rows="pagos" :columns="columns" dense :rows-per-page-options="[20,50,100,0]" :filter="filter">
   <template v-slot:top-right>
@@ -42,10 +43,11 @@
     </q-card-section>
     <q-card-section>
       <div class="row">
-        <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/1/${ini}/${fin}`" color="primary" icon="print" label="Grupo A y B" no-caps/></div>
-        <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/2/${ini}/${fin}`" color="secondary" icon="print" label="Grupo C" no-caps/></div>
-        <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/3/${ini}/${fin}`" color="green" icon="print" label="Grupo D" no-caps/></div>
-        <div class="col-3 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/4/${ini}/${fin}`" color="info" icon="print" label="Grupo E" no-caps/></div>
+        <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/1/${ini}/${fin}`" color="primary" icon="print" label="Grupo A y B" no-caps/></div>
+        <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/2/${ini}/${fin}`" color="secondary" icon="print" label="Grupo C" no-caps/></div>
+        <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/2/${ini}/${fin}`" color="green" icon="print" label="Grupo D" no-caps/></div>
+        <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/4/${ini}/${fin}`" color="info" icon="print" label="Grupo E" no-caps/></div>
+        <div class="col-2 flex flex-center"><q-btn target="_blank" type="a" :href="`${url}reportlist/5/${ini}/${fin}`" color="purple" icon="print" label="Grupo F" no-caps/></div>
       </div>
     </q-card-section>
   </q-card>

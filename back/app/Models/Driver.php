@@ -13,6 +13,7 @@ class Driver extends Model
         'celular',
         'nombres',
         'foto',
+        'grupo',
     ];
 
     public function afiliados()

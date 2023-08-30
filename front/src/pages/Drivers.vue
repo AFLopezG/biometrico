@@ -169,6 +169,7 @@
             {name:'afiliados',label:'afiliado',field:'afiliados',align:'left'},
             {name:'ci',label:'ci',field:'ci',align:'left'},
             {name:'nombre',label:'Nombre',field:'nombres',align:'left'},
+             {name:'grupo',label:'Grupo',field:'grupo',align:'left'},
             {name:'celular',label:'Celular',field:'celular',align:'left'},
           ]
         };
@@ -343,7 +344,7 @@
         listadodrivers(){
           this.drivers=[]
           this.$api.get('driver').then((response) => {
-            // console.log(response.data)
+             console.log(response.data)
             let n=1
             let num=0
             let af=''

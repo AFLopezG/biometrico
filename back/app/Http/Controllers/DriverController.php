@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AfiliadoDriver;
 use App\Models\Driver;
+use App\Models\Vehiculo;
 use App\Http\Requests\StoreDriverRequest;
 use App\Http\Requests\UpdateDriverRequest;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ class DriverController extends Controller{
     }
     public function store(StoreDriverRequest $request)
     {
+        $vehiculo = Vehiculo::with('grupo')->where('afiliado_id',$request->afiliado_id)->first();
+        $request->grupo=$vehiculo->grupo['tipo'];
         $drive=Driver::create($request->all());
         $afiliadoDriver=AfiliadoDriver::create([
             'afiliado_id'=>$request->afiliado_id,
@@ -67,13 +70,17 @@ class DriverController extends Controller{
     public function cambiar(Request $request){
         $fecha=date('Y-m-d');
         $result=DB::SELECT("SELECT from afiliado_driver where fechabaja is not null and driver_id = $request->driver_id");
+        $vehiculo = Vehiculo::with('grupo')->where('afiliado_id',$request->afiliado_id)->first();
         if(sizeof($result)>0)
             { if($result[0]->afiliado_id==$request->afiliado_id)
                 return '';
                 else
                 DB::SELECT("UPDATE afiliado_driver set fechabaja=$fecha where driver_id = $request->driver_id");
             }
-        DB::SELECT("INSERT into afiliado_driver (afiliado_id,driver_id,fechaingreso) values ($request->afiliado_id,$request->driver_id,$request->fecha)");
+        DB::SELECT("INSERT into afiliado_driver (afiliado_id,driver_id,fechaingreso,grupo) values ($request->afiliado_id,$request->driver_id,$request->fecha)");
+        $driver = Driver::find($request->driver_id);
+        $driver->grupo=$vehiculo->grupo['tipo'];
+        $driver->save();
     }
     public function destroy(Driver $driver)
     {
