@@ -189,6 +189,7 @@
             {label:'N',value:'numero'},
             {label:'CI',value:'ci'},
             {label:'NOMBRE',value:'nombres'},
+            {label:'GRUPO',value:'grupo'},
             {label:'CELULAR',value:'celular'},
             {label:'AFILIADO',value:'completo'},
           ],
