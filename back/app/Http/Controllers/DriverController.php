@@ -22,6 +22,10 @@ class DriverController extends Controller{
             'driver_id'=>$request->driver_id,
             'fechaingreso'=>now()
         ]);
+        $vehiculo = Vehiculo::with('grupo')->where('afiliado_id',$request->afiliado_id)->first();
+        $driver = Driver::find($request->driver_id);
+        $driver->grupo=$vehiculo->grupo['tipo'];
+        $driver->save();
     }
     public function afiliadosDriverFechaBaja(Request $request){
         $afiliadoDriver=AfiliadoDriver::find($request->id);
@@ -68,9 +72,11 @@ class DriverController extends Controller{
     }
 
     public function cambiar(Request $request){
+        
         $fecha=date('Y-m-d');
         $result=DB::SELECT("SELECT from afiliado_driver where fechabaja is not null and driver_id = $request->driver_id");
         $vehiculo = Vehiculo::with('grupo')->where('afiliado_id',$request->afiliado_id)->first();
+        return $vehiculo->grupo['tipo'];
         if(sizeof($result)>0)
             { if($result[0]->afiliado_id==$request->afiliado_id)
                 return '';
