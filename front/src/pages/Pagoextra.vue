@@ -47,7 +47,7 @@
       data() {
         return {
           url: process.env.API,
-          tipos:[{label:'Nuevo Ingreso',monto:500},{label:'Cuota',monto:20}],
+          tipos:[{label:'Nuevo Ingreso',monto:500},{label:'Cuota',monto:23}],
           filterPagos:'',
           pagos: [],
           moment: moment,
