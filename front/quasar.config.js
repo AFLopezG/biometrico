@@ -82,7 +82,7 @@ module.exports = configure(function (ctx) {
       },
       env: {
         API: ctx.dev ? 'http://localhost:8000/api/' : 'https://bbio.tuprogam.com/api/',
-        API_SOCKET: ctx.dev ? 'http://localhost:3000/' : 'https://sbio.tuprogam.com/',
+        API_SOCKET: ctx.dev ? 'http://localhost:3011/' : 'https://sbio.tuprogam.com/',
       }
 
     },
